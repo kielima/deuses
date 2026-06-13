@@ -2,7 +2,7 @@ name: CI
 
 on:
   pull_request:
-    branches: [main]
+    branches: [master]
   # workflow_dispatch is required so that the auto-merge workflow can
   # re-trigger this CI after a GITHUB_TOKEN-authored merge (which GitHub
   # intentionally does not re-trigger workflows automatically to prevent
