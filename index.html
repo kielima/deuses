@@ -11,6 +11,9 @@
 <meta name="apple-mobile-web-app-title" content="Deuses">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <style>
 :root {
   --bg: #080c1a;
@@ -35,7 +38,9 @@ header {
   border-bottom: 1px solid var(--border);
   padding: 24px 32px;
   display: flex; align-items: center; gap: 16px;
+  justify-content: space-between;
 }
+.header-left { display: flex; align-items: center; gap: 16px; }
 header .icon { font-size: 36px; }
 header h1 { font-size: 26px; font-weight: 700; color: var(--gold); letter-spacing: -0.5px; }
 header p { color: var(--muted); font-size: 13px; margin-top: 2px; }
@@ -253,14 +258,105 @@ footer {
   .kpi .value { font-size: 30px; }
   header h1 { font-size: 15px; }
 }
+
+/* ── AUTH ────────────────────────────────────────────────────────────────────*/
+.header-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.btn-auth { background: var(--gold); color: #080c1a; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; transition: opacity 0.2s; white-space: nowrap; }
+.btn-auth:hover { opacity: 0.85; }
+.btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); padding: 7px 14px; border-radius: 8px; cursor: pointer; font-size: 13px; transition: border-color 0.2s, color 0.2s; white-space: nowrap; }
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+.user-avatar { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; }
+.user-name { font-size: 13px; color: var(--text); }
+
+/* ── MODAL ───────────────────────────────────────────────────────────────────*/
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 100; align-items: center; justify-content: center; }
+.modal-overlay.open { display: flex; }
+.modal { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); width: min(640px, 96vw); max-height: 88vh; overflow: hidden; display: flex; flex-direction: column; }
+.modal-header { padding: 20px 24px 0; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.modal-header h2 { font-size: 16px; color: var(--gold); font-weight: 700; line-height: 1.3; }
+.modal-close { background: none; border: none; color: var(--muted); font-size: 22px; cursor: pointer; line-height: 1; flex-shrink: 0; padding: 2px 4px; }
+.modal-close:hover { color: var(--text); }
+.modal-tabs { display: flex; border-bottom: 1px solid var(--border); margin: 16px 24px 0; }
+.modal-tab { background: none; border: none; color: var(--muted); font-size: 13px; padding: 8px 16px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.2s; }
+.modal-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+.modal-body { padding: 20px 24px; overflow-y: auto; flex: 1; }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; padding: 16px 24px; border-top: 1px solid var(--border); }
+.btn-save { background: var(--gold); color: #080c1a; border: none; padding: 10px 24px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; transition: opacity 0.2s; }
+.btn-save:hover { opacity: 0.85; }
+.btn-save:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-cancel { background: var(--card2); color: var(--text); border: 1px solid var(--border); padding: 10px 18px; border-radius: 8px; cursor: pointer; font-size: 13px; }
+.edit-field { margin-bottom: 16px; }
+.edit-field label { display: block; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.edit-field input, .edit-field textarea { width: 100%; background: var(--card2); border: 1px solid var(--border); color: var(--text); padding: 10px 12px; border-radius: 8px; font-size: 13px; font-family: inherit; outline: none; transition: border-color 0.2s; }
+.edit-field textarea { resize: vertical; min-height: 80px; }
+.edit-field input:focus, .edit-field textarea:focus { border-color: var(--gold); }
+.edit-field input:disabled, .edit-field textarea:disabled { opacity: 0.6; cursor: not-allowed; }
+.last-edit-badge { font-size: 11px; color: var(--muted); background: rgba(212,168,67,0.1); border: 1px solid rgba(212,168,67,0.25); padding: 8px 12px; border-radius: 6px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.last-edit-badge img { width: 22px; height: 22px; border-radius: 50%; }
+.login-hint { background: rgba(124,58,237,0.1); border: 1px solid rgba(124,58,237,0.3); color: var(--muted); padding: 12px 16px; border-radius: 8px; font-size: 13px; text-align: center; margin-bottom: 12px; }
+.edit-history-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.edit-history-item:last-child { border-bottom: none; }
+.history-avatar { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; background: var(--card2); }
+.history-info { flex: 1; }
+.history-info .who { font-size: 13px; font-weight: 600; color: var(--text); }
+.history-info .what { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+.history-info .when { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+/* ── ACTIVITY DRAWER ─────────────────────────────────────────────────────────*/
+.drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 90; }
+.drawer-overlay.open { display: block; }
+.drawer { position: fixed; top: 0; right: -420px; width: 390px; height: 100vh; background: var(--card); border-left: 1px solid var(--border); z-index: 91; transition: right 0.3s ease; overflow-y: auto; padding: 24px; }
+.drawer.open { right: 0; }
+.drawer-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.drawer-header h3 { font-size: 16px; color: var(--gold); font-weight: 700; }
+.activity-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.activity-item:last-child { border-bottom: none; }
+.activity-avatar { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; background: var(--card2); }
+.activity-info { flex: 1; font-size: 12px; color: var(--muted); line-height: 1.5; }
+.activity-info strong { color: var(--text); }
+.activity-empty { text-align: center; color: var(--muted); font-size: 13px; padding: 40px 0; }
+
+/* ── ADMIN MODAL ─────────────────────────────────────────────────────────────*/
+.user-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.user-row:last-child { border-bottom: none; }
+.user-row-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--card2); flex-shrink: 0; }
+.user-row-info { flex: 1; min-width: 0; }
+.user-row-info .uname { font-size: 13px; font-weight: 600; color: var(--text); }
+.user-row-info .umeta { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.role-badge { font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+.role-admin { background: rgba(124,58,237,0.2); color: #c4b5fd; }
+.role-editor { background: rgba(212,168,67,0.15); color: var(--gold); }
+.role-viewer { background: rgba(148,163,184,0.1); color: var(--muted); }
+.btn-role { font-size: 11px; padding: 4px 10px; border-radius: 6px; cursor: pointer; border: 1px solid var(--border); background: var(--card2); color: var(--text); white-space: nowrap; }
+.btn-role:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── TOAST ───────────────────────────────────────────────────────────────────*/
+.toast-container { position: fixed; bottom: 24px; right: 24px; z-index: 200; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
+.toast { padding: 12px 20px; border-radius: 10px; font-size: 13px; font-weight: 500; max-width: 320px; animation: slideIn 0.3s ease; }
+.toast-success { background: #065f46; border: 1px solid #10b981; color: #a7f3d0; }
+.toast-error { background: #7f1d1d; border: 1px solid #ef4444; color: #fca5a5; }
+@keyframes slideIn { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+.override-dot { color: var(--gold); font-size: 9px; vertical-align: middle; margin-right: 3px; }
+tbody tr { cursor: pointer; }
+.spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--border); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; vertical-align: middle; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (max-width: 599px) {
+  .header-right .user-name, .header-right .btn-outline:not(#btn-signout) { display: none; }
+  .drawer { width: 100vw; right: -100vw; }
+}
 </style>
 </head>
 <body>
 <header>
-  <div class="icon">⚡</div>
-  <div>
-    <h1>Gods &amp; Goddesses — Dashboard Mundial</h1>
-    <p>Base de dados de 3,738 deidades de 312 culturas ao redor do mundo</p>
+  <div class="header-left">
+    <div class="icon">⚡</div>
+    <div>
+      <h1>Gods &amp; Goddesses — Dashboard Mundial</h1>
+      <p>Base de dados de 3,738 deidades de 312 culturas ao redor do mundo</p>
+    </div>
+  </div>
+  <div class="header-right" id="header-right">
+    <button class="btn-auth" onclick="signInWithGoogle()">Entrar com Google</button>
   </div>
 </header>
 
@@ -376,6 +472,52 @@ footer {
 
 </div>
 
+<!-- ── EDIT MODAL ──────────────────────────────────────────────────────────── -->
+<div class="modal-overlay" id="edit-modal-overlay" onclick="if(event.target===this)closeEditModal()">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modal-title">Deidade</h2>
+      <button class="modal-close" onclick="closeEditModal()">×</button>
+    </div>
+    <div class="modal-tabs">
+      <button class="modal-tab active" id="tab-details" onclick="switchTab('details')">Detalhes</button>
+      <button class="modal-tab" id="tab-history" onclick="switchTab('history')">Histórico</button>
+    </div>
+    <div class="modal-body" id="modal-body">
+    </div>
+    <div class="modal-actions" id="modal-actions" style="display:none">
+      <button class="btn-cancel" onclick="closeEditModal()">Cancelar</button>
+      <button class="btn-save" id="btn-save" onclick="saveEdit()">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── ACTIVITY DRAWER ────────────────────────────────────────────────────── -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="closeActivityDrawer()"></div>
+<div class="drawer" id="activity-drawer">
+  <div class="drawer-header">
+    <h3>⚡ Atividade Recente</h3>
+    <button class="modal-close" onclick="closeActivityDrawer()">×</button>
+  </div>
+  <div id="activity-list"><div class="activity-empty">Carregando… <span class="spinner"></span></div></div>
+</div>
+
+<!-- ── ADMIN MODAL ────────────────────────────────────────────────────────── -->
+<div class="modal-overlay" id="admin-modal-overlay" onclick="if(event.target===this)closeAdminPanel()">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Admin ⚙ — Gerenciar Usuários</h2>
+      <button class="modal-close" onclick="closeAdminPanel()">×</button>
+    </div>
+    <div class="modal-body" id="admin-body">
+      <div style="text-align:center;padding:20px"><span class="spinner"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TOAST CONTAINER ────────────────────────────────────────────────────── -->
+<div class="toast-container" id="toast-container"></div>
+
 <footer>
   Gods &amp; Goddesses Database • 3,738 deidades • 312 culturas • Dashboard gerado por Claude (Cowork) • 2026
 </footer>
@@ -410,7 +552,7 @@ function applyFilters() {
   const fc = document.getElementById('f-culture').value;
   const fg = document.getElementById('f-gender').value;
   const fgeo = document.getElementById('f-geo').value;
-  filtered = DATA.filter(d => {
+  filtered = (window.mergedData || DATA).filter(d => {
     if(q && !d.n.toLowerCase().includes(q)) return false;
     if(fc && d.c !== fc) return false;
     if(fg && d.g !== fg) return false;
@@ -473,7 +615,7 @@ function renderTable() {
   document.getElementById('next-btn').disabled = currentPage === totalPages;
 
   body.innerHTML = slice.map(d => `<tr>
-    <td title="${d.n}">${d.n||'—'}</td>
+    <td title="${d.n}">${d._overridden ? '<span class="override-dot" title="Editado colaborativamente">●</span>' : ''}${d.n||'—'}</td>
     <td>${d.c||'—'}</td>
     <td>${genderBadge(d.g)}</td>
     <td title="${d.p}">${d.p ? d.p.substring(0,60)+(d.p.length>60?'…':'') : '—'}</td>
@@ -567,6 +709,384 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js').catch(() => {});
   });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// FIREBASE — substituia os PLACEHOLDER_* pelos valores reais do seu projeto
+// Firebase Console → Project Settings → Your apps → firebaseConfig
+// ─────────────────────────────────────────────────────────────────────────────
+const firebaseConfig = {
+  apiKey: "PLACEHOLDER_API_KEY",
+  authDomain: "PLACEHOLDER_PROJECT_ID.firebaseapp.com",
+  projectId: "PLACEHOLDER_PROJECT_ID",
+  storageBucket: "PLACEHOLDER_PROJECT_ID.appspot.com",
+  messagingSenderId: "PLACEHOLDER_SENDER_ID",
+  appId: "PLACEHOLDER_APP_ID"
+};
+
+// ── INIT FIREBASE ─────────────────────────────────────────────────────────────
+try { firebase.initializeApp(firebaseConfig); } catch(e) {}
+const auth = firebase.auth();
+const db = firebase.firestore();
+const FieldValue = firebase.firestore.FieldValue;
+
+// ── GLOBALS ───────────────────────────────────────────────────────────────────
+let currentUser = null;
+let currentUserRole = 'viewer';
+let overrides = {};           // { dataIdx: {field:val, ...firestore fields} }
+window.mergedData = DATA.map((d, i) => ({ ...d, _idx: i }));
+
+// initialise filtered from mergedData immediately so init render has _idx
+filtered = window.mergedData.slice();
+sortData();
+renderTable();
+updateKPIs();
+
+// ── AUTH ──────────────────────────────────────────────────────────────────────
+function signInWithGoogle() {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider).catch(e => showToast(e.message, 'error'));
+}
+function signOut() { auth.signOut(); }
+
+auth.onAuthStateChanged(async user => {
+  currentUser = user;
+  if (user) {
+    try {
+      const userRef = db.collection('users').doc(user.uid);
+      const snap = await userRef.get();
+      if (!snap.exists) {
+        await userRef.set({
+          displayName: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL || '',
+          role: 'viewer',
+          joinedAt: FieldValue.serverTimestamp(),
+          editCount: 0
+        });
+        currentUserRole = 'viewer';
+      } else {
+        currentUserRole = snap.data().role || 'viewer';
+      }
+    } catch(e) { console.warn('Firestore user init:', e); }
+    renderAuthUI(user);
+    loadOverrides();
+  } else {
+    currentUserRole = 'viewer';
+    renderAuthUI(null);
+    overrides = {};
+    window.mergedData = DATA.map((d, i) => ({ ...d, _idx: i }));
+    applyFilters();
+  }
+});
+
+function renderAuthUI(user) {
+  const right = document.getElementById('header-right');
+  if (!user) {
+    right.innerHTML = `<button class="btn-auth" onclick="signInWithGoogle()">Entrar com Google</button>`;
+    return;
+  }
+  const photo = user.photoURL ? `<img class="user-avatar" src="${user.photoURL}" alt="">` : '';
+  const adminBtn = currentUserRole === 'admin' ? `<button class="btn-outline" onclick="openAdminPanel()">Admin ⚙</button>` : '';
+  right.innerHTML = `
+    <button class="btn-outline" onclick="openActivityDrawer()">⚡ Atividade</button>
+    ${adminBtn}
+    ${photo}
+    <span class="user-name">${user.displayName.split(' ')[0]}</span>
+    <button class="btn-outline" id="btn-signout" onclick="signOut()">Sair</button>
+  `;
+}
+
+// ── MERGE OVERRIDES ───────────────────────────────────────────────────────────
+async function loadOverrides() {
+  try {
+    const snap = await db.collection('deities').get();
+    overrides = {};
+    snap.forEach(doc => {
+      const idx = parseInt(doc.id);
+      if (!isNaN(idx) && DATA[idx]) overrides[idx] = doc.data();
+    });
+    rebuildMergedData();
+    applyFilters();
+  } catch(e) { console.warn('Firestore overrides:', e); }
+}
+
+function rebuildMergedData() {
+  window.mergedData = DATA.map((d, i) => {
+    if (overrides[i]) {
+      const ov = overrides[i];
+      return { ...d, ...ov, _idx: i, _overridden: true, _lastEdit: ov.lastEditedBy, _lastEditAt: ov.lastEditedAt };
+    }
+    return { ...d, _idx: i };
+  });
+}
+
+// ── TABLE CLICK — event delegation ────────────────────────────────────────────
+document.getElementById('table-body').addEventListener('click', e => {
+  const tr = e.target.closest('tr');
+  if (!tr) return;
+  const rows = [...tr.parentElement.children];
+  const sliceIdx = rows.indexOf(tr);
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const d = filtered[start + sliceIdx];
+  if (d) openEditModal(d._idx);
+});
+
+// ── EDIT MODAL ────────────────────────────────────────────────────────────────
+let editingIdx = null;
+let currentTab = 'details';
+
+function openEditModal(dataIdx) {
+  editingIdx = dataIdx;
+  currentTab = 'details';
+  const overlay = document.getElementById('edit-modal-overlay');
+  overlay.classList.add('open');
+  renderDetailsTab();
+  document.getElementById('tab-details').classList.add('active');
+  document.getElementById('tab-history').classList.remove('active');
+  document.getElementById('modal-actions').style.display =
+    (currentUser && (currentUserRole === 'editor' || currentUserRole === 'admin')) ? '' : 'none';
+}
+
+function closeEditModal() {
+  document.getElementById('edit-modal-overlay').classList.remove('open');
+  editingIdx = null;
+}
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.getElementById('tab-details').classList.toggle('active', tab === 'details');
+  document.getElementById('tab-history').classList.toggle('active', tab === 'history');
+  if (tab === 'details') renderDetailsTab();
+  else renderHistoryTab();
+}
+
+function renderDetailsTab() {
+  const d = window.mergedData[editingIdx] || DATA[editingIdx];
+  document.getElementById('modal-title').textContent = d.n || 'Deidade';
+
+  const canEdit = currentUser && (currentUserRole === 'editor' || currentUserRole === 'admin');
+  const dis = canEdit ? '' : 'disabled';
+
+  let lastEditHtml = '';
+  if (d._lastEdit) {
+    const le = d._lastEdit;
+    const when = d._lastEditAt ? relTime(d._lastEditAt.toDate ? d._lastEditAt.toDate() : new Date(d._lastEditAt)) : '';
+    lastEditHtml = `<div class="last-edit-badge">
+      ${le.photoURL ? `<img src="${le.photoURL}" alt="">` : ''}
+      Última edição por <strong>${le.displayName}</strong> ${when}
+    </div>`;
+  }
+
+  const loginHint = !currentUser
+    ? `<div class="login-hint">Faça login para editar esta deidade</div>`
+    : (!canEdit ? `<div class="login-hint">Apenas editores e admins podem editar</div>` : '');
+
+  document.getElementById('modal-body').innerHTML = `
+    ${lastEditHtml}
+    ${loginHint}
+    <div class="edit-field"><label>Nome</label><input id="ef-n" value="${esc(d.n||'')}" ${dis}></div>
+    <div class="edit-field"><label>Cultura / Panteão</label><input id="ef-c" value="${esc(d.c||'')}" ${dis}></div>
+    <div class="edit-field"><label>Gênero</label><input id="ef-g" value="${esc(d.g||'')}" ${dis}></div>
+    <div class="edit-field"><label>Padroeiro de</label><input id="ef-p" value="${esc(d.p||'')}" ${dis}></div>
+    <div class="edit-field"><label>Geografia</label><input id="ef-geo" value="${esc(d.geo||'')}" ${dis}></div>
+    <div class="edit-field"><label>Descrição</label><textarea id="ef-d" ${dis}>${esc(d.d||'')}</textarea></div>
+  `;
+}
+
+async function renderHistoryTab() {
+  document.getElementById('modal-body').innerHTML = `<div style="text-align:center;padding:20px"><span class="spinner"></span></div>`;
+  try {
+    const snap = await db.collection('deities').doc(String(editingIdx))
+      .collection('edits').orderBy('editedAt', 'desc').limit(30).get();
+    if (snap.empty) {
+      document.getElementById('modal-body').innerHTML = `<p class="activity-empty">Nenhuma edição registrada ainda.</p>`;
+      return;
+    }
+    document.getElementById('modal-body').innerHTML = snap.docs.map(doc => {
+      const e = doc.data();
+      const who = e.editedBy || {};
+      const when = e.editedAt ? relTime(e.editedAt.toDate ? e.editedAt.toDate() : new Date(e.editedAt)) : '';
+      return `<div class="edit-history-item">
+        ${who.photoURL ? `<img class="history-avatar" src="${who.photoURL}" alt="">` : '<div class="history-avatar"></div>'}
+        <div class="history-info">
+          <div class="who">${esc(who.displayName||'?')}</div>
+          <div class="what"><strong>${esc(e.field||'')}</strong>: "${esc(String(e.oldValue||''))}" → "${esc(String(e.newValue||''))}"</div>
+          <div class="when">${when}</div>
+        </div>
+      </div>`;
+    }).join('');
+  } catch(e) {
+    document.getElementById('modal-body').innerHTML = `<p class="activity-empty">Erro ao carregar histórico.</p>`;
+  }
+}
+
+async function saveEdit() {
+  if (!currentUser || (currentUserRole !== 'editor' && currentUserRole !== 'admin')) return;
+  const btn = document.getElementById('btn-save');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>';
+
+  const original = window.mergedData[editingIdx] || DATA[editingIdx];
+  const fields = { n:'ef-n', c:'ef-c', g:'ef-g', p:'ef-p', geo:'ef-geo', d:'ef-d' };
+  const changes = {};
+  const edits = [];
+
+  for (const [field, id] of Object.entries(fields)) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+    const newVal = el.value.trim();
+    const oldVal = String(original[field] || '');
+    if (newVal !== oldVal) {
+      changes[field] = newVal;
+      edits.push({ field, oldValue: oldVal, newValue: newVal });
+    }
+  }
+
+  if (!edits.length) { closeEditModal(); btn.disabled = false; btn.textContent = 'Salvar'; return; }
+
+  try {
+    const deityRef = db.collection('deities').doc(String(editingIdx));
+    const editBy = { uid: currentUser.uid, displayName: currentUser.displayName, photoURL: currentUser.photoURL || '' };
+    const ts = FieldValue.serverTimestamp();
+
+    await deityRef.set({
+      ...changes,
+      lastEditedBy: editBy,
+      lastEditedAt: ts
+    }, { merge: true });
+
+    const batch = db.batch();
+    edits.forEach(e => {
+      batch.set(deityRef.collection('edits').doc(), { ...e, editedBy: editBy, editedAt: ts });
+    });
+    await batch.commit();
+    await db.collection('users').doc(currentUser.uid).update({ editCount: FieldValue.increment(edits.length) });
+
+    overrides[editingIdx] = { ...(overrides[editingIdx] || {}), ...changes,
+      lastEditedBy: editBy, lastEditedAt: new Date() };
+    rebuildMergedData();
+    applyFilters();
+    showToast('Deidade atualizada! ✓', 'success');
+    closeEditModal();
+  } catch(e) {
+    showToast('Erro ao salvar: ' + e.message, 'error');
+  }
+  btn.disabled = false;
+  btn.textContent = 'Salvar';
+}
+
+// ── ACTIVITY FEED ─────────────────────────────────────────────────────────────
+let activityUnsub = null;
+
+function openActivityDrawer() {
+  document.getElementById('drawer-overlay').classList.add('open');
+  document.getElementById('activity-drawer').classList.add('open');
+  if (activityUnsub) return;
+  try {
+    activityUnsub = db.collectionGroup('edits')
+      .orderBy('editedAt', 'desc').limit(50)
+      .onSnapshot(snap => {
+        const list = document.getElementById('activity-list');
+        if (snap.empty) {
+          list.innerHTML = `<div class="activity-empty">Nenhuma edição ainda — seja o primeiro!</div>`;
+          return;
+        }
+        list.innerHTML = snap.docs.map(doc => {
+          const e = doc.data();
+          const who = e.editedBy || {};
+          const deity = doc.ref.parent.parent;
+          const idx = parseInt(deity.id);
+          const deityName = !isNaN(idx) && DATA[idx] ? DATA[idx].n : '?';
+          const when = e.editedAt ? relTime(e.editedAt.toDate ? e.editedAt.toDate() : new Date(e.editedAt)) : '';
+          return `<div class="activity-item">
+            ${who.photoURL ? `<img class="activity-avatar" src="${who.photoURL}" alt="">` : '<div class="activity-avatar"></div>'}
+            <div class="activity-info">
+              <strong>${esc(who.displayName||'?')}</strong> editou <strong>${esc(e.field||'')}</strong> de
+              <em>${esc(deityName)}</em>:<br>
+              "${esc(String(e.oldValue||'').substring(0,40))}" → "${esc(String(e.newValue||'').substring(0,40))}"
+              <br><span style="font-size:11px">${when}</span>
+            </div>
+          </div>`;
+        }).join('');
+      });
+  } catch(e) {
+    document.getElementById('activity-list').innerHTML = `<div class="activity-empty">Erro ao carregar atividade.</div>`;
+  }
+}
+
+function closeActivityDrawer() {
+  document.getElementById('drawer-overlay').classList.remove('open');
+  document.getElementById('activity-drawer').classList.remove('open');
+}
+
+// ── ADMIN PANEL ───────────────────────────────────────────────────────────────
+async function openAdminPanel() {
+  document.getElementById('admin-modal-overlay').classList.add('open');
+  const body = document.getElementById('admin-body');
+  body.innerHTML = `<div style="text-align:center;padding:20px"><span class="spinner"></span></div>`;
+  try {
+    const snap = await db.collection('users').orderBy('joinedAt', 'desc').get();
+    if (snap.empty) { body.innerHTML = '<p class="activity-empty">Nenhum usuário registrado.</p>'; return; }
+    body.innerHTML = snap.docs.map(doc => {
+      const u = doc.data();
+      const isSelf = currentUser && doc.id === currentUser.uid;
+      const isAdmin = u.role === 'admin';
+      let btn = '';
+      if (!isSelf && !isAdmin) {
+        if (u.role === 'viewer') btn = `<button class="btn-role" onclick="setRole('${doc.id}','editor')">→ editor</button>`;
+        else if (u.role === 'editor') btn = `<button class="btn-role" onclick="setRole('${doc.id}','viewer')">→ viewer</button>`;
+      }
+      const joined = u.joinedAt ? new Date(u.joinedAt.seconds*1000).toLocaleDateString('pt-BR') : '—';
+      return `<div class="user-row">
+        ${u.photoURL ? `<img class="user-row-avatar" src="${u.photoURL}" alt="">` : '<div class="user-row-avatar"></div>'}
+        <div class="user-row-info">
+          <div class="uname">${esc(u.displayName||'?')} ${isSelf ? '<em style="color:var(--muted);font-weight:400">(você)</em>' : ''}</div>
+          <div class="umeta">${esc(u.email||'')} • ${u.editCount||0} edições • desde ${joined}</div>
+        </div>
+        <span class="role-badge role-${u.role}">${u.role}</span>
+        ${btn}
+      </div>`;
+    }).join('');
+  } catch(e) {
+    body.innerHTML = `<p class="activity-empty">Erro: ${e.message}</p>`;
+  }
+}
+
+function closeAdminPanel() {
+  document.getElementById('admin-modal-overlay').classList.remove('open');
+}
+
+async function setRole(uid, role) {
+  try {
+    await db.collection('users').doc(uid).update({ role });
+    showToast(`Papel atualizado para ${role}`, 'success');
+    openAdminPanel();
+  } catch(e) {
+    showToast('Erro: ' + e.message, 'error');
+  }
+}
+
+// ── HELPERS ───────────────────────────────────────────────────────────────────
+function showToast(msg, type = 'success') {
+  const c = document.getElementById('toast-container');
+  const t = document.createElement('div');
+  t.className = `toast toast-${type}`;
+  t.textContent = msg;
+  c.appendChild(t);
+  setTimeout(() => t.remove(), 3500);
+}
+
+function relTime(date) {
+  const diff = (Date.now() - date.getTime()) / 1000;
+  if (diff < 60) return 'agora mesmo';
+  if (diff < 3600) return `${Math.floor(diff/60)}min atrás`;
+  if (diff < 86400) return `${Math.floor(diff/3600)}h atrás`;
+  return `${Math.floor(diff/86400)}d atrás`;
+}
+
+function esc(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 </script>
 </body>
