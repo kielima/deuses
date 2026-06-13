@@ -1,0 +1,94 @@
+name: Auto-merge
+
+on:
+  workflow_run:
+    # List here the exact "name:" values of every CI workflow that must
+    # pass before a PR can be auto-merged.
+    workflows: ["CI"]
+    types: [completed]
+
+jobs:
+  auto-merge:
+    name: Squash-merge when CI passes
+    runs-on: ubuntu-latest
+    # Only run when CI succeeded.
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    permissions:
+      contents: write        # needed to merge
+      pull-requests: write   # needed to close / update PRs
+      actions: write         # needed to dispatch downstream workflows (see step below)
+
+    steps:
+      - name: Find the open, non-draft PR for this commit
+        id: find-pr
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const sha = context.payload.workflow_run.head_sha;
+            const { data: prs } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo:  context.repo.repo,
+              state: 'open',
+            });
+            const pr = prs.find(p => p.head.sha === sha && !p.draft);
+            if (!pr) {
+              core.notice(`No open non-draft PR found for ${sha} — skipping.`);
+              core.setOutput('pr_number', '');
+            } else {
+              core.setOutput('pr_number', pr.number);
+            }
+
+      - name: Squash-merge the PR
+        id: merge
+        if: ${{ steps.find-pr.outputs.pr_number != '' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr_number = parseInt('${{ steps.find-pr.outputs.pr_number }}');
+            await github.rest.pulls.merge({
+              owner:        context.repo.owner,
+              repo:         context.repo.repo,
+              pull_number:  pr_number,
+              merge_method: 'squash',
+            });
+            core.info(`PR #${pr_number} squash-merged.`);
+
+      # ─── WHY THIS STEP EXISTS ───────────────────────────────────────────────
+      # GitHub's anti-loop rule: pushes authored by GITHUB_TOKEN (including
+      # merges via the API using that token) do NOT trigger other workflows.
+      # This means any workflow listening to `push: branches: [main]` would
+      # silently stop running after an auto-merge — no error, no warning.
+      #
+      # The documented exception is `workflow_dispatch`: the GITHUB_TOKEN IS
+      # allowed to trigger workflow_dispatch events. We therefore add
+      # `workflow_dispatch:` to every affected workflow and re-fire them here.
+      #
+      # If you add a new workflow that runs on push to main, you MUST:
+      #   1. Add `workflow_dispatch:` to its `on:` block.
+      #   2. Add a createWorkflowDispatch call for it below.
+      # ────────────────────────────────────────────────────────────────────────
+      - name: Trigger downstream workflows
+        if: ${{ steps.merge.outcome == 'success' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const targetBranch = 'master';
+            // Add one entry per workflow that listens to `push: branches: [main]`.
+            // Currently none exist beyond CI (which runs on pull_request, not push).
+            // This array is intentionally empty but kept as a template for future use.
+            const downstreamWorkflows = [
+              // Example: 'deploy.yml',
+            ];
+            for (const workflow of downstreamWorkflows) {
+              await github.rest.actions.createWorkflowDispatch({
+                owner:       context.repo.owner,
+                repo:        context.repo.repo,
+                workflow_id: workflow,
+                ref:         targetBranch,
+              });
+              core.info(`Dispatched ${workflow} on ${targetBranch}`);
+            }
+            if (downstreamWorkflows.length === 0) {
+              core.info('No downstream workflows to trigger.');
+            }
