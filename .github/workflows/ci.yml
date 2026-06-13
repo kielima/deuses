@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  # workflow_dispatch is required so that the auto-merge workflow can
+  # re-trigger this CI after a GITHUB_TOKEN-authored merge (which GitHub
+  # intentionally does not re-trigger workflows automatically to prevent
+  # infinite loops — see auto-merge.yml for details).
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: Validate HTML
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check index.html exists and is non-empty
+        run: |
+          test -f index.html || { echo "index.html not found"; exit 1; }
+          wc -c index.html
+          echo "index.html OK"
+
+      - name: Lint HTML (vnu)
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+        with:
+          root: .
+          css: false
+          extra: --also-check-svg
