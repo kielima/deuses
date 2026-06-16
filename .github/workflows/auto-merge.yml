@@ -74,11 +74,11 @@ jobs:
         with:
           script: |
             const targetBranch = 'master';
-            // Add one entry per workflow that listens to `push: branches: [main]`.
-            // Currently none exist beyond CI (which runs on pull_request, not push).
-            // This array is intentionally empty but kept as a template for future use.
+            // Add one entry per workflow that listens to `push: branches: [master]`.
+            // Each listed workflow MUST also declare `workflow_dispatch:` in its
+            // `on:` block so the GITHUB_TOKEN is allowed to re-fire it here.
             const downstreamWorkflows = [
-              // Example: 'deploy.yml',
+              'firebase-deploy.yml',
             ];
             for (const workflow of downstreamWorkflows) {
               await github.rest.actions.createWorkflowDispatch({
