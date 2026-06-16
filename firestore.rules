@@ -17,6 +17,14 @@ service cloud.firestore {
     function canReview()  { return isSignedIn() && role() in ['master', 'admin']; }
     function canComment() { return isSignedIn() && role() in ['master', 'admin', 'editor']; }
 
+    // Catálogo: a base completa migrada para o Firestore, guardada em "chunks"
+    // para caber no limite de 1 MiB por documento. Visível só após login;
+    // só o master pode semear/editar a base.
+    match /catalog/{chunk} {
+      allow read:  if isSignedIn();
+      allow write: if isMaster();
+    }
+
     match /deities/{id} {
       allow read: if isSignedIn();
       // master edita qualquer campo; admin só pode tocar no texto da revisão (+ metadados)
