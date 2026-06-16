@@ -965,6 +965,7 @@ function renderAuthUI(user) {
     ? `<button class="btn-outline" onclick="migrateBaseline()" title="Mover a base embutida para o Firestore">⇪ Migrar base</button>` : '';
   right.innerHTML = `
     <button class="btn-outline" onclick="openActivityDrawer()">⚡ Atividade</button>
+    ${migBtn}
     ${adminBtn}
     ${photo}
     <span class="user-name">${user.displayName.split(' ')[0]}</span>
