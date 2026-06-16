@@ -14,6 +14,8 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
 <style>
 :root {
   --bg: #080c1a;
@@ -327,8 +329,68 @@ footer {
 .role-admin { background: rgba(124,58,237,0.2); color: #c4b5fd; }
 .role-editor { background: rgba(212,168,67,0.15); color: var(--gold); }
 .role-viewer { background: rgba(148,163,184,0.1); color: var(--muted); }
+.role-master { background: rgba(240,192,96,0.22); color: var(--gold2); }
 .btn-role { font-size: 11px; padding: 4px 10px; border-radius: 6px; cursor: pointer; border: 1px solid var(--border); background: var(--card2); color: var(--text); white-space: nowrap; }
 .btn-role:hover { border-color: var(--gold); color: var(--gold); }
+.role-select { font-size: 12px; padding: 5px 8px; border-radius: 6px; border: 1px solid var(--border); background: var(--card2); color: var(--text); cursor: pointer; }
+.role-select:focus { border-color: var(--gold); outline: none; }
+
+/* ── REVIEW (Markdown) ───────────────────────────────────────────────────────*/
+.review-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 14px; }
+.review-toolbar .hint { font-size: 12px; color: var(--muted); }
+.markdown-body { font-size: 14px; line-height: 1.7; color: var(--text); word-wrap: break-word; }
+.markdown-body h1, .markdown-body h2, .markdown-body h3 { color: var(--gold); margin: 18px 0 10px; line-height: 1.3; }
+.markdown-body h1 { font-size: 20px; } .markdown-body h2 { font-size: 17px; } .markdown-body h3 { font-size: 15px; }
+.markdown-body p { margin: 0 0 12px; }
+.markdown-body ul, .markdown-body ol { margin: 0 0 12px 22px; }
+.markdown-body li { margin-bottom: 4px; }
+.markdown-body a { color: var(--gold2); }
+.markdown-body blockquote { border-left: 3px solid var(--purple); padding-left: 12px; color: var(--muted); margin: 0 0 12px; }
+.markdown-body code { background: var(--card2); padding: 1px 5px; border-radius: 4px; font-size: 13px; }
+.markdown-body pre { background: var(--card2); padding: 12px; border-radius: 8px; overflow-x: auto; margin: 0 0 12px; }
+.markdown-body pre code { background: none; padding: 0; }
+.markdown-body hr { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+.markdown-body img { max-width: 100%; border-radius: 8px; }
+.markdown-body table { border-collapse: collapse; margin-bottom: 12px; }
+.markdown-body th, .markdown-body td { border: 1px solid var(--border); padding: 6px 10px; }
+.review-empty { color: var(--muted); font-size: 13px; font-style: italic; padding: 16px 0; }
+.review-editor { width: 100%; min-height: 320px; background: var(--card2); border: 1px solid var(--border); color: var(--text); padding: 12px 14px; border-radius: 8px; font-family: 'Consolas','Monaco',monospace; font-size: 13px; line-height: 1.6; resize: vertical; outline: none; }
+.review-editor:focus { border-color: var(--gold); }
+mark.cmt-hl { background: rgba(212,168,67,0.28); color: inherit; border-bottom: 2px solid var(--gold); cursor: pointer; border-radius: 2px; padding: 0 1px; transition: background 0.15s; }
+mark.cmt-hl:hover, mark.cmt-hl.active { background: rgba(212,168,67,0.5); }
+mark.cmt-hl.resolved { background: rgba(148,163,184,0.18); border-bottom-color: var(--muted); }
+
+/* floating "comment" button on selection */
+.sel-btn { position: absolute; z-index: 150; background: var(--gold); color: #080c1a; border: none; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,0.5); display: none; }
+.sel-btn::after { content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: var(--gold); border-bottom: 0; }
+
+/* comment threads panel */
+.threads-wrap { margin-top: 22px; border-top: 1px solid var(--border); padding-top: 16px; }
+.threads-wrap h4 { font-size: 13px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+.thread { background: var(--card2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; }
+.thread.resolved { opacity: 0.6; }
+.thread-quote { font-size: 12px; color: var(--gold2); border-left: 3px solid var(--gold); padding-left: 10px; margin-bottom: 10px; font-style: italic; }
+.comment { display: flex; gap: 10px; padding: 8px 0; }
+.comment + .comment { border-top: 1px solid var(--border); }
+.comment .c-avatar { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; background: var(--card); }
+.comment .c-body { flex: 1; min-width: 0; }
+.comment .c-who { font-size: 12px; font-weight: 600; color: var(--text); }
+.comment .c-who .c-when { font-weight: 400; color: var(--muted); font-size: 11px; margin-left: 6px; }
+.comment .c-text { font-size: 13px; color: var(--text); margin-top: 3px; line-height: 1.45; white-space: pre-wrap; }
+.thread-actions { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+.reply-box { display: flex; gap: 8px; margin-top: 10px; }
+.reply-box textarea { flex: 1; background: var(--card); border: 1px solid var(--border); color: var(--text); border-radius: 8px; padding: 8px 10px; font-size: 13px; font-family: inherit; resize: vertical; min-height: 36px; outline: none; }
+.reply-box textarea:focus { border-color: var(--gold); }
+.btn-mini { font-size: 12px; padding: 6px 12px; border-radius: 7px; border: none; cursor: pointer; font-weight: 600; }
+.btn-mini.primary { background: var(--gold); color: #080c1a; }
+.btn-mini.ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+.btn-mini.ghost:hover { color: var(--gold); border-color: var(--gold); }
+.resolved-tag { font-size: 10px; background: rgba(16,185,129,0.18); color: #6ee7b7; padding: 2px 8px; border-radius: 20px; }
+.new-comment-box { background: var(--card2); border: 1px solid var(--gold); border-radius: 10px; padding: 12px 14px; margin-bottom: 14px; }
+.new-comment-box .nc-quote { font-size: 12px; color: var(--gold2); font-style: italic; border-left: 3px solid var(--gold); padding-left: 10px; margin-bottom: 8px; }
+.new-comment-box textarea { width: 100%; background: var(--card); border: 1px solid var(--border); color: var(--text); border-radius: 8px; padding: 8px 10px; font-size: 13px; font-family: inherit; resize: vertical; min-height: 56px; outline: none; }
+.new-comment-box textarea:focus { border-color: var(--gold); }
+.new-comment-box .nc-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 8px; }
 
 /* ── TOAST ───────────────────────────────────────────────────────────────────*/
 .toast-container { position: fixed; bottom: 24px; right: 24px; z-index: 200; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
@@ -481,6 +543,7 @@ tbody tr { cursor: pointer; }
     </div>
     <div class="modal-tabs">
       <button class="modal-tab active" id="tab-details" onclick="switchTab('details')">Detalhes</button>
+      <button class="modal-tab" id="tab-review" onclick="switchTab('review')">Revisão</button>
       <button class="modal-tab" id="tab-history" onclick="switchTab('history')">Histórico</button>
     </div>
     <div class="modal-body" id="modal-body">
@@ -514,6 +577,9 @@ tbody tr { cursor: pointer; }
     </div>
   </div>
 </div>
+
+<!-- floating "comment" button shown on text selection inside the review -->
+<button class="sel-btn" id="sel-btn">💬 Comentar</button>
 
 <!-- ── TOAST CONTAINER ────────────────────────────────────────────────────── -->
 <div class="toast-container" id="toast-container"></div>
@@ -787,7 +853,7 @@ function renderAuthUI(user) {
     return;
   }
   const photo = user.photoURL ? `<img class="user-avatar" src="${user.photoURL}" alt="">` : '';
-  const adminBtn = currentUserRole === 'admin' ? `<button class="btn-outline" onclick="openAdminPanel()">Admin ⚙</button>` : '';
+  const adminBtn = canManageRoles() ? `<button class="btn-outline" onclick="openAdminPanel()">Admin ⚙</button>` : '';
   right.innerHTML = `
     <button class="btn-outline" onclick="openActivityDrawer()">⚡ Atividade</button>
     ${adminBtn}
@@ -796,6 +862,17 @@ function renderAuthUI(user) {
     <button class="btn-outline" id="btn-signout" onclick="signOut()">Sair</button>
   `;
 }
+
+// ── ROLE HELPERS ──────────────────────────────────────────────────────────────
+// master  → edita todos os campos + revisão + comenta + resolve + gere papéis
+// admin   → edita o texto da Revisão (Markdown) + comenta + resolve
+// editor  → comenta trechos da Revisão (threads + respostas)
+// viewer  → só visualiza
+function canEditFields()  { return !!currentUser && currentUserRole === 'master'; }
+function canEditReview()  { return !!currentUser && (currentUserRole === 'master' || currentUserRole === 'admin'); }
+function canComment()     { return !!currentUser && ['master','admin','editor'].includes(currentUserRole); }
+function canResolve()     { return !!currentUser && (currentUserRole === 'master' || currentUserRole === 'admin'); }
+function canManageRoles() { return !!currentUser && currentUserRole === 'master'; }
 
 // ── MERGE OVERRIDES ───────────────────────────────────────────────────────────
 async function loadOverrides() {
@@ -832,32 +909,50 @@ document.getElementById('table-body').addEventListener('click', e => {
   if (d) openEditModal(d._idx);
 });
 
+// ── REVIEW comment wiring (attached once; modal-body persists) ─────────────────
+document.getElementById('sel-btn').addEventListener('click', onSelBtnClick);
+document.getElementById('modal-body').addEventListener('mouseup', onReviewMouseUp);
+document.getElementById('modal-body').addEventListener('click', e => {
+  const mark = e.target.closest('mark.cmt-hl');
+  if (!mark) return;
+  const el = document.getElementById('thread-' + mark.dataset.tid);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    document.querySelectorAll('mark.cmt-hl.active').forEach(m => m.classList.remove('active'));
+    document.querySelectorAll(`mark.cmt-hl[data-tid="${mark.dataset.tid}"]`).forEach(m => m.classList.add('active'));
+    setTimeout(() => document.querySelectorAll('mark.cmt-hl.active').forEach(m => m.classList.remove('active')), 1600);
+  }
+});
+
 // ── EDIT MODAL ────────────────────────────────────────────────────────────────
 let editingIdx = null;
 let currentTab = 'details';
 
 function openEditModal(dataIdx) {
   editingIdx = dataIdx;
-  currentTab = 'details';
-  const overlay = document.getElementById('edit-modal-overlay');
-  overlay.classList.add('open');
-  renderDetailsTab();
-  document.getElementById('tab-details').classList.add('active');
-  document.getElementById('tab-history').classList.remove('active');
-  document.getElementById('modal-actions').style.display =
-    (currentUser && (currentUserRole === 'editor' || currentUserRole === 'admin')) ? '' : 'none';
+  document.getElementById('edit-modal-overlay').classList.add('open');
+  switchTab('details');
 }
 
 function closeEditModal() {
   document.getElementById('edit-modal-overlay').classList.remove('open');
+  if (commentsUnsub) { commentsUnsub(); commentsUnsub = null; }
+  hideSelButton();
+  pendingSelection = null;
   editingIdx = null;
 }
 
 function switchTab(tab) {
   currentTab = tab;
-  document.getElementById('tab-details').classList.toggle('active', tab === 'details');
-  document.getElementById('tab-history').classList.toggle('active', tab === 'history');
+  ['details','review','history'].forEach(t =>
+    document.getElementById('tab-'+t).classList.toggle('active', tab === t));
+  // The shared Save bar is only used by the Details tab (deity fields, master only)
+  document.getElementById('modal-actions').style.display =
+    (tab === 'details' && canEditFields()) ? '' : 'none';
+  if (commentsUnsub) { commentsUnsub(); commentsUnsub = null; }
+  hideSelButton();
   if (tab === 'details') renderDetailsTab();
+  else if (tab === 'review') renderReviewTab();
   else renderHistoryTab();
 }
 
@@ -865,7 +960,7 @@ function renderDetailsTab() {
   const d = window.mergedData[editingIdx] || DATA[editingIdx];
   document.getElementById('modal-title').textContent = d.n || 'Deidade';
 
-  const canEdit = currentUser && (currentUserRole === 'editor' || currentUserRole === 'admin');
+  const canEdit = canEditFields();
   const dis = canEdit ? '' : 'disabled';
 
   let lastEditHtml = '';
@@ -879,8 +974,8 @@ function renderDetailsTab() {
   }
 
   const loginHint = !currentUser
-    ? `<div class="login-hint">Faça login para editar esta deidade</div>`
-    : (!canEdit ? `<div class="login-hint">Apenas editores e admins podem editar</div>` : '');
+    ? `<div class="login-hint">Faça login para ver as opções de edição</div>`
+    : (!canEdit ? `<div class="login-hint">Apenas o master edita os campos. Vê a aba <strong>Revisão</strong> para escrever/comentar.</div>` : '');
 
   document.getElementById('modal-body').innerHTML = `
     ${lastEditHtml}
@@ -922,7 +1017,7 @@ async function renderHistoryTab() {
 }
 
 async function saveEdit() {
-  if (!currentUser || (currentUserRole !== 'editor' && currentUserRole !== 'admin')) return;
+  if (!canEditFields()) return;
   const btn = document.getElementById('btn-save');
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span>';
@@ -976,6 +1071,315 @@ async function saveEdit() {
   btn.textContent = 'Salvar';
 }
 
+// ══ REVIEW (Markdown) + COMMENTS ════════════════════════════════════════════
+let commentsUnsub = null;
+let reviewEditing = false;
+let pendingSelection = null;   // { start, end, quote }
+
+function mdToHtml(md) {
+  try { return DOMPurify.sanitize(marked.parse(md || '', { breaks: true })); }
+  catch(e) { return esc(md || ''); }
+}
+
+function renderReviewTab() {
+  reviewEditing = false;
+  pendingSelection = null;
+  const d = window.mergedData[editingIdx] || DATA[editingIdx];
+  const md = d.review || '';
+  const editBtn = canEditReview()
+    ? `<button class="btn-mini ghost" onclick="startEditReview()">✎ Editar revisão</button>` : '';
+  const hint = canComment()
+    ? 'Selecione um trecho do texto para comentar.'
+    : (currentUser ? 'Apenas editores e acima podem comentar.' : 'Faça login para comentar.');
+
+  document.getElementById('modal-body').innerHTML = `
+    <div class="review-toolbar">
+      <div class="hint">${hint}</div>
+      <div id="review-toolbtns">${editBtn}</div>
+    </div>
+    <div id="review-render" class="markdown-body"></div>
+    <div class="threads-wrap" id="threads-wrap">
+      <h4>💬 Comentários</h4>
+      <div id="threads-list"></div>
+    </div>
+  `;
+  const render = document.getElementById('review-render');
+  if (md.trim()) render.innerHTML = mdToHtml(md);
+  else render.innerHTML = `<div class="review-empty">Nenhuma revisão escrita ainda.${canEditReview() ? ' Clique em “Editar revisão” para começar.' : ''}</div>`;
+
+  subscribeComments();
+}
+
+function startEditReview() {
+  if (!canEditReview()) return;
+  reviewEditing = true;
+  if (commentsUnsub) { commentsUnsub(); commentsUnsub = null; }
+  hideSelButton();
+  const d = window.mergedData[editingIdx] || DATA[editingIdx];
+  document.getElementById('modal-body').innerHTML = `
+    <div class="review-toolbar">
+      <div class="hint">Markdown suportado: **negrito**, # títulos, listas, [links](url), > citações…</div>
+    </div>
+    <textarea class="review-editor" id="review-editor" placeholder="Escreva a revisão completa em Markdown…">${esc(d.review || '')}</textarea>
+    <div class="nc-actions" style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+      <button class="btn-mini ghost" onclick="renderReviewTab()">Cancelar</button>
+      <button class="btn-mini primary" id="btn-save-review" onclick="saveReview()">Salvar revisão</button>
+    </div>
+  `;
+  document.getElementById('review-editor').focus();
+}
+
+async function saveReview() {
+  if (!canEditReview()) return;
+  const btn = document.getElementById('btn-save-review');
+  const newVal = document.getElementById('review-editor').value;
+  const original = window.mergedData[editingIdx] || DATA[editingIdx];
+  const oldVal = original.review || '';
+  if (newVal === oldVal) { renderReviewTab(); return; }
+  btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>';
+  try {
+    const deityRef = db.collection('deities').doc(String(editingIdx));
+    const editBy = { uid: currentUser.uid, displayName: currentUser.displayName, photoURL: currentUser.photoURL || '' };
+    const ts = FieldValue.serverTimestamp();
+    await deityRef.set({ review: newVal, lastEditedBy: editBy, lastEditedAt: ts }, { merge: true });
+    await deityRef.collection('edits').doc().set({
+      field: 'revisão',
+      oldValue: oldVal.substring(0, 300), newValue: newVal.substring(0, 300),
+      editedBy: editBy, editedAt: ts
+    });
+    await db.collection('users').doc(currentUser.uid).update({ editCount: FieldValue.increment(1) });
+    overrides[editingIdx] = { ...(overrides[editingIdx] || {}), review: newVal, lastEditedBy: editBy, lastEditedAt: new Date() };
+    rebuildMergedData();
+    applyFilters();
+    showToast('Revisão salva! ✓', 'success');
+    renderReviewTab();
+  } catch(e) {
+    showToast('Erro ao salvar revisão: ' + e.message, 'error');
+    btn.disabled = false; btn.textContent = 'Salvar revisão';
+  }
+}
+
+// ── COMMENTS: realtime threads + highlights ───────────────────────────────────
+function subscribeComments() {
+  const idx = editingIdx;
+  commentsUnsub = db.collection('deities').doc(String(idx)).collection('comments')
+    .orderBy('createdAt', 'asc')
+    .onSnapshot(snap => {
+      if (editingIdx !== idx || reviewEditing) return;
+      const threads = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      paintHighlights(threads);
+      renderThreadList(threads);
+    }, err => console.warn('comments:', err));
+}
+
+function paintHighlights(threads) {
+  const container = document.getElementById('review-render');
+  if (!container) return;
+  const d = window.mergedData[editingIdx] || DATA[editingIdx];
+  // re-render clean markdown, then wrap each anchored range
+  if ((d.review || '').trim()) container.innerHTML = mdToHtml(d.review);
+  threads.forEach(t => {
+    if (typeof t.start === 'number' && typeof t.end === 'number')
+      wrapRange(container, t.start, t.end, t);
+  });
+}
+
+function findNodeAtOffset(container, target) {
+  const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+  let acc = 0, node;
+  while ((node = walker.nextNode())) {
+    const len = node.nodeValue.length;
+    if (acc + len >= target) return { node, offset: target - acc };
+    acc += len;
+  }
+  return null;
+}
+
+function globalOffset(container, node, nodeOffset) {
+  const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+  let acc = 0, n;
+  while ((n = walker.nextNode())) {
+    if (n === node) return acc + nodeOffset;
+    acc += n.nodeValue.length;
+  }
+  return acc;
+}
+
+function wrapRange(container, start, end, thread) {
+  if (end <= start) return;
+  const sp = findNodeAtOffset(container, start);
+  const ep = findNodeAtOffset(container, end);
+  if (!sp || !ep) return;
+  const range = document.createRange();
+  try { range.setStart(sp.node, sp.offset); range.setEnd(ep.node, ep.offset); }
+  catch(e) { return; }
+  const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+  const nodes = []; let n;
+  while ((n = walker.nextNode())) { if (range.intersectsNode(n)) nodes.push(n); }
+  nodes.forEach(textNode => {
+    let s = 0, e = textNode.nodeValue.length;
+    if (textNode === sp.node) s = sp.offset;
+    if (textNode === ep.node) e = ep.offset;
+    if (e <= s) return;
+    const mid = textNode.splitText(s);
+    mid.splitText(e - s);
+    const mark = document.createElement('mark');
+    mark.className = 'cmt-hl' + (thread.resolved ? ' resolved' : '');
+    mark.dataset.tid = thread.id;
+    mark.title = 'Ver comentário';
+    mid.parentNode.replaceChild(mark, mid);
+    mark.appendChild(mid);
+  });
+}
+
+function renderThreadList(threads) {
+  const list = document.getElementById('threads-list');
+  if (!list) return;
+  if (!threads.length) {
+    list.innerHTML = `<div class="review-empty">Nenhum comentário ainda.${canComment() ? ' Selecione um trecho acima para começar.' : ''}</div>`;
+    return;
+  }
+  // open threads first, resolved last
+  threads.sort((a, b) => (a.resolved === b.resolved) ? 0 : (a.resolved ? 1 : -1));
+  list.innerHTML = threads.map(t => {
+    const comments = [{ author: t.author, text: t.text, createdAt: t.createdAt }]
+      .concat((t.replies || []).map(r => ({ author: r.author, text: r.text, createdAt: r.createdAt })));
+    const commentsHtml = comments.map(c => {
+      const who = c.author || {};
+      const when = tsToRel(c.createdAt);
+      return `<div class="comment">
+        ${who.photoURL ? `<img class="c-avatar" src="${who.photoURL}" alt="">` : '<div class="c-avatar"></div>'}
+        <div class="c-body">
+          <div class="c-who">${esc(who.displayName || '?')}<span class="c-when">${when}</span></div>
+          <div class="c-text">${esc(c.text || '')}</div>
+        </div>
+      </div>`;
+    }).join('');
+    const replyBox = canComment() && !t.resolved ? `
+      <div class="reply-box">
+        <textarea id="reply-${t.id}" placeholder="Responder…"></textarea>
+        <button class="btn-mini primary" onclick="addReply('${t.id}')">Responder</button>
+      </div>` : '';
+    const resolveBtn = canResolve() ? `<button class="btn-mini ghost" onclick="toggleResolve('${t.id}', ${!t.resolved})">${t.resolved ? '↺ Reabrir' : '✓ Resolver'}</button>` : '';
+    const delBtn = canResolve() ? `<button class="btn-mini ghost" onclick="deleteThread('${t.id}')">🗑 Excluir</button>` : '';
+    return `<div class="thread${t.resolved ? ' resolved' : ''}" id="thread-${t.id}">
+      <div class="thread-quote">“${esc(t.quote || '')}”${t.resolved ? ' <span class="resolved-tag">resolvido</span>' : ''}</div>
+      ${commentsHtml}
+      <div class="thread-actions">${resolveBtn}${delBtn}</div>
+      ${replyBox}
+    </div>`;
+  }).join('');
+}
+
+async function submitNewThread() {
+  if (!canComment() || !pendingSelection) return;
+  const text = document.getElementById('nc-text').value.trim();
+  if (!text) { showToast('Escreva um comentário.', 'error'); return; }
+  const sel = pendingSelection;
+  pendingSelection = null;
+  try {
+    await db.collection('deities').doc(String(editingIdx)).collection('comments').doc().set({
+      quote: sel.quote.substring(0, 300),
+      start: sel.start, end: sel.end,
+      text,
+      author: { uid: currentUser.uid, displayName: currentUser.displayName, photoURL: currentUser.photoURL || '' },
+      createdAt: FieldValue.serverTimestamp(),
+      resolved: false,
+      replies: []
+    });
+    showToast('Comentário adicionado! ✓', 'success');
+  } catch(e) { showToast('Erro: ' + e.message, 'error'); }
+}
+
+async function addReply(threadId) {
+  if (!canComment()) return;
+  const ta = document.getElementById('reply-' + threadId);
+  const text = ta.value.trim();
+  if (!text) return;
+  try {
+    await db.collection('deities').doc(String(editingIdx)).collection('comments').doc(threadId).update({
+      replies: FieldValue.arrayUnion({
+        author: { uid: currentUser.uid, displayName: currentUser.displayName, photoURL: currentUser.photoURL || '' },
+        text,
+        createdAt: Date.now()
+      })
+    });
+  } catch(e) { showToast('Erro: ' + e.message, 'error'); }
+}
+
+async function toggleResolve(threadId, resolved) {
+  if (!canResolve()) return;
+  try {
+    await db.collection('deities').doc(String(editingIdx)).collection('comments').doc(threadId).update({ resolved });
+  } catch(e) { showToast('Erro: ' + e.message, 'error'); }
+}
+
+async function deleteThread(threadId) {
+  if (!canResolve()) return;
+  if (!confirm('Excluir este comentário e todas as respostas?')) return;
+  try {
+    await db.collection('deities').doc(String(editingIdx)).collection('comments').doc(threadId).delete();
+    showToast('Comentário excluído.', 'success');
+  } catch(e) { showToast('Erro: ' + e.message, 'error'); }
+}
+
+// ── selection → floating "Comentar" button ────────────────────────────────────
+function hideSelButton() { const b = document.getElementById('sel-btn'); if (b) b.style.display = 'none'; }
+
+function onReviewMouseUp(e) {
+  if (currentTab !== 'review' || reviewEditing || !canComment()) { hideSelButton(); return; }
+  const container = document.getElementById('review-render');
+  if (!container) { hideSelButton(); return; }
+  const sel = window.getSelection();
+  if (!sel || !sel.rangeCount || sel.isCollapsed) { hideSelButton(); return; }
+  const range = sel.getRangeAt(0);
+  if (!container.contains(range.startContainer) || !container.contains(range.endContainer)) { hideSelButton(); return; }
+  if (range.startContainer.nodeType !== 3 || range.endContainer.nodeType !== 3) { hideSelButton(); return; }
+  let start = globalOffset(container, range.startContainer, range.startOffset);
+  let end = globalOffset(container, range.endContainer, range.endOffset);
+  if (end < start) { const t = start; start = end; end = t; }
+  if (end <= start) { hideSelButton(); return; }
+  pendingSelection = { start, end, quote: sel.toString() };
+  const rect = range.getBoundingClientRect();
+  const b = document.getElementById('sel-btn');
+  b.style.display = 'block';
+  b.style.left = (rect.left + rect.width / 2 - 45 + window.scrollX) + 'px';
+  b.style.top = (rect.top - 42 + window.scrollY) + 'px';
+}
+
+function onSelBtnClick() {
+  hideSelButton();
+  if (!pendingSelection) return;
+  const list = document.getElementById('threads-list');
+  if (!list) return;
+  const existing = document.getElementById('new-comment-box');
+  if (existing) existing.remove();
+  const box = document.createElement('div');
+  box.className = 'new-comment-box';
+  box.id = 'new-comment-box';
+  box.innerHTML = `
+    <div class="nc-quote">“${esc(pendingSelection.quote.substring(0, 200))}”</div>
+    <textarea id="nc-text" placeholder="Seu comentário sobre este trecho…"></textarea>
+    <div class="nc-actions">
+      <button class="btn-mini ghost" onclick="cancelNewComment()">Cancelar</button>
+      <button class="btn-mini primary" onclick="submitNewThread()">Comentar</button>
+    </div>`;
+  list.prepend(box);
+  document.getElementById('nc-text').focus();
+}
+
+function cancelNewComment() {
+  pendingSelection = null;
+  const b = document.getElementById('new-comment-box');
+  if (b) b.remove();
+}
+
+function tsToRel(ts) {
+  if (!ts) return '';
+  const date = ts.toDate ? ts.toDate() : (typeof ts === 'number' ? new Date(ts) : new Date(ts));
+  return relTime(date);
+}
+
 // ── ACTIVITY FEED ─────────────────────────────────────────────────────────────
 let activityUnsub = null;
 
@@ -1021,7 +1425,11 @@ function closeActivityDrawer() {
 }
 
 // ── ADMIN PANEL ───────────────────────────────────────────────────────────────
+const ROLE_OPTIONS = ['viewer', 'editor', 'admin', 'master'];
+const ROLE_LABEL = { viewer: 'viewer — só vê', editor: 'editor — comenta', admin: 'admin — edita revisão', master: 'master — tudo' };
+
 async function openAdminPanel() {
+  if (!canManageRoles()) return;
   document.getElementById('admin-modal-overlay').classList.add('open');
   const body = document.getElementById('admin-body');
   body.innerHTML = `<div style="text-align:center;padding:20px"><span class="spinner"></span></div>`;
@@ -1031,21 +1439,20 @@ async function openAdminPanel() {
     body.innerHTML = snap.docs.map(doc => {
       const u = doc.data();
       const isSelf = currentUser && doc.id === currentUser.uid;
-      const isAdmin = u.role === 'admin';
-      let btn = '';
-      if (!isSelf && !isAdmin) {
-        if (u.role === 'viewer') btn = `<button class="btn-role" onclick="setRole('${doc.id}','editor')">→ editor</button>`;
-        else if (u.role === 'editor') btn = `<button class="btn-role" onclick="setRole('${doc.id}','viewer')">→ viewer</button>`;
-      }
+      const role = u.role || 'viewer';
+      const control = isSelf
+        ? `<span class="role-badge role-${role}">${role} (você)</span>`
+        : `<select class="role-select" onchange="setRole('${doc.id}', this.value)">
+             ${ROLE_OPTIONS.map(r => `<option value="${r}" ${r === role ? 'selected' : ''}>${ROLE_LABEL[r]}</option>`).join('')}
+           </select>`;
       const joined = u.joinedAt ? new Date(u.joinedAt.seconds*1000).toLocaleDateString('pt-BR') : '—';
       return `<div class="user-row">
         ${u.photoURL ? `<img class="user-row-avatar" src="${u.photoURL}" alt="">` : '<div class="user-row-avatar"></div>'}
         <div class="user-row-info">
-          <div class="uname">${esc(u.displayName||'?')} ${isSelf ? '<em style="color:var(--muted);font-weight:400">(você)</em>' : ''}</div>
+          <div class="uname">${esc(u.displayName||'?')}</div>
           <div class="umeta">${esc(u.email||'')} • ${u.editCount||0} edições • desde ${joined}</div>
         </div>
-        <span class="role-badge role-${u.role}">${u.role}</span>
-        ${btn}
+        ${control}
       </div>`;
     }).join('');
   } catch(e) {
@@ -1058,6 +1465,7 @@ function closeAdminPanel() {
 }
 
 async function setRole(uid, role) {
+  if (!canManageRoles() || !ROLE_OPTIONS.includes(role)) return;
   try {
     await db.collection('users').doc(uid).update({ role });
     showToast(`Papel atualizado para ${role}`, 'success');

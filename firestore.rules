@@ -1,0 +1,54 @@
+rules_version = '2';
+// Regras do Firestore para o app colaborativo de deidades.
+// Aplicar em: Firebase Console → Firestore Database → aba "Regras" → Publicar.
+//
+// Papéis:
+//   master → edita todos os campos + revisão + comenta + resolve + gere papéis
+//   admin  → edita o texto da Revisão (Markdown) + comenta + resolve
+//   editor → comenta trechos da Revisão (threads + respostas)
+//   viewer → só visualiza
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() { return request.auth != null; }
+    function role() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+    function isMaster()   { return isSignedIn() && role() == 'master'; }
+    function canReview()  { return isSignedIn() && role() in ['master', 'admin']; }
+    function canComment() { return isSignedIn() && role() in ['master', 'admin', 'editor']; }
+
+    match /deities/{id} {
+      allow read: if isSignedIn();
+      // master edita qualquer campo; admin só pode tocar no texto da revisão (+ metadados)
+      allow write: if isMaster() ||
+        (canReview() &&
+         request.resource.data.diff(resource.data).affectedKeys()
+           .hasOnly(['review', 'lastEditedBy', 'lastEditedAt']));
+
+      match /edits/{editId} {
+        allow read: if isSignedIn();
+        allow create: if canReview();
+      }
+
+      match /comments/{commentId} {
+        allow read: if isSignedIn();
+        allow create: if canComment();
+        // editores só podem acrescentar respostas (campo 'replies');
+        // resolver/editar fica reservado a quem revisa (master/admin)
+        allow update: if (canComment() &&
+                          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['replies']))
+                       || canReview();
+        allow delete: if canReview();
+      }
+    }
+
+    match /users/{uid} {
+      allow read: if isSignedIn();
+      allow create: if request.auth.uid == uid;
+      // o próprio utilizador pode atualizar o perfil mas NÃO o seu role; o master define papéis
+      allow update: if isMaster() ||
+        (request.auth.uid == uid &&
+         !request.resource.data.diff(resource.data).affectedKeys().hasAny(['role']));
+    }
+  }
+}
