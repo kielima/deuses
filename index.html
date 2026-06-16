@@ -598,6 +598,28 @@ tbody tr { cursor: pointer; }
   </div>
 </div>
 
+<!-- ── CREATE MODAL ───────────────────────────────────────────────────────── -->
+<div class="modal-overlay" id="create-modal-overlay" onclick="if(event.target===this)closeCreateModal()">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Nova deidade</h2>
+      <button class="modal-close" onclick="closeCreateModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="edit-field"><label>Nome <span style="color:#ef4444">*</span></label><input id="nf-n" placeholder="Obrigatório"></div>
+      <div class="edit-field"><label>Cultura</label><input id="nf-c"></div>
+      <div class="edit-field"><label>Gênero</label><input id="nf-g" placeholder="Male / Female / Androgynous…"></div>
+      <div class="edit-field"><label>Padroado</label><input id="nf-p"></div>
+      <div class="edit-field"><label>Geografia</label><input id="nf-geo"></div>
+      <div class="edit-field"><label>Descrição</label><textarea id="nf-d"></textarea></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeCreateModal()">Cancelar</button>
+      <button class="btn-save" id="btn-create" onclick="createDeity()">Criar</button>
+    </div>
+  </div>
+</div>
+
 <!-- ── ACTIVITY DRAWER ────────────────────────────────────────────────────── -->
 <div class="drawer-overlay" id="drawer-overlay" onclick="closeActivityDrawer()"></div>
 <div class="drawer" id="activity-drawer">
@@ -963,7 +985,10 @@ function renderAuthUI(user) {
   const adminBtn = canManageRoles() ? `<button class="btn-outline" onclick="openAdminPanel()">Admin ⚙</button>` : '';
   const migBtn = (currentUserRole === 'master' && !catalogLoaded)
     ? `<button class="btn-outline" onclick="migrateBaseline()" title="Mover a base embutida para o Firestore">⇪ Migrar base</button>` : '';
+  const newBtn = canCreate()
+    ? `<button class="btn-auth" onclick="openCreateModal()">➕ Nova deidade</button>` : '';
   right.innerHTML = `
+    ${newBtn}
     <button class="btn-outline" onclick="openActivityDrawer()">⚡ Atividade</button>
     ${migBtn}
     ${adminBtn}
@@ -983,15 +1008,26 @@ function canEditReview()  { return !!currentUser && (currentUserRole === 'master
 function canComment()     { return !!currentUser && ['master','admin','editor'].includes(currentUserRole); }
 function canResolve()     { return !!currentUser && (currentUserRole === 'master' || currentUserRole === 'admin'); }
 function canManageRoles() { return !!currentUser && currentUserRole === 'master'; }
+// criar novas entradas: master + admin (editar/excluir as novas continua só master via canEditFields)
+function canCreate()      { return !!currentUser && (currentUserRole === 'master' || currentUserRole === 'admin'); }
 
 // ── MERGE OVERRIDES ───────────────────────────────────────────────────────────
+let newDeities = [];   // entradas criadas do zero (id começa por "new_")
+
 async function loadOverrides() {
   try {
     const snap = await db.collection('deities').get();
     overrides = {};
+    newDeities = [];
     snap.forEach(doc => {
-      const idx = parseInt(doc.id);
-      if (!isNaN(idx) && DATA[idx]) overrides[idx] = doc.data();
+      const id = doc.id;
+      if (/^\d+$/.test(id)) {                       // override sobre o baseline
+        const idx = parseInt(id);
+        if (DATA[idx]) overrides[idx] = doc.data();
+      } else {                                       // entrada nova
+        const data = doc.data();
+        if (!data._deleted) newDeities.push({ ...data, _docId: id });
+      }
     });
     rebuildMergedData();
     applyFilters();
@@ -999,13 +1035,28 @@ async function loadOverrides() {
 }
 
 function rebuildMergedData() {
-  window.mergedData = DATA.map((d, i) => {
+  const arr = DATA.map((d, i) => {
     if (overrides[i]) {
       const ov = overrides[i];
       return { ...d, ...ov, _idx: i, _overridden: true, _lastEdit: ov.lastEditedBy, _lastEditAt: ov.lastEditedAt };
     }
     return { ...d, _idx: i };
   });
+  newDeities.forEach(nd => {
+    if (nd._deleted) return;
+    arr.push({ ...nd, _idx: nd._docId, _isNew: true,
+               _lastEdit: nd.lastEditedBy, _lastEditAt: nd.lastEditedAt });
+  });
+  window.mergedData = arr;
+  // índice por chave (_idx) para acesso O(1) — funciona para baseline (numérico) e novas (string)
+  window.mergedByKey = {};
+  arr.forEach(d => { window.mergedByKey[String(d._idx)] = d; });
+}
+
+// Devolve a deidade em edição, seja do baseline ou criada do zero.
+function getDeity(key) {
+  return (window.mergedByKey && window.mergedByKey[String(key)]) ||
+         (DATA[key] ? { ...DATA[key], _idx: key } : null);
 }
 
 // ── TABLE CLICK — event delegation ────────────────────────────────────────────
@@ -1069,7 +1120,7 @@ function switchTab(tab) {
 }
 
 function renderDetailsTab() {
-  const d = window.mergedData[editingIdx] || DATA[editingIdx];
+  const d = getDeity(editingIdx);
   document.getElementById('modal-title').textContent = d.n || 'Deidade';
 
   const canEdit = canEditFields();
@@ -1134,7 +1185,7 @@ async function saveEdit() {
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span>';
 
-  const original = window.mergedData[editingIdx] || DATA[editingIdx];
+  const original = getDeity(editingIdx);
   const fields = { n:'ef-n', c:'ef-c', g:'ef-g', p:'ef-p', geo:'ef-geo', d:'ef-d' };
   const changes = {};
   const edits = [];
@@ -1185,7 +1236,7 @@ async function saveEdit() {
 
 async function deleteDeity() {
   if (!canEditFields()) return;
-  const d = window.mergedData[editingIdx] || DATA[editingIdx];
+  const d = getDeity(editingIdx);
   if (!confirm(`Excluir "${d.n}"? A entrada deixa de aparecer na base.`)) return;
   try {
     const deityRef = db.collection('deities').doc(String(editingIdx));
@@ -1201,6 +1252,49 @@ async function deleteDeity() {
   } catch(e) { showToast('Erro ao excluir: ' + e.message, 'error'); }
 }
 
+// ── CRIAR NOVA DEIDADE (master + admin) ───────────────────────────────────────
+function openCreateModal() {
+  if (!canCreate()) return;
+  ['n','c','g','p','geo','d'].forEach(f => { const el = document.getElementById('nf-'+f); if (el) el.value = ''; });
+  document.getElementById('create-modal-overlay').classList.add('open');
+  document.getElementById('nf-n').focus();
+}
+function closeCreateModal() {
+  document.getElementById('create-modal-overlay').classList.remove('open');
+}
+async function createDeity() {
+  if (!canCreate()) return;
+  const name = document.getElementById('nf-n').value.trim();
+  if (!name) { showToast('O nome é obrigatório.', 'error'); document.getElementById('nf-n').focus(); return; }
+  const btn = document.getElementById('btn-create');
+  btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>';
+  const data = {
+    n: name,
+    c: document.getElementById('nf-c').value.trim(),
+    g: document.getElementById('nf-g').value.trim(),
+    p: document.getElementById('nf-p').value.trim(),
+    geo: document.getElementById('nf-geo').value.trim(),
+    d: document.getElementById('nf-d').value.trim(),
+    review: ''
+  };
+  try {
+    const by = { uid: currentUser.uid, displayName: currentUser.displayName, photoURL: currentUser.photoURL || '' };
+    // id com prefixo "new_" → nunca confundido com índice numérico do baseline
+    const id = 'new_' + db.collection('deities').doc().id;
+    await db.collection('deities').doc(id).set({
+      ...data, _new: true,
+      createdBy: by, createdAt: FieldValue.serverTimestamp(),
+      lastEditedBy: by, lastEditedAt: FieldValue.serverTimestamp()
+    });
+    newDeities.push({ ...data, _docId: id, _new: true, createdBy: by, lastEditedBy: by, lastEditedAt: new Date() });
+    rebuildMergedData();
+    applyFilters();
+    showToast('Deidade criada! ✓', 'success');
+    closeCreateModal();
+  } catch(e) { showToast('Erro ao criar: ' + e.message, 'error'); }
+  btn.disabled = false; btn.textContent = 'Criar';
+}
+
 // ══ REVIEW (Markdown) + COMMENTS ════════════════════════════════════════════
 let commentsUnsub = null;
 let reviewEditing = false;
@@ -1214,7 +1308,7 @@ function mdToHtml(md) {
 function renderReviewTab() {
   reviewEditing = false;
   pendingSelection = null;
-  const d = window.mergedData[editingIdx] || DATA[editingIdx];
+  const d = getDeity(editingIdx);
   const md = d.review || '';
   const editBtn = canEditReview()
     ? `<button class="btn-mini ghost" onclick="startEditReview()">✎ Editar revisão</button>` : '';
@@ -1245,7 +1339,7 @@ function startEditReview() {
   reviewEditing = true;
   if (commentsUnsub) { commentsUnsub(); commentsUnsub = null; }
   hideSelButton();
-  const d = window.mergedData[editingIdx] || DATA[editingIdx];
+  const d = getDeity(editingIdx);
   document.getElementById('modal-body').innerHTML = `
     <div class="review-toolbar">
       <div class="hint">Markdown suportado: **negrito**, # títulos, listas, [links](url), > citações…</div>
@@ -1263,7 +1357,7 @@ async function saveReview() {
   if (!canEditReview()) return;
   const btn = document.getElementById('btn-save-review');
   const newVal = document.getElementById('review-editor').value;
-  const original = window.mergedData[editingIdx] || DATA[editingIdx];
+  const original = getDeity(editingIdx);
   const oldVal = original.review || '';
   if (newVal === oldVal) { renderReviewTab(); return; }
   btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>';
@@ -1305,7 +1399,7 @@ function subscribeComments() {
 function paintHighlights(threads) {
   const container = document.getElementById('review-render');
   if (!container) return;
-  const d = window.mergedData[editingIdx] || DATA[editingIdx];
+  const d = getDeity(editingIdx);
   // re-render clean markdown, then wrap each anchored range
   if ((d.review || '').trim()) container.innerHTML = mdToHtml(d.review);
   threads.forEach(t => {

@@ -27,11 +27,16 @@ service cloud.firestore {
 
     match /deities/{id} {
       allow read: if isSignedIn();
-      // master edita qualquer campo; admin só pode tocar no texto da revisão (+ metadados)
-      allow write: if isMaster() ||
+      // criar nova entrada: master ou admin (entradas novas têm id com prefixo "new_")
+      allow create: if isMaster() || canReview();
+      // editar: master qualquer campo; admin só o texto da revisão (+ metadados).
+      // Isto garante que editar uma entrada (baseline OU nova) fica reservado ao master.
+      allow update: if isMaster() ||
         (canReview() &&
          request.resource.data.diff(resource.data).affectedKeys()
            .hasOnly(['review', 'lastEditedBy', 'lastEditedAt']));
+      // excluir: só master
+      allow delete: if isMaster();
 
       match /edits/{editId} {
         allow read: if isSignedIn();
