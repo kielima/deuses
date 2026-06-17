@@ -53,8 +53,21 @@ categoria `religions` com dados** e, opcionalmente, **melhorar a visualização*
   - `category` → `c`; `type` → `g`; `region` → `geo`; deidade principal → `p`.
   - `period_start`/`period_end`/`status`/`sources`/`name_en` → **dentro do `review` (Markdown)**
     numa secção padronizada, OU (ver §6) adicionar campos extra ao registo se quisermos a timeline.
-- **`deity_ids` do plano original** → entradas em `links` com `cat:"deities"` e `rel` adequado
-  (ex.: "venera", "divindade principal").
+- **Deidades (plural, 0..n)** → **todas** as deidades de uma tradição entram por `links` com
+  `cat:"deities"` (uma religião pode ter 0 — filosofias —, 1 ou várias). Deixou de existir o campo
+  único "divindade principal".
+
+### Decisões finais (implementadas no código)
+
+- **3º campo (`p`/f3) das religiões removido** do formulário (`CATEGORIES.religions.f3 = ''`): as
+  religiões usam só Tradição/Família (`c`), Tipo (`g`) e Região (`geo`) + associações.
+- **Campos de período estruturados (opção b)** adicionados ao modelo genérico, ativos por
+  `CATEGORIES.<cat>.period`:
+  - `ps` — ano de início (número; negativo = a.C.)
+  - `pe` — ano de fim (número; vazio/null = ainda ativa)
+  - `pf` — booleano "início incerto/difuso" (para barra tracejada na timeline)
+  Editáveis só pelo `master` (como os outros campos de detalhe); sem alteração às `firestore.rules`.
+- **Profundidade:** começar por um **núcleo curado (~100–150)** e expandir depois.
 
 ## 3. Tipos de relação (`rel`) sugeridos
 
@@ -87,17 +100,13 @@ Não exige mudança de código; é convenção de preenchimento (e habilita cor 
 - (Opcional) protótipo da vista timeline.
 - Relatório de cobertura: o que veio da árvore vs. adicionado, com fontes.
 
-## 6. Decisões que ainda preciso de ti
+## 6. Decisões resolvidas / em aberto
 
-1. **Timeline sim/não.** A timeline-grafo precisa de `period_start`/`period_end` **estruturados**.
-   O registo genérico atual não tem esses campos. Duas opções:
-   - **(a) Sem alterar o código:** guardar período só no `review` (Markdown). Sem timeline; mantém
-     tudo simples e já funciona hoje. *(recomendado para a v1)*
-   - **(b) Estender o modelo:** acrescentar campos opcionais (`ps`, `pe`, `status`) ao registo
-     genérico e à modal — mexe no `index.html` e nas regras. Habilita a timeline da §3.1 original.
-2. **Profundidade:** núcleo curado (~100-150 principais) primeiro, ou cobertura máxima?
-3. **Idioma:** o app é PT (rótulos PT). `name_en` fica no `review`, ou criar campo próprio?
-4. **`rel` padronizado (§3):** confirmas a lista de tipos de relação?
+- ✅ **Timeline:** opção **b** — campos de período estruturados (`ps`/`pe`/`pf`) já no código.
+- ✅ **Profundidade:** núcleo curado (~100–150) primeiro.
+- ✅ **Deidades:** plural/opcional via `links` (sem campo "divindade principal").
+- ⏳ **Idioma:** o app é PT. `name_en` fica no `review` por agora (sem campo próprio) — rever se necessário.
+- ⏳ **`rel` padronizado (§3):** confirmar a lista de tipos de relação antes de popular os dados.
 
 ## 7. Riscos / notas
 
