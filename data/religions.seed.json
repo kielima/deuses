@@ -1,0 +1,2423 @@
+[
+  {
+    "id": "sumerian-religion",
+    "n": "Religião Suméria",
+    "c": "Mesopotâmica",
+    "g": "mitologia",
+    "geo": "Suméria (Mesopotâmia)",
+    "d": "Sistema politeísta das cidades-estado sumérias, com panteão liderado por An, Enlil e Enki.",
+    "ps": -4000,
+    "pe": -1750,
+    "pf": true,
+    "review": "**Religião Suméria** (c. 4000–1750 a.C.) Uma das primeiras religiões organizadas conhecidas, centrada nos templos (zigurates) das cidades-estado da baixa Mesopotâmia. Cada cidade tinha um deus patrono e o culto envolvia oferendas, hinos e festivais sazonais. Os mitos sumérios sobre a criação e o dilúvio influenciaram tradições posteriores. Forneceu a base mitológica para a religião babilónica e assíria.\n\n*Região:* Mesopotâmia. *Família:* Mesopotâmica.",
+    "links": []
+  },
+  {
+    "id": "babylonian-religion",
+    "n": "Religião Babilónica",
+    "c": "Mesopotâmica",
+    "g": "mitologia",
+    "geo": "Babilónia (Mesopotâmia)",
+    "d": "Religião politeísta da Babilónia que elevou Marduk ao topo do panteão, herdeira do legado sumério.",
+    "ps": -1900,
+    "pe": -300,
+    "pf": true,
+    "review": "**Religião Babilónica** (c. 1900–300 a.C.) Desenvolveu-se a partir do substrato sumério-acádio, com o épico Enuma Elish a celebrar a supremacia de Marduk. A astrologia e a adivinhação ocuparam papel central na vida religiosa. Os templos e festivais como o Akitu marcavam o calendário. Sincretizou divindades sumérias e semíticas.\n\n*Região:* Mesopotâmia. *Família:* Mesopotâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "sumerian-religion",
+        "rel": "sincretismo de"
+      }
+    ]
+  },
+  {
+    "id": "assyrian-religion",
+    "n": "Religião Assíria",
+    "c": "Mesopotâmica",
+    "g": "mitologia",
+    "geo": "Assíria (Mesopotâmia)",
+    "d": "Variante mesopotâmica centrada no deus nacional Assur, com forte ênfase militar e imperial.",
+    "ps": -2000,
+    "pe": -600,
+    "pf": true,
+    "review": "**Religião Assíria** (c. 2000–600 a.C.) Compartilhou o panteão mesopotâmico mas elevou Assur, deus da cidade homónima, a divindade imperial suprema. O culto associava expansão militar à vontade divina. Herdou rituais e mitos da tradição suméria e babilónica. Declinou com a queda do império neo-assírio.\n\n*Região:* Mesopotâmia. *Família:* Mesopotâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "sumerian-religion",
+        "rel": "sincretismo de"
+      },
+      {
+        "cat": "religions",
+        "id": "babylonian-religion",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "canaanite-religion",
+    "n": "Religião Cananeia",
+    "c": "Mesopotâmica",
+    "g": "mitologia",
+    "geo": "Levante (Canaã)",
+    "d": "Religião politeísta do Levante antigo, com El como pai dos deuses e Baal como divindade da tempestade.",
+    "ps": -2000,
+    "pe": -500,
+    "pf": true,
+    "review": "**Religião Cananeia** (c. 2000–500 a.C.) Conhecida sobretudo pelos textos de Ugarit, tinha El no topo e Baal, Anat e Ashera entre as figuras centrais. Os cultos agrários e de fertilidade estruturavam a vida ritual. Influenciou a religião israelita primitiva, que dela se diferenciou pelo monoteísmo. Partilha raízes semíticas com tradições mesopotâmicas.\n\n*Região:* Levante. *Família:* Mesopotâmica.",
+    "links": []
+  },
+  {
+    "id": "ancient-egyptian-religion",
+    "n": "Religião do Antigo Egito",
+    "c": "Egípcia Antiga",
+    "g": "mitologia",
+    "geo": "Egito",
+    "d": "Sistema politeísta egípcio centrado em Rá, Osíris, Ísis e Hórus, com forte preocupação com o além.",
+    "ps": -3100,
+    "pe": 400,
+    "pf": true,
+    "review": "**Religião do Antigo Egito** (c. 3100 a.C.–400 d.C.) Estruturava-se em torno do faraó como mediador divino e de um vasto panteão associado ao Sol, ao Nilo e ao ciclo da morte e ressurreição. A crença na vida após a morte gerou práticas de mumificação e os textos funerários. O culto a Ísis difundiu-se por todo o Mediterrâneo. Influenciou correntes herméticas e gnósticas posteriores.\n\n*Região:* Egito. *Família:* Egípcia Antiga.",
+    "links": []
+  },
+  {
+    "id": "atenism",
+    "n": "Atonismo",
+    "c": "Egípcia Antiga",
+    "g": "religião",
+    "geo": "Egito (Amarna)",
+    "d": "Culto monoteísta ao disco solar Aton imposto pelo faraó Aquenáton no século XIV a.C.",
+    "ps": -1353,
+    "pe": -1336,
+    "pf": false,
+    "review": "**Atonismo** (c. 1353–1336 a.C.) Reforma religiosa radical promovida por Aquenáton, que elevou Aton a divindade única e suprimiu o culto tradicional, sobretudo o de Amon. A capital foi transferida para Amarna e a arte adotou novo estilo naturalista. O experimento ruiu após a morte do faraó, restaurando-se o politeísmo. É frequentemente citado como um dos primeiros monoteísmos documentados.\n\n*Região:* Egito. *Família:* Egípcia Antiga.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "ancient-egyptian-religion",
+        "rel": "cisma de"
+      }
+    ]
+  },
+  {
+    "id": "hermeticism-egypt",
+    "n": "Hermetismo Egípcio (Corpus Hermeticum)",
+    "c": "Esotérica Ocidental",
+    "g": "filosofia",
+    "geo": "Alexandria, Egito",
+    "d": "Tradição filosófico-religiosa greco-egípcia atribuída a Hermes Trismegisto, base do hermetismo ocidental.",
+    "ps": 100,
+    "pe": 300,
+    "pf": true,
+    "review": "**Hermetismo Egípcio** (séc. I–III d.C.) Conjunto de textos greco-egípcios sobre cosmologia, alma e ascensão espiritual atribuídos ao lendário Hermes Trismegisto. Funde elementos do pensamento egípcio, do platonismo e do estoicismo. Forneceu a matriz para o hermetismo renascentista e para grande parte do esoterismo ocidental. Articula o princípio \"como em cima, assim em baixo\".\n\n*Região:* Alexandria. *Família:* Esotérica Ocidental.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "ancient-egyptian-religion",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "platonism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "stoicism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "zoroastrianism",
+    "n": "Zoroastrismo",
+    "c": "Iraniana",
+    "g": "religião",
+    "geo": "Pérsia (Irão)",
+    "d": "Religião dualista fundada por Zaratustra em torno de Aúra-Masda e da luta entre o bem e o mal.",
+    "ps": -1200,
+    "pe": null,
+    "pf": true,
+    "review": "**Zoroastrismo** (c. séc. XII a.C.–presente) Fundada pelo profeta Zaratustra, centra-se na adoração de Aúra-Masda e numa visão dualista do cosmos entre verdade (asha) e mentira. Enfatiza a escolha moral, o juízo final e a ressurreição. Foi religião de Estado dos impérios persas e influenciou profundamente o judaísmo, o cristianismo e o islão em temas escatológicos. Ainda praticada por parses e zoroastristas.\n\n*Região:* Pérsia. *Família:* Iraniana.",
+    "links": []
+  },
+  {
+    "id": "mithraism",
+    "n": "Mitraísmo",
+    "c": "Iraniana",
+    "g": "religião",
+    "geo": "Império Romano (origem persa)",
+    "d": "Religião de mistérios greco-romana centrada em Mitra, popular entre os soldados romanos.",
+    "ps": -100,
+    "pe": 400,
+    "pf": true,
+    "review": "**Mitraísmo** (séc. I a.C.–IV d.C.) Culto de mistérios que se difundiu pelo Império Romano, especialmente nos meios militares, com raízes na divindade irano-indiana Mitra. Os ritos realizavam-se em templos subterrâneos (mitreus) e organizavam-se em sete graus de iniciação. A iconografia da tauroctonia é o seu símbolo central. Competiu com o cristianismo primitivo.\n\n*Região:* Império Romano. *Família:* Iraniana.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "zoroastrianism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "manichaeism",
+    "n": "Maniqueísmo",
+    "c": "Iraniana",
+    "g": "religião",
+    "geo": "Pérsia Sassânida",
+    "d": "Religião dualista universalista fundada por Mani, combinando elementos cristãos, gnósticos e zoroastristas.",
+    "ps": 240,
+    "pe": 1400,
+    "pf": false,
+    "review": "**Maniqueísmo** (séc. III–XIV d.C.) Fundado pelo profeta Mani no Império Sassânida, propunha um dualismo radical entre Luz e Trevas e um sincretismo de cristianismo, gnose e zoroastrismo. Difundiu-se da Europa à China através de uma estrutura missionária notável. Foi perseguido por romanos, cristãos e zoroastristas. Influenciou seitas dualistas medievais.\n\n*Região:* Pérsia. *Família:* Iraniana.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "zoroastrianism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "gnosticism",
+        "rel": "sincretismo de"
+      },
+      {
+        "cat": "religions",
+        "id": "christianity",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "yazidism",
+    "n": "Yazidismo",
+    "c": "Iraniana",
+    "g": "religião",
+    "geo": "Curdistão",
+    "d": "Religião monoteísta sincrética dos curdos yazidis, centrada no Anjo Pavão (Melek Taus).",
+    "ps": 1100,
+    "pe": null,
+    "pf": true,
+    "review": "**Yazidismo** (séc. XII–presente) Tradição religiosa dos yazidis que venera Melek Taus, o Anjo Pavão, dentro de um quadro monoteísta com transmissão oral. Combina elementos zoroastristas, islâmicos sufis e cristãos. É endogâmica e organizada em castas religiosas. A comunidade sofreu perseguições históricas e recentes genocídios.\n\n*Região:* Curdistão. *Família:* Iraniana.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "zoroastrianism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "sufism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "greek-religion",
+    "n": "Religião da Grécia Antiga",
+    "c": "Greco-Romana",
+    "g": "mitologia",
+    "geo": "Grécia",
+    "d": "Politeísmo helénico dos deuses olímpicos, com cultos cívicos, oráculos e mistérios.",
+    "ps": -1200,
+    "pe": 400,
+    "pf": true,
+    "review": "**Religião da Grécia Antiga** (c. 1200 a.C.–400 d.C.) Sistema politeísta centrado nos doze deuses do Olimpo, com templos, sacrifícios, jogos e oráculos como o de Delfos. Não tinha dogma fixo nem clero centralizado, articulando-se em cultos cívicos e familiares. Os mistérios de Elêusis e o orfismo ofereciam dimensão iniciática. Forneceu a mitologia e o vocabulário religioso adotados por Roma.\n\n*Região:* Grécia. *Família:* Greco-Romana.",
+    "links": []
+  },
+  {
+    "id": "roman-religion",
+    "n": "Religião da Roma Antiga",
+    "c": "Greco-Romana",
+    "g": "mitologia",
+    "geo": "Roma",
+    "d": "Politeísmo romano de culto cívico e doméstico, que assimilou os deuses gregos e cultos orientais.",
+    "ps": -753,
+    "pe": 400,
+    "pf": true,
+    "review": "**Religião da Roma Antiga** (c. 753 a.C.–400 d.C.) Religião de Estado centrada em rituais públicos, augúrios e no culto aos Lares e Penates no lar. Identificou os seus deuses com os gregos e foi incorporando cultos de mistério orientais. O culto imperial sacralizava o poder político. Coexistiu e depois cedeu lugar ao cristianismo.\n\n*Região:* Roma. *Família:* Greco-Romana.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "greek-religion",
+        "rel": "sincretismo de"
+      }
+    ]
+  },
+  {
+    "id": "eleusinian-mysteries",
+    "n": "Mistérios de Elêusis",
+    "c": "Greco-Romana",
+    "g": "seita",
+    "geo": "Elêusis, Grécia",
+    "d": "Cultos iniciáticos secretos dedicados a Deméter e Perséfone, prometendo bem-aventurança no além.",
+    "ps": -1500,
+    "pe": 400,
+    "pf": true,
+    "review": "**Mistérios de Elêusis** (c. séc. XV a.C.–IV d.C.) Rituais de iniciação celebrados em Elêusis em honra de Deméter e Perséfone, prometendo aos iniciados melhor destino após a morte. O segredo era rigorosamente guardado e a participação atravessava todas as classes. Constituíram um dos cultos mais reverenciados do mundo antigo. Inspiraram reflexões filosóficas sobre a imortalidade da alma.\n\n*Região:* Grécia. *Família:* Greco-Romana.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "greek-religion",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "orphism",
+    "n": "Orfismo",
+    "c": "Greco-Romana",
+    "g": "seita",
+    "geo": "Grécia",
+    "d": "Movimento religioso grego com doutrinas sobre a alma, a reencarnação e a purificação, atribuído a Orfeu.",
+    "ps": -600,
+    "pe": 200,
+    "pf": true,
+    "review": "**Orfismo** (c. séc. VI a.C.–II d.C.) Corrente iniciática grega que atribuía a Orfeu hinos e textos sobre a origem divina da alma e o seu destino após a morte. Pregava a metempsicose e práticas ascéticas de purificação. Influenciou o pitagorismo e o platonismo. Forneceu elementos à escatologia helénica.\n\n*Região:* Grécia. *Família:* Greco-Romana.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "greek-religion",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "pythagoreanism",
+    "n": "Pitagorismo",
+    "c": "Filosofia",
+    "g": "filosofia",
+    "geo": "Magna Grécia",
+    "d": "Escola filosófico-religiosa de Pitágoras que via o número como princípio do cosmos e pregava a transmigração das almas.",
+    "ps": -530,
+    "pe": 300,
+    "pf": false,
+    "review": "**Pitagorismo** (c. séc. VI a.C.–III d.C.) Fundado por Pitágoras em Crotona, combinava matemática, música e doutrina da imortalidade e transmigração da alma. A comunidade seguia regras ascéticas e de pureza. Influenciou Platão e a tradição mística dos números. Ressurgiu no neopitagorismo helenístico.\n\n*Região:* Magna Grécia. *Família:* Filosofia.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "orphism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "platonism",
+    "n": "Platonismo",
+    "c": "Filosofia",
+    "g": "filosofia",
+    "geo": "Atenas, Grécia",
+    "d": "Filosofia de Platão centrada no mundo das Ideias e na imortalidade da alma.",
+    "ps": -387,
+    "pe": null,
+    "pf": false,
+    "review": "**Platonismo** (c. 387 a.C.–presente) Sistema fundado por Platão na Academia de Atenas, que postula um mundo inteligível de Formas eternas para além do mundo sensível. Defende a imortalidade da alma e o conhecimento como reminiscência. Influenciou profundamente a teologia cristã, judaica e islâmica. Deu origem ao neoplatonismo e a inúmeras correntes esotéricas.\n\n*Região:* Grécia. *Família:* Filosofia.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "pythagoreanism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "orphism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "neoplatonism",
+    "n": "Neoplatonismo",
+    "c": "Filosofia",
+    "g": "filosofia",
+    "geo": "Alexandria/Roma",
+    "d": "Síntese tardia do platonismo elaborada por Plotino, centrada no Uno e na emanação da realidade.",
+    "ps": 250,
+    "pe": 600,
+    "pf": false,
+    "review": "**Neoplatonismo** (séc. III–VI d.C.) Desenvolvido por Plotino e seus sucessores, descreve a realidade como emanação a partir do Uno transcendente através do Intelecto e da Alma. Propõe um caminho de retorno místico à origem. Marcou decisivamente a teologia cristã medieval e o pensamento islâmico e judaico. Forneceu fundamentos ao esoterismo ocidental.\n\n*Região:* Mediterrâneo. *Família:* Filosofia.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "platonism",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "pythagoreanism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "stoicism",
+    "n": "Estoicismo",
+    "c": "Filosofia",
+    "g": "filosofia",
+    "geo": "Atenas, Grécia",
+    "d": "Filosofia helenística que ensina viver em acordo com a razão e a natureza, dominando as paixões.",
+    "ps": -300,
+    "pe": null,
+    "pf": false,
+    "review": "**Estoicismo** (c. 300 a.C.–presente) Fundado por Zenão de Cítio, defende que a virtude e a vida conforme a razão universal (logos) são o único bem. Distingue entre o que está e o que não está sob o nosso controlo. Teve enorme influência em Roma através de Séneca, Epicteto e Marco Aurélio. Ressurgiu como prática filosófica de vida na época contemporânea.\n\n*Região:* Grécia. *Família:* Filosofia.",
+    "links": []
+  },
+  {
+    "id": "epicureanism",
+    "n": "Epicurismo",
+    "c": "Filosofia",
+    "g": "filosofia",
+    "geo": "Atenas, Grécia",
+    "d": "Filosofia de Epicuro que identifica o bem com o prazer sereno e a ausência de perturbação.",
+    "ps": -307,
+    "pe": 300,
+    "pf": false,
+    "review": "**Epicurismo** (c. 307 a.C.–III d.C.) Fundado por Epicuro no Jardim de Atenas, ensina que o prazer entendido como ausência de dor e perturbação (ataraxia) é o fim da vida. Adota uma física atomista e nega o medo dos deuses e da morte. Promoveu a amizade e a vida retirada. Influenciou o materialismo e o pensamento secular posteriores.\n\n*Região:* Grécia. *Família:* Filosofia.",
+    "links": []
+  },
+  {
+    "id": "judaism",
+    "n": "Judaísmo",
+    "c": "Abraâmica",
+    "g": "religião",
+    "geo": "Levante/Israel",
+    "d": "Religião monoteísta do povo judeu, baseada na aliança com Deus e na Torá.",
+    "ps": -1200,
+    "pe": null,
+    "pf": true,
+    "review": "**Judaísmo** (c. séc. XII a.C.–presente) Primeira grande religião monoteísta, fundada na aliança entre Deus e o povo de Israel e na revelação da Torá. Estrutura-se em torno da Lei (Halachá), do estudo e da liturgia sinagogal. Diferenciou-se da religião cananeia primitiva e foi marcada pelo exílio e pela tradição rabínica. É a raiz histórica do cristianismo e do islão.\n\n*Região:* Levante. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "canaanite-religion",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "zoroastrianism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "rabbinic-judaism",
+    "n": "Judaísmo Rabínico",
+    "c": "Abraâmica",
+    "g": "religião",
+    "geo": "Babilónia/Palestina",
+    "d": "Forma normativa do judaísmo desenvolvida após a destruição do Templo, centrada no Talmude.",
+    "ps": 200,
+    "pe": null,
+    "pf": false,
+    "review": "**Judaísmo Rabínico** (c. séc. III d.C.–presente) Configurou-se após a destruição do Segundo Templo, deslocando o centro do culto sacrificial para o estudo da Torá e a Lei oral compilada na Mishná e no Talmude. Os rabinos tornaram-se as autoridades interpretativas. Tornou-se a forma dominante do judaísmo. Deu origem às correntes modernas ortodoxa, conservadora e reformista.\n\n*Região:* Médio Oriente. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "judaism",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "kabbalah",
+    "n": "Cabala",
+    "c": "Esotérica Ocidental",
+    "g": "filosofia",
+    "geo": "Provença/Espanha",
+    "d": "Tradição mística judaica sobre a natureza de Deus, a criação e as dez sefirot.",
+    "ps": 1100,
+    "pe": null,
+    "pf": true,
+    "review": "**Cabala** (séc. XII–presente) Corrente mística do judaísmo que interpreta a Torá em chave esotérica e descreve a emanação divina através das dez sefirot. O Zohar é o seu texto central. Influenciou profundamente o esoterismo ocidental cristão e hermético. Articula práticas contemplativas e teosóficas.\n\n*Região:* Mediterrâneo. *Família:* Esotérica Ocidental.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "judaism",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "neoplatonism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "christianity",
+    "n": "Cristianismo",
+    "c": "Abraâmica",
+    "g": "religião",
+    "geo": "Judeia/Levante",
+    "d": "Religião monoteísta centrada em Jesus Cristo como Filho de Deus e salvador.",
+    "ps": 30,
+    "pe": null,
+    "pf": false,
+    "review": "**Cristianismo** (séc. I d.C.–presente) Surgiu na Judeia como movimento em torno de Jesus de Nazaré, proclamado Messias e ressuscitado. Baseia-se no Novo Testamento e na crença na salvação pela graça. Diferenciou-se do judaísmo e expandiu-se pelo Império Romano até tornar-se sua religião oficial. Dividiu-se posteriormente em ramos católico, ortodoxo e protestante.\n\n*Região:* Levante. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "judaism",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "catholicism",
+    "n": "Catolicismo",
+    "c": "Abraâmica",
+    "g": "religião",
+    "geo": "Roma",
+    "d": "Maior ramo do cristianismo, sob a autoridade do Papa e da Igreja de Roma.",
+    "ps": 100,
+    "pe": null,
+    "pf": false,
+    "review": "**Catolicismo** (séc. I–presente) Ramo do cristianismo que reconhece o primado do Bispo de Roma e a sucessão apostólica. Estrutura-se em torno dos sete sacramentos e da Tradição a par da Escritura. Consolidou-se no Império Romano e medieval, separando-se da Ortodoxia em 1054. É a maior denominação cristã mundial.\n\n*Região:* Roma. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "christianity",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "eastern-orthodoxy",
+    "n": "Cristianismo Ortodoxo",
+    "c": "Abraâmica",
+    "g": "religião",
+    "geo": "Constantinopla",
+    "d": "Comunhão de igrejas cristãs orientais separadas de Roma no Cisma de 1054.",
+    "ps": 100,
+    "pe": null,
+    "pf": false,
+    "review": "**Cristianismo Ortodoxo** (séc. I–presente) Conjunto de igrejas autocéfalas do Oriente cristão que partilham a fé dos sete concílios ecuménicos. Distingue-se pela teologia da deificação, pela liturgia bizantina e pela veneração de ícones. Separou-se de Roma no Grande Cisma de 1054. Inclui as igrejas grega, russa e outras nacionais.\n\n*Região:* Europa Oriental. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "catholicism",
+        "rel": "cisma de"
+      },
+      {
+        "cat": "religions",
+        "id": "christianity",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "coptic-christianity",
+    "n": "Cristianismo Copta",
+    "c": "Abraâmica",
+    "g": "religião",
+    "geo": "Egito",
+    "d": "Igreja cristã egípcia de tradição miafisita, separada após o Concílio de Calcedónia.",
+    "ps": 42,
+    "pe": null,
+    "pf": false,
+    "review": "**Cristianismo Copta** (séc. I–presente) Igreja Ortodoxa Copta do Egito, que remonta tradicionalmente à pregação de São Marcos em Alexandria. Adota a cristologia miafisita rejeitada em Calcedónia (451). Berço do monaquismo cristão com Santo Antão. Mantém forte identidade entre os cristãos egípcios.\n\n*Região:* Egito. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "christianity",
+        "rel": "cisma de"
+      }
+    ]
+  },
+  {
+    "id": "protestantism",
+    "n": "Protestantismo",
+    "c": "Abraâmica",
+    "g": "movimento",
+    "geo": "Alemanha/Europa",
+    "d": "Conjunto de movimentos cristãos surgidos da Reforma do século XVI contra a Igreja de Roma.",
+    "ps": 1517,
+    "pe": null,
+    "pf": false,
+    "review": "**Protestantismo** (séc. XVI–presente) Nasceu da Reforma iniciada por Martinho Lutero em 1517, afirmando a salvação pela fé e a autoridade exclusiva da Escritura (sola scriptura). Rejeitou a autoridade papal e diversos sacramentos. Fragmentou-se em numerosas denominações como luteranos, calvinistas e anglicanos. Moldou profundamente a cultura ocidental moderna.\n\n*Região:* Europa. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "catholicism",
+        "rel": "cisma de"
+      }
+    ]
+  },
+  {
+    "id": "lutheranism",
+    "n": "Luteranismo",
+    "c": "Abraâmica",
+    "g": "religião",
+    "geo": "Alemanha",
+    "d": "Ramo protestante fundado nos ensinamentos de Martinho Lutero.",
+    "ps": 1521,
+    "pe": null,
+    "pf": false,
+    "review": "**Luteranismo** (séc. XVI–presente) Primeira corrente protestante, baseada na teologia de Martinho Lutero e na justificação pela fé. Mantém forte ênfase na pregação e em dois sacramentos. Difundiu-se sobretudo na Alemanha e na Escandinávia. Foi a faísca da Reforma protestante.\n\n*Região:* Alemanha. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "protestantism",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "calvinism",
+    "n": "Calvinismo",
+    "c": "Abraâmica",
+    "g": "religião",
+    "geo": "Genebra, Suíça",
+    "d": "Tradição protestante reformada fundada por João Calvino, marcada pela soberania divina.",
+    "ps": 1536,
+    "pe": null,
+    "pf": false,
+    "review": "**Calvinismo** (séc. XVI–presente) Corrente reformada formulada por João Calvino em Genebra, centrada na soberania absoluta de Deus e na predestinação. Influenciou as igrejas presbiterianas e reformadas. Teve impacto notável na ética e na sociedade do mundo atlântico. Distingue-se do luteranismo em pontos doutrinais e de governo eclesial.\n\n*Região:* Suíça. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "protestantism",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "anglicanism",
+    "n": "Anglicanismo",
+    "c": "Abraâmica",
+    "g": "religião",
+    "geo": "Inglaterra",
+    "d": "Tradição cristã da Igreja de Inglaterra, situada entre o catolicismo e o protestantismo.",
+    "ps": 1534,
+    "pe": null,
+    "pf": false,
+    "review": "**Anglicanismo** (séc. XVI–presente) Surgiu com a separação da Igreja de Inglaterra de Roma sob Henrique VIII. Procura uma via média (via media) entre a tradição católica e os princípios reformados. Organiza-se na Comunhão Anglicana mundial. Mantém episcopado e liturgia próprios.\n\n*Região:* Inglaterra. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "catholicism",
+        "rel": "cisma de"
+      },
+      {
+        "cat": "religions",
+        "id": "protestantism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "baptists",
+    "n": "Igrejas Batistas",
+    "c": "Abraâmica",
+    "g": "religião",
+    "geo": "Inglaterra/EUA",
+    "d": "Denominações protestantes que praticam o batismo de adultos por imersão e a autonomia congregacional.",
+    "ps": 1609,
+    "pe": null,
+    "pf": false,
+    "review": "**Igrejas Batistas** (séc. XVII–presente) Tradição protestante nascida entre separatistas ingleses, que defende o batismo de crentes por imersão e a independência de cada congregação. Enfatiza a conversão pessoal e a liberdade religiosa. Expandiu-se enormemente nos Estados Unidos. Faz parte do amplo campo evangélico.\n\n*Região:* Mundo anglo-saxónico. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "protestantism",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "pentecostalism",
+    "n": "Pentecostalismo",
+    "c": "Abraâmica",
+    "g": "movimento",
+    "geo": "Estados Unidos",
+    "d": "Movimento cristão que enfatiza os dons do Espírito Santo, como o falar em línguas.",
+    "ps": 1906,
+    "pe": null,
+    "pf": false,
+    "review": "**Pentecostalismo** (séc. XX–presente) Movimento de renovação protestante surgido no avivamento da Rua Azusa em 1906, centrado no batismo no Espírito Santo e nos dons carismáticos. Cresceu vertiginosamente na América Latina, África e Ásia. Dá grande destaque à cura e à experiência emocional. É hoje uma das formas de cristianismo de mais rápido crescimento.\n\n*Região:* Estados Unidos. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "protestantism",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "mormonism",
+    "n": "Mormonismo (SUD)",
+    "c": "Abraâmica",
+    "g": "movimento",
+    "geo": "Estados Unidos",
+    "d": "Movimento restauracionista cristão fundado por Joseph Smith, baseado no Livro de Mórmon.",
+    "ps": 1830,
+    "pe": null,
+    "pf": false,
+    "review": "**Mormonismo** (séc. XIX–presente) A Igreja de Jesus Cristo dos Santos dos Últimos Dias foi fundada por Joseph Smith em 1830, afirmando uma restauração do cristianismo primitivo e novas escrituras como o Livro de Mórmon. Possui teologia e organização distintivas, com templos e missionários. Centrou-se em Utah após a migração para o oeste. Cresceu para uma presença global.\n\n*Região:* Estados Unidos. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "christianity",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "protestantism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "jehovahs-witnesses",
+    "n": "Testemunhas de Jeová",
+    "c": "Abraâmica",
+    "g": "movimento",
+    "geo": "Estados Unidos",
+    "d": "Movimento milenarista cristão fundado por Charles Taze Russell, conhecido pela pregação porta a porta.",
+    "ps": 1879,
+    "pe": null,
+    "pf": false,
+    "review": "**Testemunhas de Jeová** (séc. XIX–presente) Movimento restauracionista iniciado por Charles Taze Russell, com forte ênfase escatológica e na proximidade do reino de Deus. Rejeita a Trindade e várias práticas tradicionais. É conhecido pela evangelização sistemática e pela revista A Sentinela. Mantém uma organização centralizada e disciplinada.\n\n*Região:* Estados Unidos. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "christianity",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "protestantism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "seventh-day-adventism",
+    "n": "Adventismo do Sétimo Dia",
+    "c": "Abraâmica",
+    "g": "movimento",
+    "geo": "Estados Unidos",
+    "d": "Denominação protestante que observa o sábado e enfatiza o iminente regresso de Cristo.",
+    "ps": 1863,
+    "pe": null,
+    "pf": false,
+    "review": "**Adventismo do Sétimo Dia** (séc. XIX–presente) Nasceu do movimento millerita nos Estados Unidos, consolidando-se com Ellen G. White. Guarda o sábado como dia de descanso e enfatiza a saúde e o regresso (advento) de Cristo. Possui rede mundial de escolas e hospitais. Faz parte do campo protestante restauracionista.\n\n*Região:* Estados Unidos. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "protestantism",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "quakers",
+    "n": "Quakers (Sociedade dos Amigos)",
+    "c": "Abraâmica",
+    "g": "movimento",
+    "geo": "Inglaterra",
+    "d": "Movimento cristão que enfatiza a luz interior e o culto silencioso, fundado por George Fox.",
+    "ps": 1652,
+    "pe": null,
+    "pf": false,
+    "review": "**Quakers** (séc. XVII–presente) A Sociedade Religiosa dos Amigos foi fundada por George Fox, afirmando a presença de uma \"luz interior\" divina em cada pessoa. Pratica o culto sem clero nem ritual fixo e destaca-se pelo pacifismo e ativismo social. Teve papel importante na abolição da escravatura. Nasceu do efervescente puritanismo inglês.\n\n*Região:* Inglaterra. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "protestantism",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "gnosticism",
+    "n": "Gnosticismo",
+    "c": "Abraâmica",
+    "g": "seita",
+    "geo": "Mediterrâneo Oriental",
+    "d": "Conjunto de correntes que pregavam a salvação pelo conhecimento secreto (gnose) e um dualismo cósmico.",
+    "ps": 100,
+    "pe": 400,
+    "pf": true,
+    "review": "**Gnosticismo** (séc. I–IV d.C.) Diversidade de seitas tardo-antigas que ensinavam a libertação da alma do mundo material, criado por um demiurgo inferior, através do conhecimento revelado. Combinava elementos judaicos, cristãos, platónicos e iranianos. Foi combatido como heresia pela Igreja primitiva. Ressurgiu como inspiração de correntes esotéricas modernas.\n\n*Região:* Mediterrâneo. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "platonism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "christianity",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "judaism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "catharism",
+    "n": "Catarismo",
+    "c": "Abraâmica",
+    "g": "seita",
+    "geo": "Languedoc, França",
+    "d": "Movimento dualista medieval do sul da França, perseguido como heresia pela Igreja.",
+    "ps": 1140,
+    "pe": 1350,
+    "pf": false,
+    "review": "**Catarismo** (séc. XII–XIV) Movimento dualista difundido no Languedoc, que distinguia um deus do bem espiritual de um deus do mal material. Os \"perfeitos\" levavam vida ascética e rejeitavam a Igreja institucional. Foi exterminado pela Cruzada Albigense e pela Inquisição. Ecoa o dualismo gnóstico e maniqueu.\n\n*Região:* França. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "gnosticism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "manichaeism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "catholicism",
+        "rel": "cisma de"
+      }
+    ]
+  },
+  {
+    "id": "islam",
+    "n": "Islão",
+    "c": "Abraâmica",
+    "g": "religião",
+    "geo": "Arábia",
+    "d": "Religião monoteísta revelada ao profeta Maomé, com o Alcorão como escritura central.",
+    "ps": 610,
+    "pe": null,
+    "pf": false,
+    "review": "**Islão** (séc. VII–presente) Religião fundada na pregação de Maomé na Arábia, que proclama a submissão ao Deus único (Alá) e tem o Alcorão como revelação final. Estrutura-se nos Cinco Pilares e na lei (sharia). Reconhece-se herdeira das tradições de Abraão, Moisés e Jesus. Expandiu-se rapidamente, dividindo-se em sunismo e xiismo.\n\n*Região:* Arábia. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "judaism",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "christianity",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "sunni-islam",
+    "n": "Islão Sunita",
+    "c": "Abraâmica",
+    "g": "religião",
+    "geo": "Médio Oriente",
+    "d": "Maior ramo do islão, que reconhece os primeiros califas e a tradição (suna) do Profeta.",
+    "ps": 632,
+    "pe": null,
+    "pf": false,
+    "review": "**Islão Sunita** (séc. VII–presente) Constitui a maioria dos muçulmanos e aceita a legitimidade dos quatro califas bem-guiados. Baseia-se no Alcorão e na suna interpretados por escolas jurídicas. Não possui clero hierárquico centralizado. Distinguiu-se do xiismo na questão da sucessão de Maomé.\n\n*Região:* Médio Oriente. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "islam",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "shia-islam",
+    "n": "Islão Xiita",
+    "c": "Abraâmica",
+    "g": "religião",
+    "geo": "Médio Oriente",
+    "d": "Ramo do islão que defende a sucessão de Ali e dos imãs descendentes do Profeta.",
+    "ps": 632,
+    "pe": null,
+    "pf": false,
+    "review": "**Islão Xiita** (séc. VII–presente) Surgiu da convicção de que a liderança da comunidade pertencia a Ali e à sua descendência. Desenvolveu a doutrina do imamato e uma rica tradição de martírio e jurisprudência. Predomina no Irão, Iraque e outras regiões. Subdivide-se em correntes como duodecimanos e ismaelitas.\n\n*Região:* Médio Oriente. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "islam",
+        "rel": "cisma de"
+      }
+    ]
+  },
+  {
+    "id": "sufism",
+    "n": "Sufismo",
+    "c": "Abraâmica",
+    "g": "movimento",
+    "geo": "Médio Oriente",
+    "d": "Dimensão mística do islão que busca a proximidade direta com Deus através do amor e da ascese.",
+    "ps": 750,
+    "pe": null,
+    "pf": false,
+    "review": "**Sufismo** (séc. VIII–presente) Corrente mística do islão organizada em confrarias (tariqas) sob mestres espirituais. Busca a purificação do coração e a união com Deus mediante o dhikr, a poesia e a dança. Produziu figuras como Rumi e Ibn Arabi. Difundiu o islão por vastas regiões da Ásia e África.\n\n*Região:* Médio Oriente. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "islam",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "ismailism",
+    "n": "Ismaelismo",
+    "c": "Abraâmica",
+    "g": "seita",
+    "geo": "Médio Oriente",
+    "d": "Ramo do islão xiita com interpretação esotérica do Alcorão e lealdade ao Aga Cã.",
+    "ps": 765,
+    "pe": null,
+    "pf": false,
+    "review": "**Ismaelismo** (séc. VIII–presente) Corrente do xiismo que se separou na linha sucessória dos imãs, desenvolvendo uma leitura esotérica (batini) da revelação. Esteve ligada ao Califado Fatímida e à comunidade nizari. Hoje muitos seguem o Aga Cã como imã vivo. Combina espiritualidade e forte obra social.\n\n*Região:* Médio Oriente. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "shia-islam",
+        "rel": "cisma de"
+      }
+    ]
+  },
+  {
+    "id": "druze",
+    "n": "Drusismo",
+    "c": "Abraâmica",
+    "g": "religião",
+    "geo": "Levante",
+    "d": "Religião esotérica monoteísta do Levante, derivada do ismaelismo, com crença na transmigração.",
+    "ps": 1017,
+    "pe": null,
+    "pf": false,
+    "review": "**Drusismo** (séc. XI–presente) Tradição esotérica surgida do ismaelismo fatímida que se tornou comunidade fechada e endogâmica no Levante. Crê na unidade de Deus, na reencarnação e numa sabedoria reservada aos iniciados. Integra elementos filosóficos gregos. Concentra-se sobretudo no Líbano, Síria e Israel.\n\n*Região:* Levante. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "ismailism",
+        "rel": "cisma de"
+      }
+    ]
+  },
+  {
+    "id": "ahmadiyya",
+    "n": "Ahmadia",
+    "c": "Abraâmica",
+    "g": "movimento",
+    "geo": "Índia/Paquistão",
+    "d": "Movimento islâmico fundado por Mirza Ghulam Ahmad, que se proclamou messias e mahdi.",
+    "ps": 1889,
+    "pe": null,
+    "pf": false,
+    "review": "**Ahmadia** (séc. XIX–presente) Movimento reformista islâmico fundado na Índia por Mirza Ghulam Ahmad, que se declarou o messias prometido. Promove uma leitura pacífica do jihad e ampla atividade missionária. É considerado herético por muitos muçulmanos sunitas. Mantém uma estrutura califal própria.\n\n*Região:* Sul da Ásia. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "sunni-islam",
+        "rel": "cisma de"
+      }
+    ]
+  },
+  {
+    "id": "bahai",
+    "n": "Fé Bahá'í",
+    "c": "Abraâmica",
+    "g": "religião",
+    "geo": "Pérsia",
+    "d": "Religião monoteísta fundada por Bahá'u'lláh, que prega a unidade de Deus, da humanidade e das religiões.",
+    "ps": 1863,
+    "pe": null,
+    "pf": false,
+    "review": "**Fé Bahá'í** (séc. XIX–presente) Religião nascida na Pérsia a partir do babismo, fundada por Bahá'u'lláh, que ensina a unidade essencial de todas as religiões e da humanidade. Defende a paz mundial, a igualdade e a harmonia entre ciência e fé. Organiza-se sem clero, em torno de instituições eleitas. Sofreu perseguição no seu país de origem.\n\n*Região:* Pérsia. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "babism",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "islam",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "babism",
+    "n": "Babismo",
+    "c": "Abraâmica",
+    "g": "religião",
+    "geo": "Pérsia",
+    "d": "Movimento religioso persa fundado pelo Báb, precursor da Fé Bahá'í.",
+    "ps": 1844,
+    "pe": 1900,
+    "pf": false,
+    "review": "**Babismo** (séc. XIX) Movimento messiânico iniciado na Pérsia pelo Báb, que anunciou uma nova era e a vinda de um mensageiro divino. Rompeu com o islão xiita e sofreu violenta perseguição. Foi a raiz direta da Fé Bahá'í. Marcou um momento de profunda renovação religiosa persa.\n\n*Região:* Pérsia. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "shia-islam",
+        "rel": "cisma de"
+      }
+    ]
+  },
+  {
+    "id": "rastafari",
+    "n": "Rastafári",
+    "c": "Abraâmica",
+    "g": "movimento",
+    "geo": "Jamaica",
+    "d": "Movimento religioso jamaicano que venera Haile Selassie e exalta a herança africana.",
+    "ps": 1930,
+    "pe": null,
+    "pf": false,
+    "review": "**Rastafári** (séc. XX–presente) Movimento surgido na Jamaica que considera o imperador etíope Haile Selassie I uma figura messiânica e prega o retorno espiritual a África. Recorre à Bíblia numa leitura própria e a símbolos como os dreadlocks e a ganza ritual. Difundiu-se globalmente através do reggae. Combina influências cristãs e pan-africanistas.\n\n*Região:* Jamaica. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "christianity",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "historical-vedic-religion",
+    "n": "Religião Védica",
+    "c": "Dhármica",
+    "g": "mitologia",
+    "geo": "Subcontinente Indiano",
+    "d": "Religião dos textos védicos, base ritual e mitológica do hinduísmo.",
+    "ps": -1500,
+    "pe": -500,
+    "pf": true,
+    "review": "**Religião Védica** (c. 1500–500 a.C.) Tradição ritualística trazida pelos povos indo-arianos, centrada em sacrifícios de fogo (yajna) e em hinos aos deuses dos Vedas, como Indra e Agni. Os Brâmanes oficiavam os complexos rituais. Forneceu os fundamentos do hinduísmo posterior. Partilha raízes indo-europeias com religiões iranianas.\n\n*Região:* Índia. *Família:* Dhármica.",
+    "links": []
+  },
+  {
+    "id": "hinduism",
+    "n": "Hinduísmo",
+    "c": "Dhármica",
+    "g": "religião",
+    "geo": "Subcontinente Indiano",
+    "d": "Vasta tradição religiosa indiana, diversa e plural, baseada nos Vedas, no dharma e no carma.",
+    "ps": -1500,
+    "pe": null,
+    "pf": true,
+    "review": "**Hinduísmo** (c. 1500 a.C.–presente) Conjunto de tradições religiosas indianas sem fundador único, evoluído da religião védica. Articula conceitos como dharma, carma, samsara e moksha em torno de divindades como Vishnu, Shiva e Devi. Inclui correntes filosóficas, devocionais e rituais muito diversas. É a religião majoritária da Índia e do Nepal.\n\n*Região:* Índia. *Família:* Dhármica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "historical-vedic-religion",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "vedanta",
+    "n": "Vedanta",
+    "c": "Dhármica",
+    "g": "filosofia",
+    "geo": "Índia",
+    "d": "Escola filosófica hindu baseada nos Upanixades, focada na natureza última da realidade (Brahman).",
+    "ps": -200,
+    "pe": null,
+    "pf": true,
+    "review": "**Vedanta** (c. séc. II a.C.–presente) Uma das seis escolas ortodoxas da filosofia indiana, fundada na interpretação dos Upanixades. A sua corrente Advaita, sistematizada por Shankara, sustenta a identidade entre o eu (atman) e o absoluto (Brahman). Tem profundas implicações para a libertação espiritual. Influenciou movimentos modernos como o neo-hinduísmo.\n\n*Região:* Índia. *Família:* Dhármica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "hinduism",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "yoga-school",
+    "n": "Yoga (escola filosófica)",
+    "c": "Dhármica",
+    "g": "filosofia",
+    "geo": "Índia",
+    "d": "Escola filosófica indiana que sistematiza práticas de disciplina mental e corporal para a libertação.",
+    "ps": -200,
+    "pe": null,
+    "pf": true,
+    "review": "**Yoga** (c. séc. II a.C.–presente) Escola ortodoxa codificada nos Yoga Sutras de Patanjali, que apresenta um caminho de oito membros para acalmar a mente e alcançar o samadhi. Está intimamente ligada à filosofia Samkhya. Deu origem a inúmeras práticas físicas e meditativas. Difundiu-se mundialmente na era moderna.\n\n*Região:* Índia. *Família:* Dhármica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "hinduism",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "vaishnavism",
+    "n": "Vixnuísmo",
+    "c": "Dhármica",
+    "g": "religião",
+    "geo": "Índia",
+    "d": "Corrente devocional do hinduísmo centrada na adoração de Vishnu e seus avatares.",
+    "ps": -300,
+    "pe": null,
+    "pf": true,
+    "review": "**Vixnuísmo** (c. séc. III a.C.–presente) Uma das principais tradições do hinduísmo, dedicada a Vishnu e às suas encarnações, como Krishna e Rama. Enfatiza a devoção amorosa (bhakti) e a graça divina. Inspirou vasta literatura e movimentos como o Gaudiya Vaishnavism. É hoje praticada por centenas de milhões.\n\n*Região:* Índia. *Família:* Dhármica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "hinduism",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "shaivism",
+    "n": "Xivaísmo",
+    "c": "Dhármica",
+    "g": "religião",
+    "geo": "Índia",
+    "d": "Corrente do hinduísmo que tem Shiva como divindade suprema.",
+    "ps": -300,
+    "pe": null,
+    "pf": true,
+    "review": "**Xivaísmo** (c. séc. III a.C.–presente) Grande tradição hindu centrada em Shiva como realidade última e senhor da criação e dissolução. Inclui escolas filosóficas como o Xivaísmo da Caxemira e práticas tântricas. Tem forte presença no sul da Índia e nos Himalaias. Articula devoção, ioga e metafísica.\n\n*Região:* Índia. *Família:* Dhármica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "hinduism",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "shaktism",
+    "n": "Shaktismo",
+    "c": "Dhármica",
+    "g": "religião",
+    "geo": "Índia",
+    "d": "Tradição hindu que venera a Deusa (Devi/Shakti) como poder supremo do cosmos.",
+    "ps": -300,
+    "pe": null,
+    "pf": true,
+    "review": "**Shaktismo** (c. séc. III a.C.–presente) Corrente do hinduísmo que adora a energia divina feminina (Shakti) em formas como Durga e Kali. Está fortemente associada ao tantra e a rituais de poder. É especialmente vibrante em Bengala e no nordeste indiano. Celebra festivais como o Durga Puja.\n\n*Região:* Índia. *Família:* Dhármica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "hinduism",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "tantra",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "tantra",
+    "n": "Tantra",
+    "c": "Dhármica",
+    "g": "movimento",
+    "geo": "Índia",
+    "d": "Corrente esotérica indiana de rituais, mantras e técnicas para transformar a energia em libertação.",
+    "ps": 500,
+    "pe": null,
+    "pf": true,
+    "review": "**Tantra** (séc. VI–presente) Conjunto de tradições esotéricas hindus e budistas que utilizam mantras, mandalas, visualizações e rituais para acelerar a libertação espiritual. Inverte por vezes tabus convencionais como meio de transcendência. Influenciou profundamente o xivaísmo, o shaktismo e o budismo vajrayana. Permanece envolto em transmissão iniciática.\n\n*Região:* Índia. *Família:* Dhármica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "hinduism",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "buddhism",
+    "n": "Budismo",
+    "c": "Dhármica",
+    "g": "religião",
+    "geo": "Índia",
+    "d": "Tradição fundada por Sidarta Gautama que ensina o caminho para a libertação do sofrimento.",
+    "ps": -500,
+    "pe": null,
+    "pf": false,
+    "review": "**Budismo** (c. séc. V a.C.–presente) Fundado por Sidarta Gautama, o Buda, propõe as Quatro Nobres Verdades e o Nobre Caminho Óctuplo como via para extinguir o sofrimento e atingir o nirvana. Rejeita o sistema sacrificial védico e a noção de um eu permanente. Difundiu-se por toda a Ásia, ramificando-se em várias escolas. Não pressupõe um deus criador.\n\n*Região:* Índia. *Família:* Dhármica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "historical-vedic-religion",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "theravada",
+    "n": "Budismo Theravada",
+    "c": "Dhármica",
+    "g": "religião",
+    "geo": "Sul/Sudeste Asiático",
+    "d": "Escola budista mais antiga, fiel ao cânone Pali e ao ideal do arhat.",
+    "ps": -250,
+    "pe": null,
+    "pf": false,
+    "review": "**Budismo Theravada** (c. séc. III a.C.–presente) A \"Doutrina dos Anciãos\" é a escola budista que mais se aproxima dos ensinamentos atribuídos ao Buda no Cânone Pali. Enfatiza a meditação e a disciplina monástica rumo ao estado de arhat. Predomina no Sri Lanka, Tailândia, Birmânia e Camboja. Mantém forte ênfase na prática individual.\n\n*Região:* Sudeste Asiático. *Família:* Dhármica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "buddhism",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "mahayana",
+    "n": "Budismo Mahayana",
+    "c": "Dhármica",
+    "g": "religião",
+    "geo": "Ásia Oriental",
+    "d": "Grande corrente budista centrada no ideal do bodisatva e na compaixão universal.",
+    "ps": 100,
+    "pe": null,
+    "pf": false,
+    "review": "**Budismo Mahayana** (séc. I d.C.–presente) Ramo do budismo que valoriza o ideal do bodisatva, que adia a iluminação para libertar todos os seres. Desenvolveu uma rica metafísica da vacuidade e numerosos sutras. Predomina na China, Coreia, Japão e Vietname. Deu origem a escolas como o Zen e a Terra Pura.\n\n*Região:* Ásia Oriental. *Família:* Dhármica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "buddhism",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "vajrayana",
+    "n": "Budismo Vajrayana",
+    "c": "Dhármica",
+    "g": "religião",
+    "geo": "Tibete/Himalaias",
+    "d": "Budismo tântrico do Tibete e Himalaias, com mantras, rituais e mestres realizados.",
+    "ps": 700,
+    "pe": null,
+    "pf": false,
+    "review": "**Budismo Vajrayana** (séc. VII–presente) Corrente esotérica do budismo Mahayana que incorpora técnicas tântricas para alcançar a iluminação numa só vida. Estrutura-se em torno de lamas, mandalas e transmissões iniciáticas. É a forma dominante no Tibete, Butão e Mongólia. Combina filosofia budista com práticas rituais intensas.\n\n*Região:* Himalaias. *Família:* Dhármica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "mahayana",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "tantra",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "zen",
+    "n": "Zen",
+    "c": "Dhármica",
+    "g": "religião",
+    "geo": "China/Japão",
+    "d": "Escola do budismo Mahayana que enfatiza a meditação sentada e a experiência direta.",
+    "ps": 600,
+    "pe": null,
+    "pf": false,
+    "review": "**Zen** (séc. VII–presente) Tradição do budismo Mahayana (Chan na China) que privilegia a meditação (zazen) e a transmissão direta de mestre a discípulo. Desconfia das formulações conceptuais e recorre por vezes a koans. Floresceu no Japão e influenciou as artes orientais. Difundiu-se amplamente no Ocidente.\n\n*Região:* Ásia Oriental. *Família:* Dhármica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "mahayana",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "taoism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "pure-land-buddhism",
+    "n": "Budismo da Terra Pura",
+    "c": "Dhármica",
+    "g": "religião",
+    "geo": "Ásia Oriental",
+    "d": "Escola devocional do Mahayana centrada na fé no Buda Amitabha e no renascimento na Terra Pura.",
+    "ps": 400,
+    "pe": null,
+    "pf": false,
+    "review": "**Budismo da Terra Pura** (séc. V–presente) Corrente do budismo Mahayana que ensina a salvação pela invocação devota do Buda Amitabha, conduzindo ao renascimento na sua Terra Pura. Tornou-se uma das formas mais populares na China e no Japão. Dá ênfase à graça e à fé acessível a todos. Contrasta com a ênfase monástica de outras escolas.\n\n*Região:* Ásia Oriental. *Família:* Dhármica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "mahayana",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "jainism",
+    "n": "Jainismo",
+    "c": "Dhármica",
+    "g": "religião",
+    "geo": "Índia",
+    "d": "Religião indiana de não-violência radical (ahimsa) e ascese rumo à libertação da alma.",
+    "ps": -550,
+    "pe": null,
+    "pf": false,
+    "review": "**Jainismo** (c. séc. VI a.C.–presente) Tradição fundada na pregação de Mahavira, que ensina a libertação da alma através da não-violência absoluta, do desapego e da ascese. Concebe um universo eterno sem deus criador. Os monges seguem votos rigorosos de pureza. Teve grande influência cultural na Índia, sobretudo em Gujarate.\n\n*Região:* Índia. *Família:* Dhármica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "historical-vedic-religion",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "sikhism",
+    "n": "Siquismo",
+    "c": "Dhármica",
+    "g": "religião",
+    "geo": "Punjab, Índia",
+    "d": "Religião monoteísta fundada por Guru Nanak, que une devoção e igualdade social.",
+    "ps": 1500,
+    "pe": null,
+    "pf": false,
+    "review": "**Siquismo** (séc. XVI–presente) Fundado por Guru Nanak no Punjab, prega um Deus único e formless, a igualdade de todos e a vida ativa e honesta. As escrituras são reunidas no Guru Granth Sahib, considerado guru eterno. Surgiu num contexto de encontro entre hinduísmo e islão. Mantém símbolos distintivos como o turbante.\n\n*Região:* Índia. *Família:* Dhármica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "hinduism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "islam",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "sufism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "charvaka",
+    "n": "Charvaka (Lokayata)",
+    "c": "Filosofia",
+    "g": "filosofia",
+    "geo": "Índia",
+    "d": "Escola materialista e cética da Índia antiga que negava o sobrenatural e a vida após a morte.",
+    "ps": -600,
+    "pe": 1400,
+    "pf": true,
+    "review": "**Charvaka** (c. séc. VI a.C.–séc. XV) Corrente filosófica indiana de matriz materialista e empirista que rejeitava os Vedas, o carma e a alma. Considerava a percepção a única fonte fiável de conhecimento. Defendia uma ética voltada ao bem-estar nesta vida. É conhecida sobretudo através das críticas dos seus adversários.\n\n*Região:* Índia. *Família:* Filosofia.",
+    "links": []
+  },
+  {
+    "id": "chinese-folk-religion",
+    "n": "Religião Popular Chinesa",
+    "c": "Taoista-Confucionista",
+    "g": "religião",
+    "geo": "China",
+    "d": "Conjunto difuso de cultos chineses a ancestrais, deuses locais e forças da natureza.",
+    "ps": -1600,
+    "pe": null,
+    "pf": true,
+    "review": "**Religião Popular Chinesa** (c. 1600 a.C.–presente) Sistema difuso de práticas que inclui o culto aos ancestrais, a divindades locais e a forças cósmicas, sem fronteiras nítidas com o taoismo e o budismo. Articula geomancia (feng shui), oferendas e festivais. Constitui o substrato religioso da maioria da população chinesa histórica. Integra elementos taoistas, confucionistas e budistas.\n\n*Região:* China. *Família:* Taoista-Confucionista.",
+    "links": []
+  },
+  {
+    "id": "taoism",
+    "n": "Taoismo",
+    "c": "Taoista-Confucionista",
+    "g": "religião",
+    "geo": "China",
+    "d": "Tradição chinesa fundada no Tao, a via natural do cosmos, atribuída a Lao Tzu.",
+    "ps": -400,
+    "pe": null,
+    "pf": true,
+    "review": "**Taoismo** (c. séc. IV a.C.–presente) Tradição filosófica e religiosa chinesa centrada no Tao, o princípio último e fluxo natural do universo, e no ideal de não-ação (wu wei). Tem como textos fundadores o Tao Te Ching e o Zhuangzi. Desenvolveu correntes religiosas com panteão, alquimia e busca da imortalidade. Influenciou profundamente a cultura e o budismo chinês.\n\n*Região:* China. *Família:* Taoista-Confucionista.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "chinese-folk-religion",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "confucianism",
+    "n": "Confucionismo",
+    "c": "Taoista-Confucionista",
+    "g": "filosofia",
+    "geo": "China",
+    "d": "Tradição ético-filosófica de Confúcio centrada na virtude, na harmonia social e nos ritos.",
+    "ps": -500,
+    "pe": null,
+    "pf": false,
+    "review": "**Confucionismo** (c. séc. V a.C.–presente) Sistema ético e social fundado nos ensinamentos de Confúcio, que valoriza a benevolência (ren), os ritos (li) e a retidão nas relações humanas. Tornou-se a ideologia oficial do Estado chinês durante séculos. Moldou a educação, a família e a administração na Ásia Oriental. Conheceu uma renovação metafísica no neoconfucionismo.\n\n*Região:* China. *Família:* Taoista-Confucionista.",
+    "links": []
+  },
+  {
+    "id": "neo-confucianism",
+    "n": "Neoconfucionismo",
+    "c": "Taoista-Confucionista",
+    "g": "filosofia",
+    "geo": "China",
+    "d": "Renovação metafísica do confucionismo que incorporou ideias budistas e taoistas.",
+    "ps": 1000,
+    "pe": null,
+    "pf": false,
+    "review": "**Neoconfucionismo** (séc. XI–presente) Movimento filosófico que reinterpretou o confucionismo clássico dando-lhe fundamentação cosmológica e metafísica, em diálogo com o budismo e o taoismo. Zhu Xi sistematizou a sua síntese mais influente. Dominou o pensamento oficial chinês, coreano e japonês durante séculos. Articulou ética, natureza e autocultivo.\n\n*Região:* Ásia Oriental. *Família:* Taoista-Confucionista.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "confucianism",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "buddhism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "taoism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "shinto",
+    "n": "Xintoísmo",
+    "c": "Taoista-Confucionista",
+    "g": "religião",
+    "geo": "Japão",
+    "d": "Religião indígena do Japão, centrada no culto aos kami, espíritos da natureza e dos ancestrais.",
+    "ps": -500,
+    "pe": null,
+    "pf": true,
+    "review": "**Xintoísmo** (c. séc. V a.C.–presente) Tradição religiosa autóctone do Japão dedicada ao culto dos kami, divindades e espíritos presentes na natureza e nos ancestrais. Articula-se em santuários, rituais de purificação e festivais (matsuri). Coexistiu e fundiu-se em larga medida com o budismo. Esteve ligada à identidade nacional e ao culto imperial.\n\n*Região:* Japão. *Família:* Taoista-Confucionista.",
+    "links": []
+  },
+  {
+    "id": "chinese-buddhism",
+    "n": "Budismo Chinês",
+    "c": "Dhármica",
+    "g": "religião",
+    "geo": "China",
+    "d": "Adaptação do budismo Mahayana na China, que gerou escolas como Chan e Terra Pura.",
+    "ps": 100,
+    "pe": null,
+    "pf": false,
+    "review": "**Budismo Chinês** (séc. I–presente) Forma de budismo Mahayana que se desenvolveu na China em diálogo com o taoismo e o confucionismo. Deu origem a escolas próprias como Chan, Tiantai e Terra Pura. Integrou-se profundamente na cultura chinesa e dela irradiou para a Coreia, Japão e Vietname. Combina monaquismo e práticas devocionais populares.\n\n*Região:* China. *Família:* Dhármica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "mahayana",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "taoism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "norse-paganism",
+    "n": "Paganismo Nórdico",
+    "c": "Europeia (Pagã)",
+    "g": "mitologia",
+    "geo": "Escandinávia",
+    "d": "Religião politeísta dos povos germânicos do norte, com Odin, Thor e Freyja.",
+    "ps": -500,
+    "pe": 1100,
+    "pf": true,
+    "review": "**Paganismo Nórdico** (c. séc. V a.C.–séc. XI d.C.) Religião dos povos escandinavos e germânicos, centrada num panteão liderado por Odin, Thor e Freyja, e numa cosmologia de nove mundos. Os mitos foram preservados nas Eddas islandesas. O culto envolvia sacrifícios (blót) e crença no destino e em Ragnarök. Cedeu lugar ao cristianismo na Idade Média.\n\n*Região:* Escandinávia. *Família:* Europeia (Pagã).",
+    "links": []
+  },
+  {
+    "id": "celtic-paganism",
+    "n": "Paganismo Celta",
+    "c": "Europeia (Pagã)",
+    "g": "mitologia",
+    "geo": "Europa Ocidental",
+    "d": "Religiões politeístas dos povos celtas, lideradas pelos druidas.",
+    "ps": -800,
+    "pe": 500,
+    "pf": true,
+    "review": "**Paganismo Celta** (c. séc. VIII a.C.–séc. V d.C.) Conjunto de tradições religiosas dos povos celtas da Gália, Britânia e Irlanda, com numerosas divindades ligadas à natureza e aos ciclos sazonais. Os druidas atuavam como sacerdotes, juízes e guardiões do saber. Os rituais ocorriam em bosques e lugares sagrados. Foi parcialmente absorvido pelo cristianismo celta.\n\n*Região:* Europa Ocidental. *Família:* Europeia (Pagã).",
+    "links": []
+  },
+  {
+    "id": "hermeticism",
+    "n": "Hermetismo",
+    "c": "Esotérica Ocidental",
+    "g": "filosofia",
+    "geo": "Europa (Renascimento)",
+    "d": "Tradição esotérica ocidental baseada nos textos herméticos, reavivada no Renascimento.",
+    "ps": 1460,
+    "pe": null,
+    "pf": true,
+    "review": "**Hermetismo** (séc. XV–presente) Corrente esotérica ocidental fundada na redescoberta renascentista do Corpus Hermeticum atribuído a Hermes Trismegisto. Ensina a correspondência entre o macrocosmo e o microcosmo e a transformação espiritual. Inspirou a alquimia, a astrologia e a magia natural. Tornou-se eixo de grande parte do esoterismo posterior.\n\n*Região:* Europa. *Família:* Esotérica Ocidental.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "hermeticism-egypt",
+        "rel": "revival de"
+      },
+      {
+        "cat": "religions",
+        "id": "neoplatonism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "alchemy",
+    "n": "Alquimia",
+    "c": "Esotérica Ocidental",
+    "g": "filosofia",
+    "geo": "Egito/Europa/Mundo Árabe",
+    "d": "Arte hermética de transmutação da matéria e do espírito, precursora da química.",
+    "ps": 100,
+    "pe": 1700,
+    "pf": true,
+    "review": "**Alquimia** (séc. I–XVIII) Tradição filosófico-prática que buscava a transmutação dos metais e a pedra filosofal, com forte dimensão espiritual e simbólica. Desenvolveu-se no Egito helenístico, no mundo islâmico e na Europa medieval e renascentista. Combinava experimentação proto-química com simbolismo hermético. Foi uma das raízes da química moderna.\n\n*Região:* Eurásia. *Família:* Esotérica Ocidental.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "hermeticism-egypt",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "hermeticism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "astrology",
+    "n": "Astrologia",
+    "c": "Esotérica Ocidental",
+    "g": "filosofia",
+    "geo": "Mesopotâmia/Mundo Helenístico",
+    "d": "Sistema que interpreta a influência dos astros sobre os assuntos humanos.",
+    "ps": -2000,
+    "pe": null,
+    "pf": true,
+    "review": "**Astrologia** (c. séc. XX a.C.–presente) Sistema simbólico que relaciona as posições dos corpos celestes com acontecimentos terrestres e traços de carácter. Surgiu na Mesopotâmia e foi sistematizada no mundo helenístico. Esteve entrelaçada com a astronomia até à época moderna. Permanece popular na cultura contemporânea.\n\n*Região:* Eurásia. *Família:* Esotérica Ocidental.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "babylonian-religion",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "rosicrucianism",
+    "n": "Rosacrucianismo",
+    "c": "Esotérica Ocidental",
+    "g": "ordem",
+    "geo": "Alemanha/Europa",
+    "d": "Movimento esotérico cristão anunciado pelos manifestos rosacruzes do século XVII.",
+    "ps": 1614,
+    "pe": null,
+    "pf": false,
+    "review": "**Rosacrucianismo** (séc. XVII–presente) Corrente esotérica iniciada com a publicação dos manifestos rosacruzes na Alemanha, que prometiam uma reforma universal do saber. Combina cristianismo místico, hermetismo e alquimia. Inspirou inúmeras ordens iniciáticas posteriores. A sua origem permanece envolta em mistério e debate.\n\n*Região:* Europa. *Família:* Esotérica Ocidental.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "hermeticism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "alchemy",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "kabbalah",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "freemasonry",
+    "n": "Maçonaria",
+    "c": "Esotérica Ocidental",
+    "g": "ordem",
+    "geo": "Inglaterra/Escócia",
+    "d": "Sociedade iniciática fraternal organizada em lojas, com simbolismo construtivo e moral.",
+    "ps": 1717,
+    "pe": null,
+    "pf": false,
+    "review": "**Maçonaria** (séc. XVIII–presente) Ordem fraternal e iniciática surgida com a fundação da Grande Loja de Londres em 1717, herdeira simbólica das corporações de pedreiros. Promove valores éticos através de graus e rituais com simbolismo arquitetónico. Não é uma religião, mas exige a crença num princípio superior. Teve papel notável na cultura iluminista.\n\n*Região:* Reino Unido. *Família:* Esotérica Ocidental.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "hermeticism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "rosicrucianism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "martinism",
+    "n": "Martinismo",
+    "c": "Esotérica Ocidental",
+    "g": "ordem",
+    "geo": "França",
+    "d": "Corrente esotérica cristã iniciática derivada dos ensinamentos de Louis-Claude de Saint-Martin.",
+    "ps": 1768,
+    "pe": null,
+    "pf": false,
+    "review": "**Martinismo** (séc. XVIII–presente) Tradição esotérica cristã associada a Martinez de Pasqually e a Louis-Claude de Saint-Martin, que prega a reintegração do ser humano no estado divino original. Organiza-se em ordens iniciáticas. Combina teurgia, mística cristã e influências cabalísticas. Influenciou o ocultismo francês moderno.\n\n*Região:* França. *Família:* Esotérica Ocidental.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "freemasonry",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "kabbalah",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "christianity",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "theosophy",
+    "n": "Teosofia",
+    "c": "Esotérica Ocidental",
+    "g": "movimento",
+    "geo": "Estados Unidos/Índia",
+    "d": "Movimento esotérico fundado por Helena Blavatsky que sintetiza religiões e doutrinas ocultas.",
+    "ps": 1875,
+    "pe": null,
+    "pf": false,
+    "review": "**Teosofia** (séc. XIX–presente) Movimento fundado com a Sociedade Teosófica por Helena Blavatsky e Henry Olcott, que propõe uma sabedoria ancestral comum a todas as religiões. Introduziu no Ocidente conceitos como carma, reencarnação e mestres ascensos. Influenciou fortemente o esoterismo e o movimento Nova Era. Promoveu o diálogo entre Oriente e Ocidente.\n\n*Região:* Mundial. *Família:* Esotérica Ocidental.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "hinduism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "buddhism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "hermeticism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "golden-dawn",
+    "n": "Ordem Hermética da Aurora Dourada",
+    "c": "Esotérica Ocidental",
+    "g": "ordem",
+    "geo": "Inglaterra",
+    "d": "Influente ordem mágica britânica que sintetizou cabala, tarô, astrologia e magia cerimonial.",
+    "ps": 1888,
+    "pe": 1903,
+    "pf": false,
+    "review": "**Aurora Dourada** (séc. XIX–XX) Ordem iniciática fundada em Londres que sistematizou a magia cerimonial ocidental, combinando cabala, tarô, astrologia, alquimia e geomancia em graus iniciáticos. Contou com figuras como MacGregor Mathers e A. E. Waite. Apesar da curta duração, moldou todo o ocultismo do século XX. Inspirou Aleister Crowley e a Wicca.\n\n*Região:* Reino Unido. *Família:* Esotérica Ocidental.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "kabbalah",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "hermeticism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "freemasonry",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "rosicrucianism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "thelema",
+    "n": "Thelema",
+    "c": "Esotérica Ocidental",
+    "g": "movimento",
+    "geo": "Reino Unido",
+    "d": "Religião esotérica fundada por Aleister Crowley em torno do princípio \"Faze o que tu queres\".",
+    "ps": 1904,
+    "pe": null,
+    "pf": false,
+    "review": "**Thelema** (séc. XX–presente) Sistema filosófico-religioso fundado por Aleister Crowley a partir do Livro da Lei, cujo preceito central é \"Faze o que tu queres há de ser o todo da Lei\". Combina magia cerimonial, ioga e simbolismo egípcio. Organiza-se em corpos como a A∴A∴ e a O.T.O. Teve enorme influência no ocultismo moderno.\n\n*Região:* Reino Unido. *Família:* Esotérica Ocidental.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "golden-dawn",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "hermeticism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "ancient-egyptian-religion",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "spiritualism",
+    "n": "Espiritualismo Moderno",
+    "c": "Esotérica Ocidental",
+    "g": "movimento",
+    "geo": "Estados Unidos",
+    "d": "Movimento do século XIX baseado na comunicação com os espíritos dos mortos.",
+    "ps": 1848,
+    "pe": null,
+    "pf": false,
+    "review": "**Espiritualismo Moderno** (séc. XIX–presente) Movimento iniciado nos Estados Unidos com os fenómenos das irmãs Fox, centrado na comunicação com os espíritos através de médiuns. Difundiu-se rapidamente pela Europa e América. Forneceu o terreno para o espiritismo kardecista e para a investigação psíquica. Combinou religiosidade e pretensão científica.\n\n*Região:* Estados Unidos. *Família:* Esotérica Ocidental.",
+    "links": []
+  },
+  {
+    "id": "spiritism-kardecism",
+    "n": "Espiritismo (Kardecismo)",
+    "c": "Esotérica Ocidental",
+    "g": "religião",
+    "geo": "França/Brasil",
+    "d": "Doutrina codificada por Allan Kardec sobre a comunicação com espíritos e a reencarnação.",
+    "ps": 1857,
+    "pe": null,
+    "pf": false,
+    "review": "**Espiritismo** (séc. XIX–presente) Doutrina sistematizada por Allan Kardec em França, que afirma a sobrevivência e evolução do espírito através de sucessivas reencarnações, comunicáveis por mediunidade. Apresenta-se como ciência, filosofia e religião. Teve enorme difusão no Brasil, onde se entrelaçou com práticas locais. Enfatiza a caridade e o aperfeiçoamento moral.\n\n*Região:* França/Brasil. *Família:* Esotérica Ocidental.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "spiritualism",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "christianity",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "new-age",
+    "n": "Nova Era (New Age)",
+    "c": "Movimento Moderno",
+    "g": "movimento",
+    "geo": "Ocidente",
+    "d": "Movimento espiritual difuso que combina tradições diversas em busca de transformação pessoal.",
+    "ps": 1970,
+    "pe": null,
+    "pf": false,
+    "review": "**Nova Era** (séc. XX–presente) Corrente espiritual ampla e descentralizada surgida no Ocidente, que combina misticismo oriental, esoterismo, psicologia e práticas holísticas. Enfatiza o crescimento pessoal, a cura energética e uma transformação planetária de consciência. Não tem dogma nem instituição central. Bebe fortemente da teosofia e do espiritualismo.\n\n*Região:* Ocidente. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "theosophy",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "spiritualism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "hinduism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "wicca",
+    "n": "Wicca",
+    "c": "Movimento Moderno",
+    "g": "religião",
+    "geo": "Reino Unido",
+    "d": "Religião neopagã de bruxaria moderna fundada por Gerald Gardner em meados do século XX.",
+    "ps": 1954,
+    "pe": null,
+    "pf": false,
+    "review": "**Wicca** (séc. XX–presente) Religião neopagã de bruxaria iniciada por Gerald Gardner, que venera uma Deusa e um Deus e celebra os ciclos sazonais (Sabbats). Pratica magia ritual e rege-se pelo princípio de não causar dano (Rede Wiccana). Recolhe influências da magia cerimonial e de folclore europeu. Difundiu-se mundialmente em diversas tradições.\n\n*Região:* Reino Unido. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "golden-dawn",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "hermeticism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "celtic-paganism",
+        "rel": "revival de"
+      }
+    ]
+  },
+  {
+    "id": "neopaganism",
+    "n": "Neopaganismo",
+    "c": "Movimento Moderno",
+    "g": "movimento",
+    "geo": "Ocidente",
+    "d": "Conjunto de movimentos modernos que reavivam religiões pagãs pré-cristãs.",
+    "ps": 1960,
+    "pe": null,
+    "pf": false,
+    "review": "**Neopaganismo** (séc. XX–presente) Movimento contemporâneo que procura reconstruir ou reinterpretar religiões politeístas pré-cristãs, valorizando a natureza e o feminino sagrado. Inclui correntes como a Wicca, o druidismo e o reconstrucionismo nórdico. Bebe do romantismo e do esoterismo modernos. Cresceu sobretudo na Europa e na América do Norte.\n\n*Região:* Ocidente. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "norse-paganism",
+        "rel": "revival de"
+      },
+      {
+        "cat": "religions",
+        "id": "celtic-paganism",
+        "rel": "revival de"
+      }
+    ]
+  },
+  {
+    "id": "heathenry",
+    "n": "Heathenry (Ásatrú)",
+    "c": "Movimento Moderno",
+    "g": "religião",
+    "geo": "Escandinávia/Islândia",
+    "d": "Movimento neopagão de reconstrução da religião nórdica germânica.",
+    "ps": 1972,
+    "pe": null,
+    "pf": false,
+    "review": "**Heathenry** (séc. XX–presente) Corrente neopagã que reconstrói o culto às divindades germânicas e nórdicas, como Odin e Thor. Reaviva rituais como o blót e festivais sazonais. Foi reconhecida oficialmente na Islândia como Ásatrú. Baseia-se nas fontes medievais e na pesquisa histórica.\n\n*Região:* Escandinávia. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "norse-paganism",
+        "rel": "revival de"
+      }
+    ]
+  },
+  {
+    "id": "druidry-modern",
+    "n": "Druidismo Moderno",
+    "c": "Movimento Moderno",
+    "g": "movimento",
+    "geo": "Reino Unido",
+    "d": "Movimento espiritual contemporâneo inspirado nos druidas celtas e na reverência pela natureza.",
+    "ps": 1717,
+    "pe": null,
+    "pf": false,
+    "review": "**Druidismo Moderno** (séc. XVIII–presente) Movimento iniciado no contexto do romantismo britânico que reimagina a espiritualidade dos antigos druidas celtas. Combina reverência pela natureza, criatividade e cerimónias sazonais. Possui vertentes fraternais e abertamente religiosas. Inspira-se em fontes históricas e na imaginação moderna.\n\n*Região:* Reino Unido. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "celtic-paganism",
+        "rel": "revival de"
+      }
+    ]
+  },
+  {
+    "id": "scientology",
+    "n": "Cienciologia",
+    "c": "Movimento Moderno",
+    "g": "movimento",
+    "geo": "Estados Unidos",
+    "d": "Movimento religioso fundado por L. Ron Hubbard, baseado na dianética e na auditoria espiritual.",
+    "ps": 1954,
+    "pe": null,
+    "pf": false,
+    "review": "**Cienciologia** (séc. XX–presente) Movimento fundado por L. Ron Hubbard a partir da sua obra Dianética, que propõe libertar o ser (thetan) de traumas através de \"auditorias\". Organiza-se em níveis progressivos e numa estrutura corporativa centralizada. É objeto de intensa controvérsia e críticas. Apresenta uma cosmologia própria e elaborada.\n\n*Região:* Estados Unidos. *Família:* Movimento Moderno.",
+    "links": []
+  },
+  {
+    "id": "secular-humanism",
+    "n": "Humanismo Secular",
+    "c": "Filosofia",
+    "g": "filosofia",
+    "geo": "Ocidente",
+    "d": "Postura ética não-religiosa que valoriza a razão, a ciência e a dignidade humana.",
+    "ps": 1933,
+    "pe": null,
+    "pf": false,
+    "review": "**Humanismo Secular** (séc. XX–presente) Cosmovisão ética que dispensa o sobrenatural e fundamenta os valores na razão, na ciência e na solidariedade humana. Tem raízes no humanismo renascentista e no Iluminismo. Defende a autonomia moral e os direitos humanos. Organiza-se em associações e manifestos humanistas.\n\n*Região:* Ocidente. *Família:* Filosofia.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "epicureanism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "stoicism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "atheism",
+    "n": "Ateísmo",
+    "c": "Filosofia",
+    "g": "filosofia",
+    "geo": "Mundial",
+    "d": "Posição que rejeita ou não sustenta a crença na existência de divindades.",
+    "ps": -500,
+    "pe": null,
+    "pf": true,
+    "review": "**Ateísmo** (da Antiguidade ao presente) Posição filosófica de ausência ou negação da crença em deuses, presente desde a Antiguidade em correntes como o Charvaka e o atomismo grego. Ganhou expressão sistemática no Iluminismo e na modernidade. Fundamenta-se frequentemente na razão, na ciência e no naturalismo. Não constitui uma religião nem uma doutrina única.\n\n*Região:* Mundial. *Família:* Filosofia.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "charvaka",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "epicureanism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "deism",
+    "n": "Deísmo",
+    "c": "Filosofia",
+    "g": "filosofia",
+    "geo": "Europa",
+    "d": "Crença num Deus criador que não intervém no mundo, conhecido pela razão e não pela revelação.",
+    "ps": 1624,
+    "pe": null,
+    "pf": false,
+    "review": "**Deísmo** (séc. XVII–presente) Posição religiosa do Iluminismo que afirma um Deus criador racional, cognoscível pela natureza, mas que rejeita milagres e revelação. Influenciou pensadores e líderes como vários \"pais fundadores\" dos EUA. Surgiu como crítica às religiões institucionais. Valoriza a religião natural.\n\n*Região:* Europa. *Família:* Filosofia.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "christianity",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "yoruba-religion",
+    "n": "Religião Iorubá",
+    "c": "Africana",
+    "g": "religião",
+    "geo": "África Ocidental",
+    "d": "Religião tradicional iorubá centrada no culto aos orixás e a Olodumare.",
+    "ps": -500,
+    "pe": null,
+    "pf": true,
+    "review": "**Religião Iorubá** (da Antiguidade ao presente) Sistema religioso dos povos iorubás da África Ocidental, com o ser supremo Olodumare e uma multiplicidade de orixás que medeiam a relação com o sagrado. Articula adivinhação (Ifá), oferendas e iniciação. Foi levada às Américas pelo tráfico escravista, dando origem a religiões afro-americanas. Permanece viva na Nigéria e no Benim.\n\n*Região:* África Ocidental. *Família:* Africana.",
+    "links": []
+  },
+  {
+    "id": "vodun-west-africa",
+    "n": "Vodun (África Ocidental)",
+    "c": "Africana",
+    "g": "religião",
+    "geo": "Benim/Togo",
+    "d": "Religião tradicional dos povos fon e ewe, baseada no culto aos vodun (espíritos).",
+    "ps": -500,
+    "pe": null,
+    "pf": true,
+    "review": "**Vodun** (da Antiguidade ao presente) Religião dos povos fon e ewe da África Ocidental, centrada nos vodun, espíritos que regem a natureza e a vida humana. Envolve sacerdócio, possessão ritual e adivinhação. Foi raiz do vodu haitiano e de outras tradições afro-americanas. Continua amplamente praticada no Benim e Togo.\n\n*Região:* África Ocidental. *Família:* Africana.",
+    "links": []
+  },
+  {
+    "id": "bantu-religion",
+    "n": "Religiões Bantas",
+    "c": "Africana",
+    "g": "religião",
+    "geo": "África Central e Austral",
+    "d": "Conjunto de tradições dos povos bantos, com culto aos ancestrais e a um ser supremo.",
+    "ps": -1000,
+    "pe": null,
+    "pf": true,
+    "review": "**Religiões Bantas** (da Antiguidade ao presente) Conjunto diverso de religiões dos povos de língua banta, marcado pelo culto aos ancestrais, por espíritos da natureza e por um ser criador distante. Os curandeiros e adivinhos desempenham papel central. Influenciaram tradições afro-americanas como o candomblé de nação angola. Permanecem vivas em vastas regiões africanas.\n\n*Região:* África Central. *Família:* Africana.",
+    "links": []
+  },
+  {
+    "id": "candomble",
+    "n": "Candomblé",
+    "c": "Africana",
+    "g": "religião",
+    "geo": "Brasil",
+    "d": "Religião afro-brasileira de culto aos orixás, herdeira das tradições iorubás e bantas.",
+    "ps": 1830,
+    "pe": null,
+    "pf": false,
+    "review": "**Candomblé** (séc. XIX–presente) Religião afro-brasileira nascida da reorganização das tradições iorubás, fon e bantas pelos africanos escravizados na Bahia. Cultua orixás através de cantos, danças, oferendas e transe possessório. Organiza-se em terreiros e \"nações\" rituais. Resistiu à perseguição e tornou-se símbolo cultural do Brasil.\n\n*Região:* Brasil. *Família:* Africana.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "yoruba-religion",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "bantu-religion",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "umbanda",
+    "n": "Umbanda",
+    "c": "Africana",
+    "g": "religião",
+    "geo": "Brasil",
+    "d": "Religião brasileira que sincretiza espiritismo, catolicismo e tradições afro e ameríndias.",
+    "ps": 1908,
+    "pe": null,
+    "pf": false,
+    "review": "**Umbanda** (séc. XX–presente) Religião nascida no Brasil que sincretiza o espiritismo kardecista, o catolicismo popular, o culto aos orixás e elementos indígenas. Trabalha com entidades como caboclos e pretos-velhos através de médiuns. Enfatiza a caridade e a cura espiritual. É uma das expressões mais originais da religiosidade brasileira.\n\n*Região:* Brasil. *Família:* Africana.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "spiritism-kardecism",
+        "rel": "sincretismo de"
+      },
+      {
+        "cat": "religions",
+        "id": "candomble",
+        "rel": "sincretismo de"
+      },
+      {
+        "cat": "religions",
+        "id": "catholicism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "santeria",
+    "n": "Santería (Regla de Ocha)",
+    "c": "Africana",
+    "g": "religião",
+    "geo": "Cuba",
+    "d": "Religião afro-cubana que funde o culto iorubá aos orixás com o catolicismo.",
+    "ps": 1800,
+    "pe": null,
+    "pf": false,
+    "review": "**Santería** (séc. XIX–presente) Religião afro-cubana formada pela fusão do culto iorubá aos orixás com o catolicismo dos santos, entre os africanos escravizados em Cuba. Articula adivinhação, iniciação e oferendas. Difundiu-se pelo Caribe e pelos Estados Unidos. É também conhecida como Regla de Ocha ou Lucumí.\n\n*Região:* Cuba. *Família:* Africana.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "yoruba-religion",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "catholicism",
+        "rel": "sincretismo de"
+      }
+    ]
+  },
+  {
+    "id": "haitian-vodou",
+    "n": "Vodu Haitiano",
+    "c": "Africana",
+    "g": "religião",
+    "geo": "Haiti",
+    "d": "Religião afro-haitiana que combina tradições do Daomé e do Congo com o catolicismo.",
+    "ps": 1700,
+    "pe": null,
+    "pf": false,
+    "review": "**Vodu Haitiano** (séc. XVIII–presente) Religião afro-haitiana formada pelos africanos escravizados, fundindo o vodun da África Ocidental, tradições do Congo e o catolicismo. Cultua os lwa, espíritos que medeiam a relação com o divino, através de possessão e ritual. Teve papel na revolução haitiana. É frequentemente caricaturada e mal compreendida.\n\n*Região:* Haiti. *Família:* Africana.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "vodun-west-africa",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "catholicism",
+        "rel": "sincretismo de"
+      },
+      {
+        "cat": "religions",
+        "id": "bantu-religion",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "shamanism",
+    "n": "Xamanismo",
+    "c": "Ameríndia",
+    "g": "religião",
+    "geo": "Eurásia/Américas",
+    "d": "Conjunto de práticas espirituais em que o xamã medeia entre o mundo humano e o dos espíritos.",
+    "ps": -10000,
+    "pe": null,
+    "pf": true,
+    "review": "**Xamanismo** (desde a pré-história) Complexo de práticas religiosas, presente em muitas culturas, em que um especialista (xamã) entra em transe para mediar com espíritos, curar e orientar a comunidade. Tem raízes na pré-história e expressões na Sibéria, nas Américas e na Ásia. Recorre frequentemente a tambores, cânticos e plantas. Inspirou correntes neoxamânicas modernas.\n\n*Região:* Mundial. *Família:* Ameríndia.",
+    "links": []
+  },
+  {
+    "id": "mesoamerican-religion",
+    "n": "Religiões Mesoamericanas",
+    "c": "Ameríndia",
+    "g": "mitologia",
+    "geo": "Mesoamérica",
+    "d": "Religiões dos povos asteca, maia e outros, com calendários sagrados e sacrifícios.",
+    "ps": -1500,
+    "pe": 1600,
+    "pf": true,
+    "review": "**Religiões Mesoamericanas** (c. 1500 a.C.–séc. XVII d.C.) Tradições religiosas de povos como maias e astecas, marcadas por panteões complexos, calendários rituais e a crença na necessidade de manter o cosmos por meio de oferendas e sacrifícios. Os templos-pirâmide eram centros do culto. Foram largamente suprimidas pela conquista espanhola. Sobrevivem em sincretismos e tradições indígenas.\n\n*Região:* Mesoamérica. *Família:* Ameríndia.",
+    "links": []
+  },
+  {
+    "id": "andean-religion",
+    "n": "Religiões Andinas",
+    "c": "Ameríndia",
+    "g": "mitologia",
+    "geo": "Andes",
+    "d": "Religiões dos povos andinos, incluindo o culto inca a Inti e à Pachamama.",
+    "ps": -1000,
+    "pe": 1600,
+    "pf": true,
+    "review": "**Religiões Andinas** (c. 1000 a.C.–séc. XVII d.C.) Conjunto de tradições dos povos andinos, culminando na religião inca, com o culto ao Sol (Inti) e à Terra (Pachamama). Articulava oferendas, peregrinações e a sacralidade da paisagem. Foi parcialmente suprimida pela colonização e fundida com o catolicismo. Sobrevive em práticas comunitárias atuais.\n\n*Região:* Andes. *Família:* Ameríndia.",
+    "links": []
+  },
+  {
+    "id": "native-american-religions",
+    "n": "Religiões Indígenas Norte-Americanas",
+    "c": "Ameríndia",
+    "g": "religião",
+    "geo": "América do Norte",
+    "d": "Tradições espirituais diversas dos povos nativos da América do Norte.",
+    "ps": -8000,
+    "pe": null,
+    "pf": true,
+    "review": "**Religiões Indígenas Norte-Americanas** (desde a pré-história) Vasto conjunto de tradições espirituais dos povos nativos da América do Norte, geralmente centradas na relação sagrada com a terra, os animais e os espíritos. Incluem cerimónias como a dança do sol e o uso de tendas de suor. Variam enormemente entre as nações. Muitas práticas resistiram à colonização e à repressão.\n\n*Região:* América do Norte. *Família:* Ameríndia.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "shamanism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "santo-daime",
+    "n": "Santo Daime",
+    "c": "Movimento Moderno",
+    "g": "religião",
+    "geo": "Brasil",
+    "d": "Religião brasileira que usa a ayahuasca como sacramento, fundada por Mestre Irineu.",
+    "ps": 1930,
+    "pe": null,
+    "pf": false,
+    "review": "**Santo Daime** (séc. XX–presente) Religião nascida na Amazónia brasileira, fundada por Raimundo Irineu Serra, que utiliza a bebida ayahuasca (o \"daime\") como sacramento em rituais de cânticos e dança. Sincretiza catolicismo popular, espiritismo, tradições indígenas e africanas. Difundiu-se internacionalmente. Centra-se na cura e na experiência espiritual.\n\n*Região:* Brasil. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "catholicism",
+        "rel": "sincretismo de"
+      },
+      {
+        "cat": "religions",
+        "id": "spiritism-kardecism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "shamanism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "mandaeism",
+    "n": "Mandeísmo",
+    "c": "Abraâmica",
+    "g": "religião",
+    "geo": "Iraque/Irão",
+    "d": "Religião gnóstica monoteísta que venera João Batista e pratica batismos rituais.",
+    "ps": 100,
+    "pe": null,
+    "pf": true,
+    "review": "**Mandeísmo** (séc. I–presente) Antiga religião gnóstica do baixo Iraque e do Irão, que reverencia João Batista e considera Jesus um falso profeta. Pratica frequentes batismos (masbuta) em água corrente. Possui escrituras próprias em mandaico. É uma das últimas comunidades gnósticas vivas.\n\n*Região:* Mesopotâmia. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "gnosticism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "reform-judaism",
+    "n": "Judaísmo Reformista",
+    "c": "Abraâmica",
+    "g": "movimento",
+    "geo": "Alemanha/EUA",
+    "d": "Corrente liberal do judaísmo que adapta a tradição à modernidade.",
+    "ps": 1810,
+    "pe": null,
+    "pf": false,
+    "review": "**Judaísmo Reformista** (séc. XIX–presente) Movimento surgido na Alemanha que procurou modernizar o judaísmo, flexibilizando a Lei e enfatizando a ética e a autonomia individual. Difundiu-se sobretudo nos Estados Unidos. Introduziu reformas litúrgicas e a igualdade de género. Contrasta com a ortodoxia tradicional.\n\n*Região:* Ocidente. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "rabbinic-judaism",
+        "rel": "cisma de"
+      }
+    ]
+  },
+  {
+    "id": "methodism",
+    "n": "Metodismo",
+    "c": "Abraâmica",
+    "g": "movimento",
+    "geo": "Inglaterra",
+    "d": "Movimento protestante fundado por John Wesley, com ênfase na santidade e na ação social.",
+    "ps": 1738,
+    "pe": null,
+    "pf": false,
+    "review": "**Metodismo** (séc. XVIII–presente) Movimento de avivamento dentro do protestantismo iniciado por John Wesley na Inglaterra. Enfatiza a conversão pessoal, a santificação e o compromisso social. Organizou-se em sociedades e classes metódicas, de onde vem o nome. Expandiu-se globalmente, sobretudo no mundo anglo-saxónico.\n\n*Região:* Inglaterra. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "anglicanism",
+        "rel": "cisma de"
+      },
+      {
+        "cat": "religions",
+        "id": "protestantism",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "evangelicalism",
+    "n": "Evangelicalismo",
+    "c": "Abraâmica",
+    "g": "movimento",
+    "geo": "Mundo anglo-saxónico",
+    "d": "Movimento transdenominacional protestante centrado na conversão e na autoridade da Bíblia.",
+    "ps": 1730,
+    "pe": null,
+    "pf": false,
+    "review": "**Evangelicalismo** (séc. XVIII–presente) Corrente transdenominacional do protestantismo que enfatiza a conversão pessoal (\"nascer de novo\"), a autoridade da Bíblia e o ativismo missionário. Nasceu dos avivamentos do século XVIII. Inclui batistas, pentecostais e muitos outros. É uma força religiosa global em rápido crescimento.\n\n*Região:* Mundo anglo-saxónico. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "protestantism",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "methodism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "wahhabism",
+    "n": "Wahhabismo",
+    "c": "Abraâmica",
+    "g": "movimento",
+    "geo": "Arábia",
+    "d": "Movimento reformista sunita rigorista fundado por Muhammad ibn Abd al-Wahhab.",
+    "ps": 1744,
+    "pe": null,
+    "pf": false,
+    "review": "**Wahhabismo** (séc. XVIII–presente) Movimento de reforma do islão sunita iniciado por Muhammad ibn Abd al-Wahhab, que prega o regresso a um monoteísmo estrito e a condenação de inovações e do culto de santos. Aliou-se à dinastia Saud, tornando-se influente na Arábia. Está na base do salafismo moderno. É controverso por seu rigorismo.\n\n*Região:* Arábia. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "sunni-islam",
+        "rel": "cisma de"
+      }
+    ]
+  },
+  {
+    "id": "falun-gong",
+    "n": "Falun Gong",
+    "c": "Movimento Moderno",
+    "g": "movimento",
+    "geo": "China",
+    "d": "Movimento espiritual chinês de qigong e ensinamentos morais fundado por Li Hongzhi.",
+    "ps": 1992,
+    "pe": null,
+    "pf": false,
+    "review": "**Falun Gong** (séc. XX–presente) Movimento espiritual fundado na China por Li Hongzhi, que combina exercícios de qigong com ensinamentos morais de verdade, compaixão e tolerância. Cresceu rapidamente antes de ser proibido e perseguido pelo governo chinês. Bebe de tradições budistas e taoistas. Tem hoje presença internacional.\n\n*Região:* China. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "buddhism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "taoism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "cao-dai",
+    "n": "Caodaísmo",
+    "c": "Movimento Moderno",
+    "g": "religião",
+    "geo": "Vietname",
+    "d": "Religião sincrética vietnamita que combina budismo, taoismo, confucionismo e cristianismo.",
+    "ps": 1926,
+    "pe": null,
+    "pf": false,
+    "review": "**Caodaísmo** (séc. XX–presente) Religião fundada no Vietname que sintetiza budismo, taoismo, confucionismo, cristianismo e espiritismo sob a figura suprema de Cao Dai. Recebe revelações através de sessões mediúnicas. Possui uma hierarquia inspirada no catolicismo. Tornou-se uma força religiosa e social significativa no sul do Vietname.\n\n*Região:* Vietname. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "buddhism",
+        "rel": "sincretismo de"
+      },
+      {
+        "cat": "religions",
+        "id": "taoism",
+        "rel": "sincretismo de"
+      },
+      {
+        "cat": "religions",
+        "id": "confucianism",
+        "rel": "sincretismo de"
+      },
+      {
+        "cat": "religions",
+        "id": "spiritism-kardecism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "tenrikyo",
+    "n": "Tenrikyo",
+    "c": "Movimento Moderno",
+    "g": "religião",
+    "geo": "Japão",
+    "d": "Religião japonesa monoteísta fundada por Nakayama Miki, focada na vida alegre.",
+    "ps": 1838,
+    "pe": null,
+    "pf": false,
+    "review": "**Tenrikyo** (séc. XIX–presente) Religião japonesa fundada por Nakayama Miki, considerada um santuário do Deus criador Tenri-O-no-Mikoto. Ensina o caminho para uma \"vida alegre\" através do serviço e da purificação. Surgiu no contexto do xintoísmo e das novas religiões japonesas. Realiza ampla obra social e missionária.\n\n*Região:* Japão. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "shinto",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "unitarian-universalism",
+    "n": "Unitário-Universalismo",
+    "c": "Movimento Moderno",
+    "g": "movimento",
+    "geo": "Estados Unidos",
+    "d": "Religião liberal sem credo fixo que valoriza a busca individual da verdade.",
+    "ps": 1961,
+    "pe": null,
+    "pf": false,
+    "review": "**Unitário-Universalismo** (séc. XX–presente) Religião liberal formada pela união do unitarismo e do universalismo nos Estados Unidos, que não impõe credo e acolhe diversas fontes de sabedoria. Valoriza a razão, a tolerância e a justiça social. Tem raízes na crítica protestante à Trindade e ao inferno eterno. Congrega pessoas de variadas convicções.\n\n*Região:* Estados Unidos. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "protestantism",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "bon",
+    "n": "Bön",
+    "c": "Dhármica",
+    "g": "religião",
+    "geo": "Tibete",
+    "d": "Religião indígena do Tibete, em parte anterior e em parte paralela ao budismo tibetano.",
+    "ps": -200,
+    "pe": null,
+    "pf": true,
+    "review": "**Bön** (da Antiguidade ao presente) Tradição religiosa do Tibete que reúne práticas xamânicas antigas e formas que se aproximaram do budismo Vajrayana. Tem o seu próprio fundador mítico, escrituras e mosteiros. Coexistiu e influenciou-se mutuamente com o budismo tibetano. Conserva rituais ligados à natureza e aos espíritos.\n\n*Região:* Tibete. *Família:* Dhármica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "shamanism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "vajrayana",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "satanism-laveyan",
+    "n": "Satanismo LaVeyano",
+    "c": "Movimento Moderno",
+    "g": "movimento",
+    "geo": "Estados Unidos",
+    "d": "Filosofia ateísta e individualista fundada por Anton LaVey, que usa Satã como símbolo.",
+    "ps": 1966,
+    "pe": null,
+    "pf": false,
+    "review": "**Satanismo LaVeyano** (séc. XX–presente) Filosofia de vida fundada por Anton LaVey com a Igreja de Satã nos Estados Unidos, que usa Satã como símbolo do individualismo, do prazer e da racionalidade, sem crer num diabo literal. É essencialmente ateísta e materialista. Recorre a ritual teatral como psicodrama. Provocou ampla controvérsia cultural.\n\n*Região:* Estados Unidos. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "epicureanism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "thelema",
+        "rel": "influenciada por"
+      }
+    ]
+  }
+]
