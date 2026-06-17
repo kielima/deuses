@@ -55,6 +55,32 @@ service cloud.firestore {
       }
     }
 
+    // Categorias-irmãs das deidades (enciclopédia interligada): cada entrada é
+    // UM documento, com a sua página Markdown (campo "review") e associações
+    // (campo "links": [{cat, id, rel}]). Mesmo modelo de papéis das deidades.
+    match /entries/{cat}/items/{id} {
+      allow read: if isSignedIn();
+      allow create: if isMaster() || canReview();
+      allow update: if isMaster() ||
+        (canReview() &&
+         request.resource.data.diff(resource.data).affectedKeys()
+           .hasOnly(['review', 'links', 'lastEditedBy', 'lastEditedAt']));
+      allow delete: if isMaster();
+
+      match /edits/{editId} {
+        allow read: if isSignedIn();
+        allow create: if canReview();
+      }
+      match /comments/{commentId} {
+        allow read: if isSignedIn();
+        allow create: if canComment();
+        allow update: if (canComment() &&
+                          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['replies']))
+                       || canReview();
+        allow delete: if canReview();
+      }
+    }
+
     match /users/{uid} {
       allow read: if isSignedIn();
       allow create: if request.auth.uid == uid;
