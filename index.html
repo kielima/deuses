@@ -340,6 +340,11 @@ footer {
 .edit-field textarea { resize: vertical; min-height: 80px; }
 .edit-field input:focus, .edit-field textarea:focus { border-color: var(--gold); }
 .edit-field input:disabled, .edit-field textarea:disabled { opacity: 0.6; cursor: not-allowed; }
+.period-row { display: flex; align-items: center; gap: 8px; }
+.period-row input { flex: 1; }
+.period-sep { color: var(--muted); }
+.period-fuzzy { display: flex !important; flex-direction: row; align-items: center; gap: 8px; text-transform: none !important; letter-spacing: normal !important; font-size: 12px !important; margin-top: 8px; cursor: pointer; }
+.period-fuzzy input { width: auto !important; }
 .last-edit-badge { font-size: 11px; color: var(--muted); background: rgba(212,168,67,0.1); border: 1px solid rgba(212,168,67,0.25); padding: 8px 12px; border-radius: 6px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
 .last-edit-badge img { width: 22px; height: 22px; border-radius: 50%; }
 .login-hint { background: rgba(124,58,237,0.1); border: 1px solid rgba(124,58,237,0.3); color: var(--muted); padding: 12px 16px; border-radius: 8px; font-size: 13px; text-align: center; margin-bottom: 12px; }
@@ -632,8 +637,17 @@ tbody tr { cursor: pointer; }
       <div class="edit-field"><label>Nome <span style="color:#ef4444">*</span></label><input id="nf-n" placeholder="Obrigatório"></div>
       <div class="edit-field"><label id="nlbl-c">Cultura</label><input id="nf-c"></div>
       <div class="edit-field"><label id="nlbl-g">Gênero</label><input id="nf-g"></div>
-      <div class="edit-field"><label id="nlbl-p">Padroado</label><input id="nf-p"></div>
+      <div class="edit-field" id="nf-p-field"><label id="nlbl-p">Padroado</label><input id="nf-p"></div>
       <div class="edit-field"><label id="nlbl-geo">Geografia</label><input id="nf-geo"></div>
+      <div class="edit-field period-fields" id="nf-period-field" style="display:none">
+        <label>Período (ano; negativo = a.C.)</label>
+        <div class="period-row">
+          <input id="nf-ps" type="number" placeholder="Início">
+          <span class="period-sep">→</span>
+          <input id="nf-pe" type="number" placeholder="Fim (vazio = ativa)">
+        </div>
+        <label class="period-fuzzy"><input id="nf-pf" type="checkbox"> Início incerto / difuso</label>
+      </div>
       <div class="edit-field"><label>Descrição</label><textarea id="nf-d"></textarea></div>
     </div>
     <div class="modal-actions">
@@ -699,7 +713,7 @@ let sortAsc = true;
 // categoria — só os rótulos mudam.
 const CATEGORIES = {
   deities:   { label: 'Deidades',  icon: '⚡', singular: 'deidade',  f1:'Cultura / Panteão', f2:'Gênero', f3:'Padroeiro de', f4:'Geografia' },
-  religions: { label: 'Religiões', icon: '🕊️', singular: 'religião',  f1:'Tradição / Família', f2:'Tipo', f3:'Divindade principal', f4:'Região' },
+  religions: { label: 'Religiões', icon: '🕊️', singular: 'religião',  f1:'Tradição / Família', f2:'Tipo', f3:'', f4:'Região', period:true },
   plants:    { label: 'Plantas',   icon: '🌿', singular: 'planta',    f1:'Família', f2:'Tipo', f3:'Usos / Simbolismo', f4:'Região' },
   animals:   { label: 'Animais',   icon: '🦅', singular: 'animal',    f1:'Classe / Grupo', f2:'Tipo', f3:'Simbolismo', f4:'Região' },
   creatures: { label: 'Criaturas', icon: '🐉', singular: 'criatura',  f1:'Origem / Mitologia', f2:'Tipo', f3:'Domínio', f4:'Região' }
@@ -1263,14 +1277,28 @@ function renderDetailsTab() {
     : (!canEdit ? `<div class="login-hint">Apenas o master edita os campos. Vê a aba <strong>Revisão</strong> para escrever/comentar.</div>` : '');
 
   const c = CATEGORIES[currentCategory];
+  const f3Html = c.f3
+    ? `<div class="edit-field"><label>${esc(c.f3)}</label><input id="ef-p" value="${esc(d.p||'')}" ${dis}></div>`
+    : '';
+  const periodHtml = c.period ? `
+    <div class="edit-field period-fields">
+      <label>Período (ano; negativo = a.C.)</label>
+      <div class="period-row">
+        <input id="ef-ps" type="number" placeholder="Início" value="${d.ps != null ? esc(String(d.ps)) : ''}" ${dis}>
+        <span class="period-sep">→</span>
+        <input id="ef-pe" type="number" placeholder="Fim (vazio = ativa)" value="${d.pe != null ? esc(String(d.pe)) : ''}" ${dis}>
+      </div>
+      <label class="period-fuzzy"><input id="ef-pf" type="checkbox" ${d.pf ? 'checked' : ''} ${dis}> Início incerto / difuso</label>
+    </div>` : '';
   document.getElementById('modal-body').innerHTML = `
     ${lastEditHtml}
     ${loginHint}
     <div class="edit-field"><label>Nome</label><input id="ef-n" value="${esc(d.n||'')}" ${dis}></div>
     <div class="edit-field"><label>${esc(c.f1)}</label><input id="ef-c" value="${esc(d.c||'')}" ${dis}></div>
     <div class="edit-field"><label>${esc(c.f2)}</label><input id="ef-g" value="${esc(d.g||'')}" ${dis}></div>
-    <div class="edit-field"><label>${esc(c.f3)}</label><input id="ef-p" value="${esc(d.p||'')}" ${dis}></div>
+    ${f3Html}
     <div class="edit-field"><label>${esc(c.f4)}</label><input id="ef-geo" value="${esc(d.geo||'')}" ${dis}></div>
+    ${periodHtml}
     <div class="edit-field"><label>Descrição</label><textarea id="ef-d" ${dis}>${esc(d.d||'')}</textarea></div>
     <div class="links-section" id="links-section"></div>
   `;
@@ -1420,6 +1448,24 @@ async function saveEdit() {
     }
   }
 
+  // Campos de período (números + flag de incerteza), só nas categorias com timeline
+  if (CATEGORIES[currentCategory].period) {
+    for (const f of ['ps', 'pe']) {
+      const el = document.getElementById('ef-' + f);
+      if (!el) continue;
+      const raw = el.value.trim();
+      if (raw !== '' && isNaN(Number(raw))) { showToast(`Ano inválido em "${f === 'ps' ? 'Início' : 'Fim'}".`, 'error'); btn.disabled = false; btn.textContent = 'Salvar'; return; }
+      const newVal = raw === '' ? null : Number(raw);
+      const oldVal = original[f] != null ? original[f] : null;
+      if (newVal !== oldVal) { changes[f] = newVal; edits.push({ field: f, oldValue: String(oldVal ?? ''), newValue: String(newVal ?? '') }); }
+    }
+    const pfEl = document.getElementById('ef-pf');
+    if (pfEl) {
+      const newVal = pfEl.checked, oldVal = !!original.pf;
+      if (newVal !== oldVal) { changes.pf = newVal; edits.push({ field: 'pf', oldValue: String(oldVal), newValue: String(newVal) }); }
+    }
+  }
+
   if (!edits.length) { closeEditModal(); btn.disabled = false; btn.textContent = 'Salvar'; return; }
 
   try {
@@ -1474,6 +1520,13 @@ function openCreateModal() {
   const setTxt = (id, t) => { const el = document.getElementById(id); if (el) el.textContent = t; };
   setTxt('create-title', `Nova ${c.singular}`);
   setTxt('nlbl-c', c.f1); setTxt('nlbl-g', c.f2); setTxt('nlbl-p', c.f3); setTxt('nlbl-geo', c.f4);
+  // f3 vazio (ex.: religiões) → esconde o campo; mostra período só onde aplicável
+  const pField = document.getElementById('nf-p-field');
+  if (pField) pField.style.display = c.f3 ? '' : 'none';
+  const periodField = document.getElementById('nf-period-field');
+  if (periodField) periodField.style.display = c.period ? '' : 'none';
+  ['nf-ps','nf-pe'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  const pf = document.getElementById('nf-pf'); if (pf) pf.checked = false;
   document.getElementById('create-modal-overlay').classList.add('open');
   document.getElementById('nf-n').focus();
 }
@@ -1495,6 +1548,16 @@ async function createDeity() {
     d: document.getElementById('nf-d').value.trim(),
     review: ''
   };
+  if (CATEGORIES[currentCategory].period) {
+    const psRaw = document.getElementById('nf-ps').value.trim();
+    const peRaw = document.getElementById('nf-pe').value.trim();
+    if ((psRaw !== '' && isNaN(Number(psRaw))) || (peRaw !== '' && isNaN(Number(peRaw)))) {
+      showToast('Ano de período inválido.', 'error'); btn.disabled = false; btn.textContent = 'Criar'; return;
+    }
+    data.ps = psRaw === '' ? null : Number(psRaw);
+    data.pe = peRaw === '' ? null : Number(peRaw);
+    data.pf = document.getElementById('nf-pf').checked;
+  }
   try {
     const by = { uid: currentUser.uid, displayName: currentUser.displayName, photoURL: currentUser.photoURL || '' };
     const ref = currentCategory === 'deities'
