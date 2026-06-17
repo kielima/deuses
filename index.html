@@ -1299,7 +1299,13 @@ function rebuildActive() {
 // Atualiza o estado local após gravar, conforme a categoria.
 function localPatch(idx, patch) {
   if (currentCategory === 'deities') {
-    overrides[idx] = { ...(overrides[idx] || {}), ...patch };
+    if (/^\d+$/.test(String(idx))) {
+      overrides[idx] = { ...(overrides[idx] || {}), ...patch };
+    } else {
+      // entrada criada do zero (id "new_…") vive em newDeities, não em overrides
+      const nd = newDeities.find(x => x._docId === String(idx));
+      if (nd) Object.assign(nd, patch);
+    }
     rebuildMergedData();
   } else {
     const e = genericStore[currentCategory].find(x => x._docId === String(idx));
