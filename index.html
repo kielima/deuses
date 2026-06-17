@@ -965,6 +965,7 @@ auth.onAuthStateChanged(async user => {
     await loadCatalog();
     await loadOverrides();
     await loadGeneric();
+    renderAuthUI(user);   // redesenha o cabeçalho já com catalogLoaded definido (esconde "Migrar base")
     setLoginStatus('', null);
     document.body.classList.add('authed');
   } else {
