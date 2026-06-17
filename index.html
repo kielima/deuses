@@ -77,6 +77,26 @@ header p { color: var(--muted); font-size: 13px; margin-top: 2px; }
 .main { padding: 28px 32px; max-width: 1600px; margin: 0 auto; }
 
 /* KPIs */
+/* Category bar */
+.cat-bar { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px 32px 0; }
+.cat-tab {
+  background: var(--card); border: 1px solid var(--border); color: var(--muted);
+  border-radius: 999px; padding: 8px 18px; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: all .15s;
+}
+.cat-tab:hover { color: #e2e8f0; border-color: var(--gold); }
+.cat-tab.active { background: linear-gradient(90deg, var(--gold), var(--purple)); color: #fff; border-color: transparent; }
+/* Links / associações */
+.links-section { margin-top: 18px; border-top: 1px solid var(--border); padding-top: 14px; }
+.links-section h4 { margin: 0 0 10px; font-size: 14px; color: var(--gold); }
+.link-item { display: flex; align-items: center; gap: 8px; padding: 6px 0; font-size: 14px; }
+.link-item a { color: #60a5fa; text-decoration: none; }
+.link-item a:hover { text-decoration: underline; }
+.link-rel { color: var(--muted); font-size: 13px; }
+.link-del { margin-left: auto; background: none; border: none; color: #ef4444; cursor: pointer; font-size: 16px; }
+.link-add { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.link-add select, .link-add input { background: var(--bg); border: 1px solid var(--border); color: #e2e8f0; border-radius: 8px; padding: 7px 10px; font-size: 13px; }
+.link-add input { flex: 1; min-width: 140px; }
 .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
 .kpi {
   background: var(--card);
@@ -464,6 +484,9 @@ tbody tr { cursor: pointer; }
   </div>
 </header>
 
+<!-- Seletor de categoria (enciclopédia interligada) -->
+<div class="cat-bar" id="cat-bar"></div>
+
 <div class="main">
 
   <!-- KPIs -->
@@ -497,7 +520,7 @@ tbody tr { cursor: pointer; }
       <input type="text" id="search" placeholder="Nome da deidade..." oninput="applyFilters()">
     </div>
     <div class="filter-group">
-      <label>Cultura / Panteão</label>
+      <label id="lbl-f1">Cultura / Panteão</label>
       <select id="f-culture" onchange="applyFilters()">
         <option value="">Todas as culturas</option>
       </select>
@@ -552,7 +575,7 @@ tbody tr { cursor: pointer; }
   <!-- Tabela -->
   <div class="table-card">
     <div class="table-header">
-      <h3>📜 Catálogo de Deidades</h3>
+      <h3 id="cat-title">⚡ Catálogo de Deidades</h3>
       <div class="pagination">
         <button id="prev-btn" onclick="prevPage()">‹ Anterior</button>
         <span id="page-info"></span>
@@ -602,15 +625,15 @@ tbody tr { cursor: pointer; }
 <div class="modal-overlay" id="create-modal-overlay" onclick="if(event.target===this)closeCreateModal()">
   <div class="modal">
     <div class="modal-header">
-      <h2>Nova deidade</h2>
+      <h2 id="create-title">Nova deidade</h2>
       <button class="modal-close" onclick="closeCreateModal()">×</button>
     </div>
     <div class="modal-body">
       <div class="edit-field"><label>Nome <span style="color:#ef4444">*</span></label><input id="nf-n" placeholder="Obrigatório"></div>
-      <div class="edit-field"><label>Cultura</label><input id="nf-c"></div>
-      <div class="edit-field"><label>Gênero</label><input id="nf-g" placeholder="Male / Female / Androgynous…"></div>
-      <div class="edit-field"><label>Padroado</label><input id="nf-p"></div>
-      <div class="edit-field"><label>Geografia</label><input id="nf-geo"></div>
+      <div class="edit-field"><label id="nlbl-c">Cultura</label><input id="nf-c"></div>
+      <div class="edit-field"><label id="nlbl-g">Gênero</label><input id="nf-g"></div>
+      <div class="edit-field"><label id="nlbl-p">Padroado</label><input id="nf-p"></div>
+      <div class="edit-field"><label id="nlbl-geo">Geografia</label><input id="nf-geo"></div>
       <div class="edit-field"><label>Descrição</label><textarea id="nf-d"></textarea></div>
     </div>
     <div class="modal-actions">
@@ -669,12 +692,38 @@ const PAGE_SIZE = 50;
 let sortKey = 'n';
 let sortAsc = true;
 
+// ── CATEGORIAS (enciclopédia interligada) ─────────────────────────────────────
+// "deities" é a categoria original (baseline DATA + overrides na coleção
+// "deities"). As restantes guardam UM documento por entrada em
+// entries/{cat}/items/{id}. O 4º campo ("c"/"g"/"p"/"geo") é genérico por
+// categoria — só os rótulos mudam.
+const CATEGORIES = {
+  deities:   { label: 'Deidades',  icon: '⚡', singular: 'deidade',  f1:'Cultura / Panteão', f2:'Gênero', f3:'Padroeiro de', f4:'Geografia' },
+  religions: { label: 'Religiões', icon: '🕊️', singular: 'religião',  f1:'Tradição / Família', f2:'Tipo', f3:'Divindade principal', f4:'Região' },
+  plants:    { label: 'Plantas',   icon: '🌿', singular: 'planta',    f1:'Família', f2:'Tipo', f3:'Usos / Simbolismo', f4:'Região' },
+  animals:   { label: 'Animais',   icon: '🦅', singular: 'animal',    f1:'Classe / Grupo', f2:'Tipo', f3:'Simbolismo', f4:'Região' },
+  creatures: { label: 'Criaturas', icon: '🐉', singular: 'criatura',  f1:'Origem / Mitologia', f2:'Tipo', f3:'Domínio', f4:'Região' }
+};
+const GENERIC_CATS = ['religions','plants','animals','creatures'];
+let currentCategory = 'deities';
+// Documentos carregados por categoria genérica: { religions:[...], plants:[...] }
+const genericStore = { religions: [], plants: [], animals: [], creatures: [] };
+
 // ── DROPDOWNS ────────────────────────────────────────────────────────────────
 (function initDropdowns() {
   const cs = document.getElementById('f-culture');
   ALL_CULTURES.forEach(c => { if(c) { const o = document.createElement('option'); o.value=c; o.textContent=c; cs.appendChild(o); } });
   const gs = document.getElementById('f-geo');
   ALL_GEOS.forEach(g => { if(g) { const o = document.createElement('option'); o.value=g; o.textContent=g; gs.appendChild(o); } });
+})();
+
+// Monta as abas de categoria
+(function initCategoryTabs() {
+  const bar = document.getElementById('cat-bar');
+  if (!bar) return;
+  bar.innerHTML = Object.entries(CATEGORIES).map(([key, c]) =>
+    `<button class="cat-tab${key === 'deities' ? ' active' : ''}" data-cat="${key}" onclick="switchCategory('${key}')">${c.icon} ${c.label}</button>`
+  ).join('');
 })();
 
 // ── FILTERS ──────────────────────────────────────────────────────────────────
@@ -915,6 +964,7 @@ auth.onAuthStateChanged(async user => {
     // Carrega a base do Firestore (catalog) e depois os overrides/edições.
     await loadCatalog();
     await loadOverrides();
+    await loadGeneric();
     setLoginStatus('', null);
     document.body.classList.add('authed');
   } else {
@@ -986,7 +1036,7 @@ function renderAuthUI(user) {
   const migBtn = (currentUserRole === 'master' && !catalogLoaded)
     ? `<button class="btn-outline" onclick="migrateBaseline()" title="Mover a base embutida para o Firestore">⇪ Migrar base</button>` : '';
   const newBtn = canCreate()
-    ? `<button class="btn-auth" onclick="openCreateModal()">➕ Nova deidade</button>` : '';
+    ? `<button class="btn-auth" id="btn-new-entry" onclick="openCreateModal()">➕ Nova ${CATEGORIES[currentCategory].singular}</button>` : '';
   right.innerHTML = `
     ${newBtn}
     <button class="btn-outline" onclick="openActivityDrawer()">⚡ Atividade</button>
@@ -1053,10 +1103,81 @@ function rebuildMergedData() {
   arr.forEach(d => { window.mergedByKey[String(d._idx)] = d; });
 }
 
-// Devolve a deidade em edição, seja do baseline ou criada do zero.
+// Devolve a entrada em edição (deidade do baseline, criada, ou de outra categoria).
 function getDeity(key) {
   return (window.mergedByKey && window.mergedByKey[String(key)]) ||
-         (DATA[key] ? { ...DATA[key], _idx: key } : null);
+         (currentCategory === 'deities' && DATA[key] ? { ...DATA[key], _idx: key } : null);
+}
+
+// ── CAMADA GENÉRICA DE CATEGORIAS ─────────────────────────────────────────────
+// Referência do documento da entrada na categoria ATIVA.
+function entryDocRef(idx) {
+  return currentCategory === 'deities'
+    ? db.collection('deities').doc(String(idx))
+    : db.collection('entries').doc(currentCategory).collection('items').doc(String(idx));
+}
+
+// Reconstrói window.mergedData / mergedByKey para a categoria ativa.
+function rebuildActive() {
+  if (currentCategory === 'deities') { rebuildMergedData(); return; }
+  const arr = genericStore[currentCategory]
+    .filter(x => !x._deleted)
+    .map(x => ({ ...x, _idx: x._docId, _overridden: !!(x.review && x.review.trim()),
+                 _lastEdit: x.lastEditedBy, _lastEditAt: x.lastEditedAt }));
+  window.mergedData = arr;
+  window.mergedByKey = {};
+  arr.forEach(d => { window.mergedByKey[String(d._idx)] = d; });
+}
+
+// Atualiza o estado local após gravar, conforme a categoria.
+function localPatch(idx, patch) {
+  if (currentCategory === 'deities') {
+    overrides[idx] = { ...(overrides[idx] || {}), ...patch };
+    rebuildMergedData();
+  } else {
+    const e = genericStore[currentCategory].find(x => x._docId === String(idx));
+    if (e) Object.assign(e, patch);
+    rebuildActive();
+  }
+  applyFilters();
+}
+
+// Carrega as 4 categorias novas (um doc por entrada). Barato: poucas entradas.
+async function loadGeneric() {
+  await Promise.all(GENERIC_CATS.map(async cat => {
+    try {
+      const snap = await db.collection('entries').doc(cat).collection('items').get();
+      genericStore[cat] = snap.docs.map(doc => ({ ...doc.data(), _docId: doc.id }));
+    } catch(e) { console.warn('loadGeneric ' + cat + ':', e); }
+  }));
+}
+
+// Troca a categoria ativa e re-renderiza a lista/cabeçalho.
+function switchCategory(cat) {
+  if (!CATEGORIES[cat]) return;
+  closeEditModal();
+  currentCategory = cat;
+  document.querySelectorAll('.cat-tab').forEach(t =>
+    t.classList.toggle('active', t.dataset.cat === cat));
+  applyCategoryLabels();
+  rebuildActive();
+  resetFilters();   // limpa filtros e chama applyFilters()
+}
+
+// Ajusta rótulos da UI ao trocar de categoria.
+function applyCategoryLabels() {
+  const c = CATEGORIES[currentCategory];
+  const setTxt = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
+  setTxt('cat-title', `${c.icon} Catálogo de ${c.label}`);
+  setTxt('lbl-f1', c.f1);
+  setTxt('th-c', c.f1 + ' ↕');
+  setTxt('th-p', c.f3 + ' ↕');
+  setTxt('th-geo', c.f4 + ' ↕');
+  // gráficos e KPIs só fazem sentido para deidades (têm dados estatísticos)
+  const charts = document.querySelectorAll('.charts, .charts2');
+  charts.forEach(el => el.style.display = currentCategory === 'deities' ? '' : 'none');
+  const newBtn = document.getElementById('btn-new-entry');
+  if (newBtn) newBtn.textContent = `➕ Nova ${c.singular}`;
 }
 
 // ── TABLE CLICK — event delegation ────────────────────────────────────────────
@@ -1140,22 +1261,119 @@ function renderDetailsTab() {
     ? `<div class="login-hint">Faça login para ver as opções de edição</div>`
     : (!canEdit ? `<div class="login-hint">Apenas o master edita os campos. Vê a aba <strong>Revisão</strong> para escrever/comentar.</div>` : '');
 
+  const c = CATEGORIES[currentCategory];
   document.getElementById('modal-body').innerHTML = `
     ${lastEditHtml}
     ${loginHint}
     <div class="edit-field"><label>Nome</label><input id="ef-n" value="${esc(d.n||'')}" ${dis}></div>
-    <div class="edit-field"><label>Cultura / Panteão</label><input id="ef-c" value="${esc(d.c||'')}" ${dis}></div>
-    <div class="edit-field"><label>Gênero</label><input id="ef-g" value="${esc(d.g||'')}" ${dis}></div>
-    <div class="edit-field"><label>Padroeiro de</label><input id="ef-p" value="${esc(d.p||'')}" ${dis}></div>
-    <div class="edit-field"><label>Geografia</label><input id="ef-geo" value="${esc(d.geo||'')}" ${dis}></div>
+    <div class="edit-field"><label>${esc(c.f1)}</label><input id="ef-c" value="${esc(d.c||'')}" ${dis}></div>
+    <div class="edit-field"><label>${esc(c.f2)}</label><input id="ef-g" value="${esc(d.g||'')}" ${dis}></div>
+    <div class="edit-field"><label>${esc(c.f3)}</label><input id="ef-p" value="${esc(d.p||'')}" ${dis}></div>
+    <div class="edit-field"><label>${esc(c.f4)}</label><input id="ef-geo" value="${esc(d.geo||'')}" ${dis}></div>
     <div class="edit-field"><label>Descrição</label><textarea id="ef-d" ${dis}>${esc(d.d||'')}</textarea></div>
+    <div class="links-section" id="links-section"></div>
   `;
+  renderLinks();
+}
+
+// ── RELAÇÕES / ASSOCIAÇÕES entre entradas (cross-categoria) ───────────────────
+// Cada link = { cat, id, rel }. Guardados no campo "links" da entrada.
+function entryLabel(cat, id) {
+  if (cat === 'deities') {
+    if (DATA[id]) return (overrides[id] && overrides[id].n) || DATA[id].n;
+    const nd = newDeities.find(x => x._docId === String(id));
+    return nd ? nd.n : id;
+  }
+  const e = (genericStore[cat] || []).find(x => x._docId === String(id));
+  return e ? e.n : id;
+}
+
+function renderLinks() {
+  const wrap = document.getElementById('links-section');
+  if (!wrap) return;
+  const d = getDeity(editingIdx) || {};
+  const links = Array.isArray(d.links) ? d.links : [];
+  const canEdit = canEditReview();
+  const items = links.length ? links.map((l, i) => `
+    <div class="link-item">
+      <span class="link-cat">${CATEGORIES[l.cat] ? CATEGORIES[l.cat].icon : '🔗'}</span>
+      <a href="#" onclick="gotoEntry('${l.cat}','${esc(String(l.id))}');return false;">${esc(entryLabel(l.cat, l.id))}</a>
+      ${l.rel ? `<span class="link-rel">— ${esc(l.rel)}</span>` : ''}
+      ${canEdit ? `<button class="link-del" title="Remover" onclick="removeLink(${i})">×</button>` : ''}
+    </div>`).join('') : `<div class="review-empty">Nenhuma associação ainda.</div>`;
+
+  const addUi = canEdit ? `
+    <div class="link-add">
+      <select id="link-cat">${Object.entries(CATEGORIES).map(([k,c]) => `<option value="${k}">${c.icon} ${c.label}</option>`).join('')}</select>
+      <select id="link-target"></select>
+      <input id="link-rel" placeholder="relação (ex.: associado a)">
+      <button class="btn-mini primary" onclick="addLink()">+ Associar</button>
+    </div>` : '';
+
+  wrap.innerHTML = `<h4>🔗 Associações</h4>${items}${addUi}`;
+  if (canEdit) { fillLinkTargets(); document.getElementById('link-cat').onchange = fillLinkTargets; }
+}
+
+function entriesOf(cat) {
+  if (cat === 'deities') {
+    const base = DATA.map((d, i) => ({ n: (overrides[i] && overrides[i].n) || d.n, _idx: i }));
+    newDeities.filter(x => !x._deleted).forEach(x => base.push({ n: x.n, _idx: x._docId }));
+    return base;
+  }
+  return (genericStore[cat] || []).filter(x => !x._deleted).map(x => ({ ...x, _idx: x._docId }));
+}
+
+function fillLinkTargets() {
+  const cat = document.getElementById('link-cat').value;
+  const sel = document.getElementById('link-target');
+  const list = entriesOf(cat).slice().sort((a,b) => (a.n||'').localeCompare(b.n||''));
+  sel.innerHTML = list.map(e => `<option value="${esc(String(e._idx))}">${esc(e.n||e._idx)}</option>`).join('');
+}
+
+async function addLink() {
+  const cat = document.getElementById('link-cat').value;
+  const id = document.getElementById('link-target').value;
+  const rel = document.getElementById('link-rel').value.trim();
+  if (!id) { showToast('Escolha uma entrada para associar.', 'error'); return; }
+  const d = getDeity(editingIdx) || {};
+  const links = Array.isArray(d.links) ? d.links.slice() : [];
+  if (links.some(l => l.cat === cat && String(l.id) === String(id))) { showToast('Essa associação já existe.', 'info'); return; }
+  links.push({ cat, id, rel });
+  await saveLinks(links);
+}
+
+async function removeLink(i) {
+  const d = getDeity(editingIdx) || {};
+  const links = Array.isArray(d.links) ? d.links.slice() : [];
+  links.splice(i, 1);
+  await saveLinks(links);
+}
+
+async function saveLinks(links) {
+  if (!canEditReview()) return;
+  try {
+    const editBy = { uid: currentUser.uid, displayName: currentUser.displayName, photoURL: currentUser.photoURL || '' };
+    const ts = FieldValue.serverTimestamp();
+    await entryDocRef(editingIdx).set({ links, lastEditedBy: editBy, lastEditedAt: ts }, { merge: true });
+    localPatch(editingIdx, { links, lastEditedBy: editBy, lastEditedAt: new Date() });
+    showToast('Associações atualizadas ✓', 'success');
+    renderLinks();
+  } catch(e) { showToast('Erro ao salvar associação: ' + e.message, 'error'); }
+}
+
+// Navega para uma entrada (troca categoria se preciso) e abre o modal.
+function gotoEntry(cat, id) {
+  if (cat !== currentCategory) {
+    closeEditModal();
+    switchCategory(cat);
+  }
+  openEditModal(id);
 }
 
 async function renderHistoryTab() {
   document.getElementById('modal-body').innerHTML = `<div style="text-align:center;padding:20px"><span class="spinner"></span></div>`;
   try {
-    const snap = await db.collection('deities').doc(String(editingIdx))
+    const snap = await entryDocRef(editingIdx)
       .collection('edits').orderBy('editedAt', 'desc').limit(30).get();
     if (snap.empty) {
       document.getElementById('modal-body').innerHTML = `<p class="activity-empty">Nenhuma edição registrada ainda.</p>`;
@@ -1204,7 +1422,7 @@ async function saveEdit() {
   if (!edits.length) { closeEditModal(); btn.disabled = false; btn.textContent = 'Salvar'; return; }
 
   try {
-    const deityRef = db.collection('deities').doc(String(editingIdx));
+    const deityRef = entryDocRef(editingIdx);
     const editBy = { uid: currentUser.uid, displayName: currentUser.displayName, photoURL: currentUser.photoURL || '' };
     const ts = FieldValue.serverTimestamp();
 
@@ -1221,11 +1439,8 @@ async function saveEdit() {
     await batch.commit();
     await db.collection('users').doc(currentUser.uid).update({ editCount: FieldValue.increment(edits.length) });
 
-    overrides[editingIdx] = { ...(overrides[editingIdx] || {}), ...changes,
-      lastEditedBy: editBy, lastEditedAt: new Date() };
-    rebuildMergedData();
-    applyFilters();
-    showToast('Deidade atualizada! ✓', 'success');
+    localPatch(editingIdx, { ...changes, lastEditedBy: editBy, lastEditedAt: new Date() });
+    showToast(`${cap(CATEGORIES[currentCategory].singular)} atualizada! ✓`, 'success');
     closeEditModal();
   } catch(e) {
     showToast('Erro ao salvar: ' + e.message, 'error');
@@ -1239,15 +1454,13 @@ async function deleteDeity() {
   const d = getDeity(editingIdx);
   if (!confirm(`Excluir "${d.n}"? A entrada deixa de aparecer na base.`)) return;
   try {
-    const deityRef = db.collection('deities').doc(String(editingIdx));
+    const deityRef = entryDocRef(editingIdx);
     const editBy = { uid: currentUser.uid, displayName: currentUser.displayName, photoURL: currentUser.photoURL || '' };
     const ts = FieldValue.serverTimestamp();
     await deityRef.set({ _deleted: true, lastEditedBy: editBy, lastEditedAt: ts }, { merge: true });
     await deityRef.collection('edits').doc().set({ field: '_deleted', oldValue: '', newValue: 'true', editedBy: editBy, editedAt: ts });
-    overrides[editingIdx] = { ...(overrides[editingIdx] || {}), _deleted: true, lastEditedBy: editBy, lastEditedAt: new Date() };
-    rebuildMergedData();
-    applyFilters();
-    showToast('Deidade excluída.', 'success');
+    localPatch(editingIdx, { _deleted: true, lastEditedBy: editBy, lastEditedAt: new Date() });
+    showToast(`${cap(CATEGORIES[currentCategory].singular)} excluída.`, 'success');
     closeEditModal();
   } catch(e) { showToast('Erro ao excluir: ' + e.message, 'error'); }
 }
@@ -1256,6 +1469,10 @@ async function deleteDeity() {
 function openCreateModal() {
   if (!canCreate()) return;
   ['n','c','g','p','geo','d'].forEach(f => { const el = document.getElementById('nf-'+f); if (el) el.value = ''; });
+  const c = CATEGORIES[currentCategory];
+  const setTxt = (id, t) => { const el = document.getElementById(id); if (el) el.textContent = t; };
+  setTxt('create-title', `Nova ${c.singular}`);
+  setTxt('nlbl-c', c.f1); setTxt('nlbl-g', c.f2); setTxt('nlbl-p', c.f3); setTxt('nlbl-geo', c.f4);
   document.getElementById('create-modal-overlay').classList.add('open');
   document.getElementById('nf-n').focus();
 }
@@ -1279,17 +1496,19 @@ async function createDeity() {
   };
   try {
     const by = { uid: currentUser.uid, displayName: currentUser.displayName, photoURL: currentUser.photoURL || '' };
-    // id com prefixo "new_" → nunca confundido com índice numérico do baseline
-    const id = 'new_' + db.collection('deities').doc().id;
-    await db.collection('deities').doc(id).set({
-      ...data, _new: true,
+    const ref = currentCategory === 'deities'
+      ? db.collection('deities').doc('new_' + db.collection('deities').doc().id)  // prefixo "new_" no baseline
+      : db.collection('entries').doc(currentCategory).collection('items').doc();
+    await ref.set({
+      ...data, links: [], _new: true,
       createdBy: by, createdAt: FieldValue.serverTimestamp(),
       lastEditedBy: by, lastEditedAt: FieldValue.serverTimestamp()
     });
-    newDeities.push({ ...data, _docId: id, _new: true, createdBy: by, lastEditedBy: by, lastEditedAt: new Date() });
-    rebuildMergedData();
+    const local = { ...data, _docId: ref.id, _new: true, links: [], createdBy: by, lastEditedBy: by, lastEditedAt: new Date() };
+    if (currentCategory === 'deities') { newDeities.push(local); rebuildMergedData(); }
+    else { genericStore[currentCategory].push(local); rebuildActive(); }
     applyFilters();
-    showToast('Deidade criada! ✓', 'success');
+    showToast(`${cap(CATEGORIES[currentCategory].singular)} criada! ✓`, 'success');
     closeCreateModal();
   } catch(e) { showToast('Erro ao criar: ' + e.message, 'error'); }
   btn.disabled = false; btn.textContent = 'Criar';
@@ -1362,7 +1581,7 @@ async function saveReview() {
   if (newVal === oldVal) { renderReviewTab(); return; }
   btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>';
   try {
-    const deityRef = db.collection('deities').doc(String(editingIdx));
+    const deityRef = entryDocRef(editingIdx);
     const editBy = { uid: currentUser.uid, displayName: currentUser.displayName, photoURL: currentUser.photoURL || '' };
     const ts = FieldValue.serverTimestamp();
     await deityRef.set({ review: newVal, lastEditedBy: editBy, lastEditedAt: ts }, { merge: true });
@@ -1372,9 +1591,7 @@ async function saveReview() {
       editedBy: editBy, editedAt: ts
     });
     await db.collection('users').doc(currentUser.uid).update({ editCount: FieldValue.increment(1) });
-    overrides[editingIdx] = { ...(overrides[editingIdx] || {}), review: newVal, lastEditedBy: editBy, lastEditedAt: new Date() };
-    rebuildMergedData();
-    applyFilters();
+    localPatch(editingIdx, { review: newVal, lastEditedBy: editBy, lastEditedAt: new Date() });
     showToast('Revisão salva! ✓', 'success');
     renderReviewTab();
   } catch(e) {
@@ -1386,7 +1603,7 @@ async function saveReview() {
 // ── COMMENTS: realtime threads + highlights ───────────────────────────────────
 function subscribeComments() {
   const idx = editingIdx;
-  commentsUnsub = db.collection('deities').doc(String(idx)).collection('comments')
+  commentsUnsub = entryDocRef(idx).collection('comments')
     .orderBy('createdAt', 'asc')
     .onSnapshot(snap => {
       if (editingIdx !== idx || reviewEditing) return;
@@ -1502,7 +1719,7 @@ async function submitNewThread() {
   const sel = pendingSelection;
   pendingSelection = null;
   try {
-    await db.collection('deities').doc(String(editingIdx)).collection('comments').doc().set({
+    await entryDocRef(editingIdx).collection('comments').doc().set({
       quote: sel.quote.substring(0, 300),
       start: sel.start, end: sel.end,
       text,
@@ -1521,7 +1738,7 @@ async function addReply(threadId) {
   const text = ta.value.trim();
   if (!text) return;
   try {
-    await db.collection('deities').doc(String(editingIdx)).collection('comments').doc(threadId).update({
+    await entryDocRef(editingIdx).collection('comments').doc(threadId).update({
       replies: FieldValue.arrayUnion({
         author: { uid: currentUser.uid, displayName: currentUser.displayName, photoURL: currentUser.photoURL || '' },
         text,
@@ -1534,7 +1751,7 @@ async function addReply(threadId) {
 async function toggleResolve(threadId, resolved) {
   if (!canResolve()) return;
   try {
-    await db.collection('deities').doc(String(editingIdx)).collection('comments').doc(threadId).update({ resolved });
+    await entryDocRef(editingIdx).collection('comments').doc(threadId).update({ resolved });
   } catch(e) { showToast('Erro: ' + e.message, 'error'); }
 }
 
@@ -1542,7 +1759,7 @@ async function deleteThread(threadId) {
   if (!canResolve()) return;
   if (!confirm('Excluir este comentário e todas as respostas?')) return;
   try {
-    await db.collection('deities').doc(String(editingIdx)).collection('comments').doc(threadId).delete();
+    await entryDocRef(editingIdx).collection('comments').doc(threadId).delete();
     showToast('Comentário excluído.', 'success');
   } catch(e) { showToast('Erro: ' + e.message, 'error'); }
 }
@@ -1623,9 +1840,19 @@ function openActivityDrawer() {
         list.innerHTML = snap.docs.map(doc => {
           const e = doc.data();
           const who = e.editedBy || {};
-          const deity = doc.ref.parent.parent;
-          const idx = parseInt(deity.id);
-          const deityName = !isNaN(idx) && DATA[idx] ? DATA[idx].n : '?';
+          const entryDoc = doc.ref.parent.parent;
+          let deityName = '?';
+          if (entryDoc) {
+            if (entryDoc.parent && entryDoc.parent.id === 'items') {       // categoria nova
+              const cat = entryDoc.parent.parent ? entryDoc.parent.parent.id : null;
+              const found = cat && genericStore[cat] ? genericStore[cat].find(x => x._docId === entryDoc.id) : null;
+              deityName = found ? found.n : entryDoc.id;
+            } else {                                                        // deidade
+              const idx = parseInt(entryDoc.id);
+              if (!isNaN(idx) && DATA[idx]) deityName = (overrides[idx] && overrides[idx].n) || DATA[idx].n;
+              else { const nd = newDeities.find(x => x._docId === entryDoc.id); deityName = nd ? nd.n : '?'; }
+            }
+          }
           const when = e.editedAt ? relTime(e.editedAt.toDate ? e.editedAt.toDate() : new Date(e.editedAt)) : '';
           return `<div class="activity-item">
             ${who.photoURL ? `<img class="activity-avatar" src="${who.photoURL}" alt="">` : '<div class="activity-avatar"></div>'}
@@ -1720,6 +1947,7 @@ function relTime(date) {
 function esc(str) {
   return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
 </script>
 </body>
 </html>
