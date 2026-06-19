@@ -1214,6 +1214,44 @@ async function loadCatalog() {
   } catch(e) { console.warn('Firestore catalog:', e); return false; }
 }
 
+// ── IMPORT do seed de religiões (master): lê data/religions.seed.json e grava ──
+// em entries/religions/items/{id}. Idempotente (merge por id); pode correr de novo.
+async function importReligionsSeed() {
+  if (currentUserRole !== 'master') { showToast('Apenas o master pode importar.', 'error'); return; }
+  let seed;
+  try {
+    const res = await fetch('data/religions.seed.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    seed = await res.json();
+  } catch(e) { showToast('Não consegui carregar o seed: ' + e.message, 'error'); return; }
+  if (!Array.isArray(seed) || !seed.length) { showToast('Seed vazio ou inválido.', 'error'); return; }
+  if (!confirm(`Importar ${seed.length} religiões para o Firestore? Entradas com o mesmo id são atualizadas (merge).`)) return;
+  try {
+    showToast(`A importar ${seed.length} religiões… aguarde.`, 'info');
+    const col = db.collection('entries').doc('religions').collection('items');
+    const now = FieldValue.serverTimestamp();
+    let written = 0, batch = db.batch(), n = 0;
+    for (const e of seed) {
+      const { id, ...rest } = e;
+      if (!id) continue;
+      batch.set(col.doc(String(id)), {
+        ...rest,
+        links: Array.isArray(e.links) ? e.links : [],
+        is_seed: true,
+        createdAt: now,
+        lastEditedAt: now
+      }, { merge: true });
+      written++;
+      if (++n % 400 === 0) { await batch.commit(); batch = db.batch(); }
+    }
+    await batch.commit();
+    await loadGeneric();
+    rebuildActive();
+    applyFilters();
+    showToast(`Importadas ${written} religiões ✓`, 'success');
+  } catch(e) { showToast('Erro no import: ' + e.message, 'error'); }
+}
+
 // ── MIGRAÇÃO (master, uma única vez): semeia /catalog a partir do array atual ───
 async function migrateBaseline() {
   if (currentUserRole !== 'master') { showToast('Apenas o master pode migrar.', 'error'); return; }
@@ -1251,12 +1289,15 @@ function renderAuthUI(user) {
   const adminBtn = canManageRoles() ? `<button class="btn-outline" onclick="openAdminPanel()">Admin ⚙</button>` : '';
   const migBtn = (currentUserRole === 'master' && !catalogLoaded)
     ? `<button class="btn-outline" onclick="migrateBaseline()" title="Mover a base embutida para o Firestore">⇪ Migrar base</button>` : '';
+  const seedBtn = (currentUserRole === 'master')
+    ? `<button class="btn-outline" onclick="importReligionsSeed()" title="Carregar o núcleo curado de religiões (data/religions.seed.json)">🕊️ Importar religiões</button>` : '';
   const newBtn = canCreate()
     ? `<button class="btn-auth" id="btn-new-entry" onclick="openCreateModal()">➕ Nova ${CATEGORIES[currentCategory].singular}</button>` : '';
   right.innerHTML = `
     ${newBtn}
     <button class="btn-outline" onclick="openActivityDrawer()">⚡ Atividade</button>
     ${migBtn}
+    ${seedBtn}
     ${adminBtn}
     ${photo}
     <span class="user-name">${user.displayName.split(' ')[0]}</span>
