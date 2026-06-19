@@ -1072,6 +1072,21 @@ const firebaseConfig = {
 };
 
 // ── INIT FIREBASE ─────────────────────────────────────────────────────────────
+// O login por redirect (usado em telemóveis) só funciona de forma fiável quando
+// o authDomain é o MESMO domínio onde o app está publicado. Como o app vive no
+// Firebase Hosting (deuses-app.web.app / deuses-app.firebaseapp.com), e o Hosting
+// serve o handler de auth em /__/auth/handler em qualquer domínio do projeto,
+// usamos o domínio atual como authDomain. Assim o redirect fica "same-origin" e
+// não é bloqueado pela partição de armazenamento (storage partitioning) dos
+// browsers — caso contrário o login completava no Google mas voltava ao ecrã de
+// login sem sessão.
+(function fixAuthDomain() {
+  const host = location.hostname;
+  if (/\.web\.app$/.test(host) || /\.firebaseapp\.com$/.test(host)) {
+    firebaseConfig.authDomain = host;
+  }
+})();
+
 try { firebase.initializeApp(firebaseConfig); } catch(e) {}
 const auth = firebase.auth();
 const db = firebase.firestore();
