@@ -353,6 +353,8 @@ footer {
 .tl-legend { display: flex; gap: 12px; flex-wrap: wrap; font-size: 11px; color: var(--muted); margin-left: auto; }
 .tl-legend span { display: flex; align-items: center; gap: 5px; }
 .tl-legend i { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
+.tl-legend i.sq { width: 10px; height: 10px; border-radius: 2px; }
+.tl-fam-legend { margin: 0 0 10px; }
 .tl-scroll { overflow: auto; max-height: 520px; position: relative; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); }
 .tl-fam { fill: var(--text); font-size: 11px; font-weight: 600; }
 .tl-axis { fill: var(--muted); font-size: 10px; }
@@ -584,6 +586,7 @@ tbody tr { cursor: pointer; }
         <span><i style="background:#94a3b8"></i>início incerto (tracejado)</span>
       </div>
     </div>
+    <div id="tl-fam-legend" class="tl-legend tl-fam-legend"></div>
     <div id="tl-scroll" class="tl-scroll"><svg id="tl-svg" xmlns="http://www.w3.org/2000/svg"></svg></div>
     <div id="tl-empty" class="tl-empty" style="display:none">Sem datas para mostrar nesta seleção.</div>
   </div>
@@ -829,46 +832,44 @@ function renderTimeline(){
   minY = Math.floor(minY / 100) * 100; maxY = Math.ceil(maxY / 100) * 100;
   if (maxY - minY < 50) maxY = minY + 50;
 
-  const padL = 150, padT = 30, padB = 20, rowH = 20, gap = 4, famGap = 16;
+  const padL = 12, padT = 30, padB = 20, rowH = 20, gap = 4;
   let ppy = tlPxPerYear;
   if (ppy == null) { const avail = Math.max((scroll.clientWidth || 900) - padL - 30, 300); ppy = avail / (maxY - minY); }
   ppy = Math.max(0.02, Math.min(ppy, 8));
   tlCurPpy = ppy;
   const X = y => padL + (y - minY) * ppy;
 
-  const fams = {}; items.forEach(d => { const f = d.c || '—'; (fams[f] = fams[f] || []).push(d); });
-  const famOrder = Object.keys(fams).sort((a,b) => a.localeCompare(b));
+  // Cor por família (só para colorir as barras); a família é mostrada na legenda.
+  const famSet = {}; items.forEach(d => { famSet[d.c || '—'] = true; });
+  const famOrder = Object.keys(famSet).sort((a,b) => a.localeCompare(b));
   const famColor = {}; famOrder.forEach((f,i) => famColor[f] = TL_PALETTE[i % TL_PALETTE.length]);
+  const flg = document.getElementById('tl-fam-legend');
+  if (flg) flg.innerHTML = famOrder.map(f => `<span><i class="sq" style="background:${famColor[f]}"></i>${esc(f)}</span>`).join('');
 
-  const placed = {}, barEls = [], labelEls = [];
-  let yCur = padT + 8;
-  famOrder.forEach(fam => {
-    const list = fams[fam].slice().sort((a,b) => a.ps - b.ps);
-    const lanes = []; const bandTop = yCur;
-    list.forEach(d => {
-      const x0 = X(d.ps), x1 = X(Number.isInteger(d.pe) ? d.pe : NOW);
-      const w = Math.max(x1 - x0, 6);
-      let lane = lanes.findIndex(end => x0 > end + 6);
-      if (lane < 0) { lane = lanes.length; lanes.push(0); }
-      lanes[lane] = x0 + w;
-      const yy = bandTop + lane * (rowH + gap);
-      placed[String(d._docId)] = { cx: (x0 + x0 + w) / 2, cy: yy + rowH / 2 };
-      const col = famColor[fam];
-      const dash = d.pf ? ' stroke-dasharray="4 3"' : '';
-      const op = d.pf ? 0.55 : 0.9;
-      const nm = (d.n || '').slice(0, 42);
-      const txt = w > 52
-        ? `<text class="tl-bar-tx" x="${x0 + 6}" y="${yy + rowH/2 + 3}">${esc(nm)}</text>`
-        : `<text class="tl-bar-tx out" x="${x0 + w + 5}" y="${yy + rowH/2 + 3}">${esc(nm)}</text>`;
-      const tip = `${esc(d.n || '')} (${tlYearLabel(d.ps)}${Number.isInteger(d.pe) ? ' – ' + tlYearLabel(d.pe) : ' – presente'})`;
-      barEls.push(`<g class="tl-bar" data-idx="${esc(String(d._idx))}" style="cursor:pointer"><title>${tip}</title><rect x="${x0}" y="${yy}" width="${w}" height="${rowH}" rx="4" fill="${col}" fill-opacity="${op}" stroke="${col}"${dash}></rect>${txt}</g>`);
-    });
-    const bandBot = bandTop + Math.max(lanes.length,1) * (rowH + gap);
-    const midY = bandTop + (bandBot - bandTop) / 2;
-    labelEls.push(`<rect x="6" y="${midY - 8}" width="6" height="16" rx="2" fill="${famColor[fam]}"></rect><text class="tl-fam" x="18" y="${midY + 4}">${esc(fam)}</text>`);
-    yCur = bandBot + famGap;
+  // Empacotamento único (sem faixas por família): todas as barras juntas em lanes.
+  const placed = {}, barEls = [];
+  const list = items.slice().sort((a,b) => a.ps - b.ps);
+  const lanes = [];
+  const top0 = padT + 8;
+  list.forEach(d => {
+    const x0 = X(d.ps), x1 = X(Number.isInteger(d.pe) ? d.pe : NOW);
+    const w = Math.max(x1 - x0, 6);
+    let lane = lanes.findIndex(end => x0 > end + 6);
+    if (lane < 0) { lane = lanes.length; lanes.push(0); }
+    lanes[lane] = x0 + w;
+    const yy = top0 + lane * (rowH + gap);
+    placed[String(d._docId)] = { cx: (x0 + x0 + w) / 2, cy: yy + rowH / 2 };
+    const col = famColor[d.c || '—'];
+    const dash = d.pf ? ' stroke-dasharray="4 3"' : '';
+    const op = d.pf ? 0.55 : 0.9;
+    const nm = (d.n || '').slice(0, 42);
+    const txt = w > 52
+      ? `<text class="tl-bar-tx" x="${x0 + 6}" y="${yy + rowH/2 + 3}">${esc(nm)}</text>`
+      : `<text class="tl-bar-tx out" x="${x0 + w + 5}" y="${yy + rowH/2 + 3}">${esc(nm)}</text>`;
+    const tip = `${esc(d.n || '')} — ${esc(d.c || '')} (${tlYearLabel(d.ps)}${Number.isInteger(d.pe) ? ' – ' + tlYearLabel(d.pe) : ' – presente'})`;
+    barEls.push(`<g class="tl-bar" data-idx="${esc(String(d._idx))}" style="cursor:pointer"><title>${tip}</title><rect x="${x0}" y="${yy}" width="${w}" height="${rowH}" rx="4" fill="${col}" fill-opacity="${op}" stroke="${col}"${dash}></rect>${txt}</g>`);
   });
-  const H = yCur + padB;
+  const H = top0 + lanes.length * (rowH + gap) + padB;
   const Wpx = X(maxY) + 30;
 
   const span = maxY - minY;
@@ -900,13 +901,10 @@ function renderTimeline(){
     `<g>${gridEls.join('')}</g>` +
     `<g>${edgeEls.join('')}</g>` +
     `<g>${barEls.join('')}</g>` +
-    `<g id="tl-axisg"><rect x="0" y="0" width="${Wpx}" height="${padT - 2}" fill="var(--bg)"></rect>${axisEls.join('')}</g>` +
-    `<g id="tl-labelg"><rect x="0" y="0" width="${padL - 6}" height="${H}" fill="var(--bg)"></rect>${labelEls.join('')}</g>`;
+    `<g id="tl-axisg"><rect x="0" y="0" width="${Wpx}" height="${padT - 2}" fill="var(--bg)"></rect>${axisEls.join('')}</g>`;
 
-  const labelG = svg.querySelector('#tl-labelg');
   const axisG = svg.querySelector('#tl-axisg');
   scroll.onscroll = () => {
-    labelG.setAttribute('transform', `translate(${scroll.scrollLeft},0)`);
     axisG.setAttribute('transform', `translate(0,${scroll.scrollTop})`);
   };
   svg.onclick = ev => { const g = ev.target.closest('.tl-bar'); if (g) openEditModal(g.dataset.idx); };
