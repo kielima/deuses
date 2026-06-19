@@ -1090,10 +1090,44 @@ renderTable();
 updateKPIs();
 
 // ── AUTH ──────────────────────────────────────────────────────────────────────
+// Em telemóveis/tablets (e em browsers dentro de apps) o popup é frequentemente
+// bloqueado ou fechado pelo sistema — a janela "abre" e volta logo ao ecrã de
+// login sem nada acontecer. Nesses casos usamos redirect, que é fiável.
+function isMobileBrowser() {
+  return /Android|iPhone|iPad|iPod|Mobile|Silk|Kindle|BlackBerry|Opera Mini|IEMobile/i.test(navigator.userAgent);
+}
+
 function signInWithGoogle() {
   const provider = new firebase.auth.GoogleAuthProvider();
-  auth.signInWithPopup(provider).catch(e => showToast(e.message, 'error'));
+  provider.setCustomParameters({ prompt: 'select_account' });
+
+  // Mantém a sessão iniciada mesmo após o redirect.
+  auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(() => {});
+
+  if (isMobileBrowser()) {
+    auth.signInWithRedirect(provider).catch(e => showToast(e.message, 'error'));
+    return;
+  }
+
+  auth.signInWithPopup(provider).catch(e => {
+    // Se o popup não for suportado/for bloqueado, recorre ao redirect.
+    const code = e && e.code ? e.code : '';
+    if (code === 'auth/popup-blocked' ||
+        code === 'auth/popup-closed-by-user' ||
+        code === 'auth/cancelled-popup-request' ||
+        code === 'auth/operation-not-supported-in-this-environment') {
+      auth.signInWithRedirect(provider).catch(err => showToast(err.message, 'error'));
+    } else {
+      showToast(e.message, 'error');
+    }
+  });
 }
+
+// Processa o resultado do redirect quando voltamos do Google.
+auth.getRedirectResult().catch(e => {
+  if (e && e.message) showToast(e.message, 'error');
+});
+
 function signOut() { auth.signOut(); }
 
 function setLoginStatus(msg, pct) {
