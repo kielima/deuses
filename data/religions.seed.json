@@ -1782,6 +1782,21 @@
     "links": [
       {
         "cat": "religions",
+        "id": "modern-witchcraft",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "freemasonry",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "thelema",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
         "id": "golden-dawn",
         "rel": "influenciada por"
       },
@@ -2416,6 +2431,818 @@
       {
         "cat": "religions",
         "id": "thelema",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "slavic-paganism",
+    "n": "Paganismo Eslavo",
+    "c": "Europeia (Pagã)",
+    "g": "mitologia",
+    "geo": "Europa Oriental",
+    "d": "Religião politeísta pré-cristã dos povos eslavos, com deuses como Perun e Veles.",
+    "ps": -200,
+    "pe": 1100,
+    "pf": true,
+    "review": "**Paganismo Eslavo** (c. séc. III a.C.–séc. XII d.C.) Conjunto de crenças politeístas dos povos eslavos, com um panteão liderado por Perun, deus do trovão, e Veles, ligado ao gado e ao mundo subterrâneo. O culto envolvia ídolos de madeira, bosques sagrados e festivais sazonais. Foi suprimido pela cristianização da Rus de Kiev e dos reinos eslavos. Sobrevive em folclore e inspira reconstrucionismos modernos.\n\n*Região:* Europa Oriental. *Família:* Europeia (Pagã).",
+    "links": []
+  },
+  {
+    "id": "baltic-paganism",
+    "n": "Paganismo Báltico (Romuva)",
+    "c": "Europeia (Pagã)",
+    "g": "mitologia",
+    "geo": "Báltico",
+    "d": "Religião politeísta dos povos bálticos, uma das últimas da Europa a ser cristianizada.",
+    "ps": -200,
+    "pe": 1400,
+    "pf": true,
+    "review": "**Paganismo Báltico** (c. séc. III a.C.–séc. XV d.C.) Tradição politeísta dos lituanos, letões e prussianos, com divindades como Perkūnas (trovão) e Saulė (sol) e forte ligação à natureza. Foi a última religião pagã organizada da Europa, resistindo até à conversão tardia da Lituânia. As suas práticas e cantos sobreviveram no folclore. Reaviva-se hoje no movimento Romuva.\n\n*Região:* Báltico. *Família:* Europeia (Pagã).",
+    "links": []
+  },
+  {
+    "id": "phoenician-religion",
+    "n": "Religião Fenícia",
+    "c": "Mesopotâmica",
+    "g": "mitologia",
+    "geo": "Levante/Mediterrâneo",
+    "d": "Religião politeísta dos fenícios, com Baal, Astarte e Melqart, difundida pelo Mediterrâneo.",
+    "ps": -1500,
+    "pe": -100,
+    "pf": true,
+    "review": "**Religião Fenícia** (c. 1500–100 a.C.) Variante cananeia das cidades-estado fenícias como Tiro e Sídon, com divindades como Baal, Astarte e Melqart. Os mercadores fenícios difundiram os seus cultos por todo o Mediterrâneo, incluindo Cartago. Envolvia templos urbanos e, segundo fontes antigas, sacrifícios rituais. Partilha raízes semíticas com a religião cananeia.\n\n*Região:* Levante. *Família:* Mesopotâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "canaanite-religion",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "hellenism-reconstructionism",
+    "n": "Helenismo (Reconstrucionismo Helénico)",
+    "c": "Movimento Moderno",
+    "g": "religião",
+    "geo": "Grécia/Ocidente",
+    "d": "Movimento neopagão que reconstrói a religião politeísta da Grécia Antiga.",
+    "ps": 1990,
+    "pe": null,
+    "pf": false,
+    "review": "**Helenismo** (séc. XX–presente) Corrente reconstrucionista do neopaganismo que procura reviver o culto aos deuses olímpicos com base nas fontes históricas gregas. Restaura oferendas, festivais e calendário rituais da Antiguidade. Foi reconhecido oficialmente como religião na Grécia. Distingue-se de correntes ecléticas pela fidelidade às práticas antigas.\n\n*Região:* Grécia. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "greek-religion",
+        "rel": "revival de"
+      },
+      {
+        "cat": "religions",
+        "id": "neopaganism",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "kemetism",
+    "n": "Kemetismo",
+    "c": "Movimento Moderno",
+    "g": "religião",
+    "geo": "Ocidente/Egito",
+    "d": "Reconstrucionismo moderno da religião do Antigo Egito.",
+    "ps": 1970,
+    "pe": null,
+    "pf": false,
+    "review": "**Kemetismo** (séc. XX–presente) Movimento neopagão que reaviva o culto às divindades egípcias antigas, como Ísis, Osíris e Rá, a partir de fontes históricas e arqueológicas. Inclui correntes reconstrucionistas e outras mais ecléticas. Restaura oferendas, hinos e festivais do calendário egípcio. Faz parte do amplo movimento neopagão contemporâneo.\n\n*Região:* Ocidente. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "ancient-egyptian-religion",
+        "rel": "revival de"
+      },
+      {
+        "cat": "religions",
+        "id": "neopaganism",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "anasazi-mythology",
+    "n": "Mitologia Anasázi",
+    "c": "Ameríndia",
+    "g": "mitologia",
+    "geo": "Sudoeste da América do Norte",
+    "d": "Crenças dos povos ancestrais Pueblo (Anasázi) do sudoeste norte-americano.",
+    "ps": -100,
+    "pe": 1300,
+    "pf": true,
+    "review": "**Mitologia Anasázi** (c. séc. I a.C.–séc. XIV d.C.) Sistema de crenças dos povos ancestrais Pueblo do sudoeste da América do Norte, construtores de habitações em penhasco e kivas cerimoniais. O culto associava-se aos ciclos agrícolas, ao sol e aos espíritos ancestrais. As kivas subterrâneas eram centros rituais. Os seus descendentes Pueblo preservam parte destas tradições.\n\n*Região:* América do Norte. *Família:* Ameríndia.",
+    "links": []
+  },
+  {
+    "id": "inuit-mythology",
+    "n": "Mitologia Inuíte",
+    "c": "Ameríndia",
+    "g": "mitologia",
+    "geo": "Ártico",
+    "d": "Crenças dos povos inuítes do Ártico, com espíritos da natureza e a deusa do mar Sedna.",
+    "ps": -2000,
+    "pe": null,
+    "pf": true,
+    "review": "**Mitologia Inuíte** (da Antiguidade ao presente) Conjunto de crenças dos povos inuítes do Ártico, marcado por um universo habitado por espíritos (inua) e por figuras como Sedna, senhora dos animais marinhos. O angakkuq (xamã) mediava com os espíritos para garantir caça e saúde. Os tabus rituais regiam a relação com os animais. Sobrevive em narrativas e práticas atuais.\n\n*Região:* Ártico. *Família:* Ameríndia.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "shamanism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "olmec-mythology",
+    "n": "Mitologia Olmeca",
+    "c": "Ameríndia",
+    "g": "mitologia",
+    "geo": "Mesoamérica",
+    "d": "Religião da civilização olmeca, matriz das tradições mesoamericanas posteriores.",
+    "ps": -1500,
+    "pe": -400,
+    "pf": true,
+    "review": "**Mitologia Olmeca** (c. 1500–400 a.C.) Sistema religioso da primeira grande civilização mesoamericana, conhecida pelas cabeças colossais e por divindades como o jaguar sobrenatural e a serpente emplumada incipiente. O culto envolvia centros cerimoniais e elites sacerdotais. Forneceu a base mitológica para maias e astecas. É reconstruída sobretudo pela arqueologia.\n\n*Região:* Mesoamérica. *Família:* Ameríndia.",
+    "links": []
+  },
+  {
+    "id": "maya-mythology",
+    "n": "Mitologia Maia",
+    "c": "Ameríndia",
+    "g": "mitologia",
+    "geo": "Mesoamérica",
+    "d": "Religião dos maias, com panteão complexo, calendário sagrado e o mito do Popol Vuh.",
+    "ps": -2000,
+    "pe": 1600,
+    "pf": true,
+    "review": "**Mitologia Maia** (c. 2000 a.C.–séc. XVII d.C.) Religião dos povos maias, com um vasto panteão, um calendário ritual sofisticado e o mito da criação narrado no Popol Vuh. O culto incluía sangria ritual, oferendas e templos-pirâmide. Os sacerdotes dominavam a astronomia e a escrita. Sobrevive em sincretismos e tradições maias atuais.\n\n*Região:* Mesoamérica. *Família:* Ameríndia.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "olmec-mythology",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "aztec-mythology",
+    "n": "Mitologia Asteca",
+    "c": "Ameríndia",
+    "g": "mitologia",
+    "geo": "México Central",
+    "d": "Religião dos astecas, centrada em Huitzilopochtli e na manutenção do cosmos por sacrifícios.",
+    "ps": 1300,
+    "pe": 1521,
+    "pf": true,
+    "review": "**Mitologia Asteca** (séc. XIV–XVI) Religião do império mexica, com um panteão liderado por Huitzilopochtli, Tláloc e Quetzalcóatl. Os astecas criam ser necessário alimentar o sol e o cosmos por meio de sacrifícios humanos. O calendário ritual estruturava festivais no Templo Maior. Foi suprimida pela conquista espanhola de 1521.\n\n*Região:* Mesoamérica. *Família:* Ameríndia.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "maya-mythology",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "inca-mythology",
+    "n": "Mitologia Inca",
+    "c": "Ameríndia",
+    "g": "mitologia",
+    "geo": "Andes",
+    "d": "Religião do império inca, com o culto ao sol Inti e à Pachamama.",
+    "ps": 1200,
+    "pe": 1533,
+    "pf": true,
+    "review": "**Mitologia Inca** (séc. XIII–XVI) Religião do império inca, centrada no deus solar Inti, em Viracocha criador e na Terra-mãe Pachamama. O Sapa Inca era considerado filho do Sol. O culto envolvia peregrinações, oferendas e a sacralidade das montanhas e huacas. Foi suprimida pela conquista espanhola, sobrevivendo em sincretismos andinos.\n\n*Região:* Andes. *Família:* Ameríndia.",
+    "links": []
+  },
+  {
+    "id": "iroquois-mythology",
+    "n": "Mitologia Iroquesa",
+    "c": "Ameríndia",
+    "g": "mitologia",
+    "geo": "Nordeste da América do Norte",
+    "d": "Crenças das nações iroquesas, com o mito da Mulher do Céu e o Grande Espírito.",
+    "ps": -1000,
+    "pe": null,
+    "pf": true,
+    "review": "**Mitologia Iroquesa** (da Antiguidade ao presente) Sistema de crenças das nações da Confederação Iroquesa (Haudenosaunee), com o mito da criação da Mulher caída do Céu e a Ilha-Tartaruga. Reverencia o Grande Espírito (Orenda) e os ciclos da natureza em cerimónias de agradecimento. As tradições orais transmitem a cosmologia e a moral. Sobrevive entre os povos iroqueses atuais.\n\n*Região:* América do Norte. *Família:* Ameríndia.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "native-american-religions",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "hopewell-mythology",
+    "n": "Mitologia Hopewell",
+    "c": "Ameríndia",
+    "g": "mitologia",
+    "geo": "Vale do Ohio, América do Norte",
+    "d": "Crenças da cultura Hopewell, construtora de montículos cerimoniais no leste norte-americano.",
+    "ps": -200,
+    "pe": 500,
+    "pf": true,
+    "review": "**Mitologia Hopewell** (c. 200 a.C.–500 d.C.) Sistema religioso da tradição Hopewell, conhecida pelos grandes montículos e recintos cerimoniais do leste da América do Norte. O culto incluía rituais funerários elaborados e uma vasta rede de troca de objetos sagrados. Os recintos geométricos serviam reuniões cerimoniais. É reconstruída sobretudo pela arqueologia.\n\n*Região:* América do Norte. *Família:* Ameríndia.",
+    "links": []
+  },
+  {
+    "id": "mississippian-mythology",
+    "n": "Mitologia Mississipiana",
+    "c": "Ameríndia",
+    "g": "mitologia",
+    "geo": "Sudeste da América do Norte",
+    "d": "Religião da cultura Mississipiana, construtora de montículos e centrada no culto solar.",
+    "ps": 800,
+    "pe": 1600,
+    "pf": true,
+    "review": "**Mitologia Mississipiana** (c. séc. IX–XVII) Sistema religioso da cultura dos montículos do vale do Mississípi, com grandes centros como Cahokia. Articulava o culto solar, a realeza sagrada e o Complexo Cerimonial do Sudeste. As plataformas-montículo sustentavam templos e residências de elite. Antecede e influenciou diversos povos do sudeste norte-americano.\n\n*Região:* América do Norte. *Família:* Ameríndia.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "hopewell-mythology",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "melanesian-mythology",
+    "n": "Mitologia Melanésia",
+    "c": "Oceânica",
+    "g": "mitologia",
+    "geo": "Melanésia",
+    "d": "Crenças dos povos da Melanésia, centradas na mana, nos ancestrais e nos espíritos.",
+    "ps": -3000,
+    "pe": null,
+    "pf": true,
+    "review": "**Mitologia Melanésia** (da Antiguidade ao presente) Conjunto de tradições dos povos da Melanésia, marcado pela noção de mana (força sagrada), pelo culto aos ancestrais e por sociedades secretas. Os rituais ligam-se à fertilidade, à guerra e à memória dos mortos. Deram origem, na era colonial, aos cultos cargo. Subsistem em grande diversidade local.\n\n*Região:* Melanésia. *Família:* Oceânica.",
+    "links": []
+  },
+  {
+    "id": "polynesian-mythology",
+    "n": "Mitologia Polinésia",
+    "c": "Oceânica",
+    "g": "mitologia",
+    "geo": "Polinésia",
+    "d": "Religião dos povos polinésios, com deuses como Tangaroa e o herói Maui.",
+    "ps": -1000,
+    "pe": null,
+    "pf": true,
+    "review": "**Mitologia Polinésia** (da Antiguidade ao presente) Sistema religioso partilhado pelos povos da Polinésia, com um panteão que inclui Tangaroa, Tāne e o herói trapaceiro Maui. Articula os conceitos de mana e tapu (tabu) e o culto aos ancestrais. A navegação e a criação das ilhas ocupam lugar central nos mitos. Difundiu-se com a expansão marítima polinésia.\n\n*Região:* Polinésia. *Família:* Oceânica.",
+    "links": []
+  },
+  {
+    "id": "hawaiian-mythology",
+    "n": "Mitologia Havaiana",
+    "c": "Oceânica",
+    "g": "mitologia",
+    "geo": "Havai",
+    "d": "Religião nativa do Havai, com deuses como Pele, Kāne e Lono.",
+    "ps": 400,
+    "pe": null,
+    "pf": true,
+    "review": "**Mitologia Havaiana** (c. séc. V–presente) Tradição religiosa do arquipélago havaiano, ramo da religião polinésia, com divindades como Pele dos vulcões, Kāne, Kū e Lono. Regia-se pelo sistema de kapu (tabus sagrados) e por sacerdócio organizado em heiau. O culto ligava-se à natureza vulcânica e ao oceano. Reaviva-se hoje no movimento cultural havaiano.\n\n*Região:* Havai. *Família:* Oceânica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "polynesian-mythology",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "maori-mythology",
+    "n": "Mitologia Maori",
+    "c": "Oceânica",
+    "g": "mitologia",
+    "geo": "Nova Zelândia",
+    "d": "Religião dos maori da Nova Zelândia, com Ranginui (céu) e Papatūānuku (terra).",
+    "ps": 1300,
+    "pe": null,
+    "pf": true,
+    "review": "**Mitologia Maori** (c. séc. XIV–presente) Tradição religiosa dos maori da Nova Zelândia, ramo da religião polinésia, com o mito da separação de Ranginui (Pai-Céu) e Papatūānuku (Mãe-Terra) pelos seus filhos. Articula os conceitos de mana, tapu e o culto aos ancestrais (whakapapa). Os atua (deuses) presidem aos domínios da natureza. Permanece viva na cultura maori contemporânea.\n\n*Região:* Nova Zelândia. *Família:* Oceânica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "polynesian-mythology",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "micronesian-mythology",
+    "n": "Mitologia Micronésia",
+    "c": "Oceânica",
+    "g": "mitologia",
+    "geo": "Micronésia",
+    "d": "Crenças dos povos da Micronésia, com espíritos da natureza e culto aos ancestrais.",
+    "ps": -2000,
+    "pe": null,
+    "pf": true,
+    "review": "**Mitologia Micronésia** (da Antiguidade ao presente) Conjunto de tradições religiosas das ilhas da Micronésia, com deuses criadores, espíritos do mar e culto aos ancestrais. A navegação, a pesca e a fertilidade estruturavam os rituais e os mitos. Os especialistas rituais mediavam com os espíritos e o sobrenatural. Subsiste em grande diversidade insular.\n\n*Região:* Micronésia. *Família:* Oceânica.",
+    "links": []
+  },
+  {
+    "id": "australian-aboriginal-religion",
+    "n": "Religião Aborígene Australiana",
+    "c": "Oceânica",
+    "g": "mitologia",
+    "geo": "Austrália",
+    "d": "Tradições dos aborígenes australianos centradas no Tempo do Sonho (Dreamtime).",
+    "ps": -50000,
+    "pe": null,
+    "pf": true,
+    "review": "**Religião Aborígene Australiana** (desde a pré-história) Conjunto das tradições espirituais dos povos aborígenes da Austrália, organizadas em torno do Tempo do Sonho (Dreaming), a era criadora dos seres ancestrais que moldaram a terra. Os mitos, cantos e pinturas mantêm a ligação entre o povo, a terra e os ancestrais. É uma das tradições religiosas contínuas mais antigas do mundo. Permanece viva entre as comunidades aborígenes.\n\n*Região:* Austrália. *Família:* Oceânica.",
+    "links": []
+  },
+  {
+    "id": "papuan-mythology",
+    "n": "Mitologia Papuásia",
+    "c": "Oceânica",
+    "g": "mitologia",
+    "geo": "Nova Guiné",
+    "d": "Crenças dos povos papuas da Nova Guiné, com espíritos, ancestrais e rituais de iniciação.",
+    "ps": -3000,
+    "pe": null,
+    "pf": true,
+    "review": "**Mitologia Papuásia** (da Antiguidade ao presente) Vasto conjunto de tradições religiosas dos povos papuas da Nova Guiné, de enorme diversidade linguística e cultural. Caracteriza-se pelo culto aos ancestrais, espíritos da floresta e elaborados rituais de iniciação masculina. Mitos da criação e práticas xamânicas estruturam a vida comunitária. Subsiste em centenas de variantes locais.\n\n*Região:* Nova Guiné. *Família:* Oceânica.",
+    "links": []
+  },
+  {
+    "id": "tengrism",
+    "n": "Tengriísmo",
+    "c": "Asiática",
+    "g": "religião",
+    "geo": "Estepes da Ásia Central",
+    "d": "Religião tradicional dos povos turco-mongóis, centrada no deus-céu Tengri.",
+    "ps": -1000,
+    "pe": null,
+    "pf": true,
+    "review": "**Tengriísmo** (da Antiguidade ao presente) Religião dos povos nómadas turco-mongóis das estepes, centrada na veneração de Tengri, o céu eterno, e dos espíritos da natureza. Combina culto ao céu, à terra (Ötüken) e aos ancestrais com práticas xamânicas. Foi a espiritualidade dos impérios da estepe, incluindo o mongol. Reaviva-se hoje em partes da Ásia Central.\n\n*Região:* Ásia Central. *Família:* Asiática.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "shamanism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "tibetan-buddhism",
+    "n": "Budismo Tibetano",
+    "c": "Dhármica",
+    "g": "religião",
+    "geo": "Tibete/Himalaias",
+    "d": "Forma de budismo Vajrayana do Tibete, organizada em escolas e linhagens de lamas.",
+    "ps": 700,
+    "pe": null,
+    "pf": false,
+    "review": "**Budismo Tibetano** (séc. VIII–presente) Tradição que adaptou o budismo Vajrayana indiano ao Tibete, organizando-se em escolas como Nyingma, Kagyu, Sakya e Gelug. Caracteriza-se pelo sistema de lamas reencarnados (tulkus), como o Dalai Lama, e por rica iconografia e ritual tântrico. Absorveu elementos da religião indígena Bön. Difundiu-se pelos Himalaias, Mongólia e, na era moderna, pelo Ocidente.\n\n*Região:* Himalaias. *Família:* Dhármica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "vajrayana",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "mahayana",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "bon",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "ayyavazhi",
+    "n": "Ayyavázhi",
+    "c": "Dhármica",
+    "g": "religião",
+    "geo": "Sul da Índia",
+    "d": "Religião do sul da Índia surgida no século XIX em torno dos ensinamentos de Ayya Vaikundar.",
+    "ps": 1833,
+    "pe": null,
+    "pf": false,
+    "review": "**Ayyavázhi** (séc. XIX–presente) Religião nascida no sul do Tâmil Nadu a partir dos ensinamentos de Ayya Vaikundar, com escritura própria, o Akilam. Prega a igualdade e critica o sistema de castas, num quadro derivado do hinduísmo. Centra o culto em templos chamados pathis e nizhal thangals. Conta com seguidores sobretudo no sul da Índia.\n\n*Região:* Índia. *Família:* Dhármica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "hinduism",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "juju",
+    "n": "Juju",
+    "c": "Africana",
+    "g": "religião",
+    "geo": "África Ocidental",
+    "d": "Conjunto de práticas mágico-religiosas da África Ocidental, com amuletos e feitiços.",
+    "ps": -500,
+    "pe": null,
+    "pf": true,
+    "review": "**Juju** (da Antiguidade ao presente) Termo para práticas mágico-religiosas da África Ocidental que envolvem amuletos, objetos sagrados e feitiços para proteção, cura ou maldição. Está entrelaçado com as religiões tradicionais da região, como a iorubá. A palavra foi popularizada pelos europeus a partir de termos locais e franceses. Influenciou práticas afro-americanas como o hoodoo.\n\n*Região:* África Ocidental. *Família:* Africana.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "yoruba-religion",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "hoodoo",
+    "n": "Hoodoo",
+    "c": "Africana",
+    "g": "religião",
+    "geo": "Sul dos Estados Unidos",
+    "d": "Sistema afro-americano de magia popular e cura, herdeiro de tradições africanas.",
+    "ps": 1700,
+    "pe": null,
+    "pf": true,
+    "review": "**Hoodoo** (séc. XVIII–presente) Sistema de magia popular afro-americano desenvolvido pelos africanos escravizados no sul dos Estados Unidos, focado em raízes, ervas, talismãs e feitiços práticos. Combina tradições da África Ocidental e central com elementos do cristianismo bíblico e do folclore. Distingue-se de religiões organizadas por ser sobretudo uma prática mágica. Sobrevive na cultura afro-americana.\n\n*Região:* Estados Unidos. *Família:* Africana.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "yoruba-religion",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "bantu-religion",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "christianity",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "anthroposophy",
+    "n": "Antroposofia",
+    "c": "Esotérica Ocidental",
+    "g": "movimento",
+    "geo": "Alemanha/Suíça",
+    "d": "Filosofia espiritual fundada por Rudolf Steiner, derivada da teosofia.",
+    "ps": 1912,
+    "pe": null,
+    "pf": false,
+    "review": "**Antroposofia** (séc. XX–presente) Movimento espiritual fundado por Rudolf Steiner após a sua ruptura com a Teosofia, que propõe um conhecimento do mundo espiritual acessível à investigação humana. Inspirou aplicações práticas como a pedagogia Waldorf, a agricultura biodinâmica e a medicina antroposófica. Combina cristianismo esotérico e idealismo alemão. Mantém presença internacional.\n\n*Região:* Europa Central. *Família:* Esotérica Ocidental.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "theosophy",
+        "rel": "cisma de"
+      },
+      {
+        "cat": "religions",
+        "id": "christianity",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "illuminati-bavarian",
+    "n": "Iluminati (Illuminati da Baviera)",
+    "c": "Esotérica Ocidental",
+    "g": "ordem",
+    "geo": "Baviera, Alemanha",
+    "d": "Sociedade secreta iluminista fundada por Adam Weishaupt em 1776.",
+    "ps": 1776,
+    "pe": 1785,
+    "pf": false,
+    "review": "**Iluminati da Baviera** (séc. XVIII) Sociedade secreta fundada por Adam Weishaupt em 1776, inspirada nos ideais do Iluminismo e na crítica ao poder religioso e absolutista. Organizava-se em graus iniciáticos à maneira maçónica. Foi proibida e dissolvida pelas autoridades bávaras na década de 1780. Tornou-se peça central de inúmeras teorias da conspiração.\n\n*Região:* Europa Central. *Família:* Esotérica Ocidental.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "freemasonry",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "bogomilism",
+    "n": "Bogomilismo",
+    "c": "Abraâmica",
+    "g": "seita",
+    "geo": "Bálcãs",
+    "d": "Movimento dualista medieval dos Bálcãs, precursor do catarismo.",
+    "ps": 950,
+    "pe": 1400,
+    "pf": false,
+    "review": "**Bogomilismo** (séc. X–XV) Movimento dualista surgido na Bulgária em torno do sacerdote Bogomil, que opunha um mundo material maligno a um reino espiritual de Deus. Rejeitava a Igreja institucional, os sacramentos e a hierarquia. Difundiu-se pelos Bálcãs e influenciou os cátaros do Ocidente. Foi perseguido como heresia e acabou por desaparecer.\n\n*Região:* Bálcãs. *Família:* Abraâmica.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "gnosticism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "manichaeism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "modern-witchcraft",
+    "n": "Bruxaria Moderna",
+    "c": "Movimento Moderno",
+    "g": "movimento",
+    "geo": "Ocidente",
+    "d": "Conjunto de práticas mágicas e religiosas modernas que se identificam como bruxaria.",
+    "ps": 1900,
+    "pe": null,
+    "pf": false,
+    "review": "**Bruxaria Moderna** (séc. XX–presente) Termo abrangente para as correntes contemporâneas que reivindicam a identidade de bruxaria, combinando magia, folclore, esoterismo e espiritualidade da natureza. Inclui tanto a Wicca como diversas tradições não-wiccanas. Bebe da magia cerimonial, do romantismo e do neopaganismo. Ramificou-se em numerosas vertentes ecléticas e tradicionais.\n\n*Região:* Ocidente. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "neopaganism",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "hermeticism",
+        "rel": "influenciada por"
+      },
+      {
+        "cat": "religions",
+        "id": "golden-dawn",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "traditional-witchcraft",
+    "n": "Bruxaria Tradicional",
+    "c": "Movimento Moderno",
+    "g": "movimento",
+    "geo": "Ocidente",
+    "d": "Corrente de bruxaria que se inspira no folclore e na feitiçaria pré-wiccana.",
+    "ps": 1950,
+    "pe": null,
+    "pf": false,
+    "review": "**Bruxaria Tradicional** (séc. XX–presente) Conjunto de correntes de bruxaria que se distinguem da Wicca por enfatizarem o folclore, a feitiçaria popular e as práticas pré-gardnerianas. Costumam dar destaque a espíritos, ancestrais e ao trabalho com a terra. Recusam frequentemente a estrutura ritual wiccana. Reúnem linhagens diversas e por vezes reconstruídas.\n\n*Região:* Ocidente. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "modern-witchcraft",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "hecatean-witchcraft",
+    "n": "Bruxaria Hecatina",
+    "c": "Movimento Moderno",
+    "g": "movimento",
+    "geo": "Ocidente",
+    "d": "Corrente de bruxaria devotada à deusa Hécate.",
+    "ps": 1990,
+    "pe": null,
+    "pf": false,
+    "review": "**Bruxaria Hecatina** (séc. XX–presente) Vertente da bruxaria moderna centrada na devoção a Hécate, deusa greco-romana da magia, das encruzilhadas e do mundo subterrâneo. Articula trabalho de mistério, feitiçaria e cultos noturnos. Recolhe influências da religião grega e do esoterismo. Constitui uma das tradições devocionais da bruxaria contemporânea.\n\n*Região:* Ocidente. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "modern-witchcraft",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "greek-religion",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "stregheria",
+    "n": "Stregheria (Bruxaria Italiana)",
+    "c": "Movimento Moderno",
+    "g": "movimento",
+    "geo": "Itália/EUA",
+    "d": "Bruxaria de inspiração italiana, baseada no folclore e nas divindades da península.",
+    "ps": 1899,
+    "pe": null,
+    "pf": false,
+    "review": "**Stregheria** (séc. XX–presente) Forma de bruxaria moderna inspirada no folclore mágico italiano, popularizada por autores como Charles Leland (com Aradia) e Raven Grimassi. Venera divindades como Diana e Aradia e celebra rituais ligados à terra e aos ancestrais. Combina tradição popular reconstruída e influências neopagãs. É também chamada \"a Velha Religião\" italiana.\n\n*Região:* Itália. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "modern-witchcraft",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "roman-religion",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "chaos-magic",
+    "n": "Bruxaria do Caos (Magia do Caos)",
+    "c": "Esotérica Ocidental",
+    "g": "movimento",
+    "geo": "Reino Unido",
+    "d": "Corrente mágica moderna que enfatiza a crença como ferramenta e rejeita dogmas fixos.",
+    "ps": 1976,
+    "pe": null,
+    "pf": false,
+    "review": "**Magia do Caos** (séc. XX–presente) Corrente mágica surgida na Inglaterra, associada a Peter Carroll e Austin Osman Spare, que trata a crença como instrumento maleável e descarta sistemas dogmáticos. Recorre a sigilos, gnose e a uma abordagem pragmática e experimental. Bebe da magia de Spare e de Crowley. Influenciou amplamente o ocultismo e a bruxaria contemporâneos.\n\n*Região:* Reino Unido. *Família:* Esotérica Ocidental.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "modern-witchcraft",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "thelema",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "alchemical-witchcraft",
+    "n": "Bruxaria Alquímica",
+    "c": "Movimento Moderno",
+    "g": "movimento",
+    "geo": "Ocidente",
+    "d": "Corrente de bruxaria que integra princípios e simbolismo da alquimia.",
+    "ps": 1990,
+    "pe": null,
+    "pf": false,
+    "review": "**Bruxaria Alquímica** (séc. XX–presente) Vertente da bruxaria moderna que combina a prática mágica com o simbolismo e os processos da alquimia, vistos como transformação interior. Trabalha com os elementos, as fases da obra alquímica e a transmutação espiritual. Recolhe influências herméticas. É uma das ramificações esotéricas da bruxaria contemporânea.\n\n*Região:* Ocidente. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "modern-witchcraft",
+        "rel": "descende de"
+      },
+      {
+        "cat": "religions",
+        "id": "alchemy",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "natural-witchcraft",
+    "n": "Bruxaria Natural",
+    "c": "Movimento Moderno",
+    "g": "movimento",
+    "geo": "Ocidente",
+    "d": "Corrente de bruxaria centrada na natureza, nas ervas e nos ciclos sazonais.",
+    "ps": 1990,
+    "pe": null,
+    "pf": false,
+    "review": "**Bruxaria Natural** (séc. XX–presente) Vertente da bruxaria moderna que se foca na ligação à natureza, ao uso de ervas, cristais e ciclos sazonais e lunares. Valoriza a prática individual e intuitiva, muitas vezes sem estrutura iniciática. É também conhecida como bruxaria verde. Constitui uma das formas mais difundidas da bruxaria contemporânea.\n\n*Região:* Ocidente. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "modern-witchcraft",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "eclectic-wicca",
+    "n": "Wicca Eclética",
+    "c": "Movimento Moderno",
+    "g": "religião",
+    "geo": "Ocidente",
+    "d": "Corrente de Wicca que combina livremente elementos de várias tradições.",
+    "ps": 1970,
+    "pe": null,
+    "pf": false,
+    "review": "**Wicca Eclética** (séc. XX–presente) Forma de Wicca que não segue uma única linhagem iniciática, combinando livremente práticas de diferentes tradições e do esoterismo em geral. É frequentemente praticada por solitários, sem coven formal. Tornou-se a vertente mais difundida da Wicca contemporânea. Valoriza a adaptação pessoal do ritual e da crença.\n\n*Região:* Ocidente. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "wicca",
+        "rel": "cisma de"
+      }
+    ]
+  },
+  {
+    "id": "alexandrian-wicca",
+    "n": "Wicca Alexandrina",
+    "c": "Movimento Moderno",
+    "g": "religião",
+    "geo": "Reino Unido",
+    "d": "Tradição wiccana fundada por Alex Sanders, próxima da gardneriana mas com mais magia cerimonial.",
+    "ps": 1960,
+    "pe": null,
+    "pf": false,
+    "review": "**Wicca Alexandrina** (séc. XX–presente) Tradição iniciática de Wicca fundada por Alex e Maxine Sanders no Reino Unido, derivada da gardneriana mas com maior ênfase na magia cerimonial e na cabala. Mantém estrutura de covens e graus iniciáticos. Difundiu-se internacionalmente. É uma das principais tradições da Wicca britânica.\n\n*Região:* Reino Unido. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "wicca",
+        "rel": "cisma de"
+      },
+      {
+        "cat": "religions",
+        "id": "hermeticism",
+        "rel": "influenciada por"
+      }
+    ]
+  },
+  {
+    "id": "gardnerian-wicca",
+    "n": "Wicca Gardneriana",
+    "c": "Movimento Moderno",
+    "g": "religião",
+    "geo": "Reino Unido",
+    "d": "Tradição original da Wicca, transmitida diretamente de Gerald Gardner por linhagem iniciática.",
+    "ps": 1954,
+    "pe": null,
+    "pf": false,
+    "review": "**Wicca Gardneriana** (séc. XX–presente) Tradição fundadora da Wicca, estabelecida por Gerald Gardner, que se transmite por iniciação em linhagem direta e em covens estruturados em três graus. Cultua a Deusa e o Deus e segue um corpo ritual reservado (Livro das Sombras). Serviu de matriz às demais tradições wiccanas. Mantém forte ênfase no segredo iniciático.\n\n*Região:* Reino Unido. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "wicca",
+        "rel": "descende de"
+      }
+    ]
+  },
+  {
+    "id": "dianic-wicca",
+    "n": "Wicca Diânica (Dianismo)",
+    "c": "Movimento Moderno",
+    "g": "religião",
+    "geo": "Estados Unidos",
+    "d": "Tradição wiccana feminista centrada na adoração da Deusa.",
+    "ps": 1971,
+    "pe": null,
+    "pf": false,
+    "review": "**Wicca Diânica** (séc. XX–presente) Tradição de Wicca de orientação feminista fundada sobretudo por Zsuzsanna Budapest nos Estados Unidos, centrada na adoração da Deusa e, muitas vezes, em covens exclusivamente femininos. Liga a espiritualidade ao empoderamento das mulheres. Toma o nome da deusa Diana. Tornou-se influente no feminismo espiritual.\n\n*Região:* Estados Unidos. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "wicca",
+        "rel": "cisma de"
+      }
+    ]
+  },
+  {
+    "id": "saxon-wicca",
+    "n": "Wicca Saxônica (Seax-Wica)",
+    "c": "Movimento Moderno",
+    "g": "religião",
+    "geo": "Estados Unidos/Reino Unido",
+    "d": "Tradição wiccana fundada por Raymond Buckland, inspirada no panteão anglo-saxão.",
+    "ps": 1973,
+    "pe": null,
+    "pf": false,
+    "review": "**Wicca Saxônica** (séc. XX–presente) Tradição de Wicca (Seax-Wica) criada por Raymond Buckland, que se inspira no imaginário e nas divindades anglo-saxãs, como Woden e Freya. Distingue-se por permitir a autoiniciação e a organização democrática dos covens. Foi concebida como alternativa mais aberta às tradições iniciáticas. Difundiu-se sobretudo nos Estados Unidos.\n\n*Região:* Mundo anglo-saxónico. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "wicca",
+        "rel": "cisma de"
+      }
+    ]
+  },
+  {
+    "id": "eleusinian-wicca",
+    "n": "Wicca Eleusiana",
+    "c": "Movimento Moderno",
+    "g": "religião",
+    "geo": "Ocidente",
+    "d": "Corrente wiccana inspirada nos mistérios gregos de Elêusis.",
+    "ps": 1970,
+    "pe": null,
+    "pf": false,
+    "review": "**Wicca Eleusiana** (séc. XX–presente) Vertente da Wicca que se inspira nos antigos Mistérios de Elêusis e nos cultos gregos de Deméter e Perséfone. Enfatiza temas de morte e renascimento e a iniciação em mistérios sazonais. Combina a estrutura wiccana com o imaginário helénico. É uma das tradições temáticas da Wicca contemporânea.\n\n*Região:* Ocidente. *Família:* Movimento Moderno.",
+    "links": [
+      {
+        "cat": "religions",
+        "id": "wicca",
+        "rel": "cisma de"
+      },
+      {
+        "cat": "religions",
+        "id": "eleusinian-mysteries",
         "rel": "influenciada por"
       }
     ]
