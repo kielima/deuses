@@ -361,6 +361,8 @@ footer {
 .tl-bar-tx { fill: #0b0b0d; font-size: 10px; font-weight: 600; pointer-events: none; }
 .tl-bar-tx.out { fill: var(--text); font-weight: 500; }
 .tl-bar:hover rect { fill-opacity: 1 !important; }
+.tl-bar.has-kids rect { stroke-width: 2; }
+.tl-bar.collapsed rect { stroke-dasharray: 2 2 !important; }
 .tl-empty { padding: 24px; text-align: center; color: var(--muted); }
 .last-edit-badge { font-size: 11px; color: var(--muted); background: rgba(212,168,67,0.1); border: 1px solid rgba(212,168,67,0.25); padding: 8px 12px; border-radius: 6px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
 .last-edit-badge img { width: 22px; height: 22px; border-radius: 50%; }
@@ -576,6 +578,7 @@ tbody tr { cursor: pointer; }
         <button class="btn-mini" onclick="tlZoom(0.66)">− zoom</button>
         <button class="btn-mini" onclick="tlZoom(1.5)">+ zoom</button>
         <button class="btn-mini" onclick="tlFit()">Ajustar</button>
+        <button class="btn-mini" onclick="tlResetCollapse()" title="Mostrar todas as derivadas">Expandir tudo</button>
       </div>
       <div class="tl-legend">
         <span><i style="background:#4ade80"></i>descende</span>
@@ -809,9 +812,17 @@ const TL_REL_COLORS = { 'descende de':'#4ade80', 'influenciada por':'#60a5fa', '
 const TL_PALETTE = ['#d4a843','#60a5fa','#4ade80','#f87171','#c084fc','#fbbf24','#34d399','#f472b6','#22d3ee','#fb923c','#a3e635','#e879f9','#94a3b8'];
 let tlPxPerYear = null;  // null = auto-ajustar à largura
 let tlCurPpy = 0.3;      // último px/ano usado (para o zoom)
+const tlCollapsed = new Set();  // ids de antecessoras recolhidas (descendentes ocultos)
 function tlYearLabel(y){ return y < 0 ? (-y) + ' a.C.' : '' + y; }
 function tlZoom(f){ tlPxPerYear = Math.max(0.02, Math.min((tlCurPpy || 0.3) * f, 8)); renderTimeline(); }
 function tlFit(){ tlPxPerYear = null; renderTimeline(); }
+function tlResetCollapse(){ tlCollapsed.clear(); renderTimeline(); }
+// Descendentes transitivos de um id, segundo o índice reverso (ancestral→[filhos]).
+function tlDescendants(rootId, childrenOf){
+  const out = new Set(); const stack = [...(childrenOf[rootId] || [])];
+  while (stack.length){ const x = stack.pop(); if (out.has(x)) continue; out.add(x); (childrenOf[x] || []).forEach(c => stack.push(c)); }
+  return out;
+}
 
 function renderTimeline(){
   const card = document.getElementById('timeline-card');
@@ -826,9 +837,21 @@ function renderTimeline(){
   if (!items.length) { svg.innerHTML = ''; svg.setAttribute('width', 0); svg.setAttribute('height', 0); empty.style.display = ''; return; }
   empty.style.display = 'none';
 
-  let minY = Math.min(...items.map(d => d.ps));
+  // Índice reverso: ancestral → [ids dos que derivaram dela]. Os links de cada
+  // entrada apontam para a(s) sua(s) origem(ns); aqui invertemos.
+  const childrenOf = {};
+  items.forEach(d => { (d.links || []).forEach(l => {
+    if (l.cat !== 'religions') return;
+    (childrenOf[String(l.id)] = childrenOf[String(l.id)] || []).push(String(d._docId));
+  }); });
+  // Esconde os descendentes (transitivos) de cada antecessora recolhida.
+  const hidden = new Set();
+  tlCollapsed.forEach(id => { tlDescendants(id, childrenOf).forEach(x => hidden.add(x)); });
+  const visible = items.filter(d => !hidden.has(String(d._docId)));
+
+  let minY = Math.min(...visible.map(d => d.ps));
   let maxY = NOW;
-  items.forEach(d => { const e = Number.isInteger(d.pe) ? d.pe : NOW; if (e > maxY) maxY = e; });
+  visible.forEach(d => { const e = Number.isInteger(d.pe) ? d.pe : NOW; if (e > maxY) maxY = e; });
   minY = Math.floor(minY / 100) * 100; maxY = Math.ceil(maxY / 100) * 100;
   if (maxY - minY < 50) maxY = minY + 50;
 
@@ -840,7 +863,7 @@ function renderTimeline(){
   const X = y => padL + (y - minY) * ppy;
 
   // Cor por família (só para colorir as barras); a família é mostrada na legenda.
-  const famSet = {}; items.forEach(d => { famSet[d.c || '—'] = true; });
+  const famSet = {}; visible.forEach(d => { famSet[d.c || '—'] = true; });
   const famOrder = Object.keys(famSet).sort((a,b) => a.localeCompare(b));
   const famColor = {}; famOrder.forEach((f,i) => famColor[f] = TL_PALETTE[i % TL_PALETTE.length]);
   const flg = document.getElementById('tl-fam-legend');
@@ -848,7 +871,7 @@ function renderTimeline(){
 
   // Empacotamento único (sem faixas por família): todas as barras juntas em lanes.
   const placed = {}, barEls = [];
-  const list = items.slice().sort((a,b) => a.ps - b.ps);
+  const list = visible.slice().sort((a,b) => a.ps - b.ps);
   const lanes = [];
   const top0 = padT + 8;
   list.forEach(d => {
@@ -862,12 +885,18 @@ function renderTimeline(){
     const col = famColor[d.c || '—'];
     const dash = d.pf ? ' stroke-dasharray="4 3"' : '';
     const op = d.pf ? 0.55 : 0.9;
-    const nm = (d.n || '').slice(0, 42);
+    const kids = (childrenOf[String(d._docId)] || []).length;
+    const collapsed = tlCollapsed.has(String(d._docId));
+    const tri = kids ? (collapsed ? '▸ ' : '▾ ') : '';
+    const nm = tri + (d.n || '').slice(0, 42);
     const txt = w > 52
       ? `<text class="tl-bar-tx" x="${x0 + 6}" y="${yy + rowH/2 + 3}">${esc(nm)}</text>`
       : `<text class="tl-bar-tx out" x="${x0 + w + 5}" y="${yy + rowH/2 + 3}">${esc(nm)}</text>`;
-    const tip = `${esc(d.n || '')} — ${esc(d.c || '')} (${tlYearLabel(d.ps)}${Number.isInteger(d.pe) ? ' – ' + tlYearLabel(d.pe) : ' – presente'})`;
-    barEls.push(`<g class="tl-bar" data-idx="${esc(String(d._idx))}" style="cursor:pointer"><title>${tip}</title><rect x="${x0}" y="${yy}" width="${w}" height="${rowH}" rx="4" fill="${col}" fill-opacity="${op}" stroke="${col}"${dash}></rect>${txt}</g>`);
+    const tip = kids
+      ? `${esc(d.n || '')} — ${esc(d.c || '')} · ${collapsed ? 'mostrar' : 'ocultar'} ${kids} derivada(s)`
+      : `${esc(d.n || '')} — ${esc(d.c || '')} (${tlYearLabel(d.ps)}${Number.isInteger(d.pe) ? ' – ' + tlYearLabel(d.pe) : ' – presente'})`;
+    const cls = 'tl-bar' + (kids ? ' has-kids' : '') + (collapsed ? ' collapsed' : '');
+    barEls.push(`<g class="${cls}" data-idx="${esc(String(d._idx))}" data-docid="${esc(String(d._docId))}" data-kids="${kids}" style="cursor:pointer"><title>${tip}</title><rect x="${x0}" y="${yy}" width="${w}" height="${rowH}" rx="4" fill="${col}" fill-opacity="${op}" stroke="${col}"${dash}></rect>${txt}</g>`);
   });
   const H = top0 + lanes.length * (rowH + gap) + padB;
   const Wpx = X(maxY) + 30;
@@ -885,7 +914,7 @@ function renderTimeline(){
   gridEls.push(`<line x1="${nx}" y1="${padT}" x2="${nx}" y2="${H}" stroke="rgba(212,168,67,0.4)" stroke-dasharray="3 3"></line>`);
 
   const edgeEls = [];
-  items.forEach(d => { (d.links || []).forEach(l => {
+  visible.forEach(d => { (d.links || []).forEach(l => {
     if (l.cat !== 'religions') return;
     const a = placed[String(l.id)], b = placed[String(d._docId)];
     if (!a || !b) return;
@@ -907,7 +936,16 @@ function renderTimeline(){
   scroll.onscroll = () => {
     axisG.setAttribute('transform', `translate(0,${scroll.scrollTop})`);
   };
-  svg.onclick = ev => { const g = ev.target.closest('.tl-bar'); if (g) openEditModal(g.dataset.idx); };
+  svg.onclick = ev => {
+    const g = ev.target.closest('.tl-bar'); if (!g) return;
+    if (+g.dataset.kids > 0) {
+      const id = g.dataset.docid;
+      if (tlCollapsed.has(id)) tlCollapsed.delete(id); else tlCollapsed.add(id);
+      renderTimeline();
+    } else {
+      openEditModal(g.dataset.idx);
+    }
+  };
 }
 
 function resetFilters() {
