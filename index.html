@@ -474,7 +474,7 @@ tbody tr { cursor: pointer; }
 .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--border); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; vertical-align: middle; }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (max-width: 599px) {
-  .header-right .user-name, .header-right .btn-outline:not(#btn-signout) { display: none; }
+  .header-right .user-name, .header-right .btn-outline:not(#btn-signout):not(#btn-import-rel) { display: none; }
   .drawer { width: 100vw; right: -100vw; }
 }
 </style>
@@ -1326,7 +1326,7 @@ function renderAuthUI(user) {
   const migBtn = (currentUserRole === 'master' && !catalogLoaded)
     ? `<button class="btn-outline" onclick="migrateBaseline()" title="Mover a base embutida para o Firestore">⇪ Migrar base</button>` : '';
   const seedBtn = (currentUserRole === 'master')
-    ? `<button class="btn-outline" onclick="importReligionsSeed()" title="Carregar o núcleo curado de religiões (data/religions.seed.json)">🕊️ Importar religiões</button>` : '';
+    ? `<button class="btn-outline" id="btn-import-rel" onclick="importReligionsSeed()" title="Carregar/atualizar o seed de religiões (data/religions.seed.json)">🕊️ Importar religiões</button>` : '';
   const newBtn = canCreate()
     ? `<button class="btn-auth" id="btn-new-entry" onclick="openCreateModal()">➕ Nova ${CATEGORIES[currentCategory].singular}</button>` : '';
   right.innerHTML = `
