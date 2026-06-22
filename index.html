@@ -514,7 +514,7 @@ tbody tr { cursor: pointer; }
 <div class="main">
 
   <!-- KPIs -->
-  <div class="kpis">
+  <div class="kpis" id="kpis-block">
     <div class="kpi">
       <div class="label">Total de Deidades</div>
       <div class="value" id="kpi-total">3,738</div>
@@ -549,7 +549,7 @@ tbody tr { cursor: pointer; }
         <option value="">Todas as culturas</option>
       </select>
     </div>
-    <div class="filter-group">
+    <div class="filter-group" id="fg-gender">
       <label>Gênero</label>
       <select id="f-gender" onchange="applyFilters()">
         <option value="">Todos</option>
@@ -560,7 +560,7 @@ tbody tr { cursor: pointer; }
         <option value="Male or Female">Masculino ou Feminino</option>
       </select>
     </div>
-    <div class="filter-group">
+    <div class="filter-group" id="fg-geo">
       <label>Geografia</label>
       <select id="f-geo" onchange="applyFilters()">
         <option value="">Todas as regiões</option>
@@ -1472,9 +1472,22 @@ function applyCategoryLabels() {
   setTxt('th-c', c.f1 + ' ↕');
   setTxt('th-p', c.f3 ? c.f3 + ' ↕' : '—');
   setTxt('th-geo', c.f4 + ' ↕');
-  // gráficos e KPIs só fazem sentido para deidades (têm dados estatísticos)
-  const charts = document.querySelectorAll('.charts, .charts2');
-  charts.forEach(el => el.style.display = currentCategory === 'deities' ? '' : 'none');
+  const isDeities = currentCategory === 'deities';
+  // Gráficos, KPIs e filtros de Gênero/Geografia são específicos das deidades.
+  document.querySelectorAll('.charts, .charts2').forEach(el => el.style.display = isDeities ? '' : 'none');
+  ['kpis-block', 'fg-gender', 'fg-geo'].forEach(id => { const el = document.getElementById(id); if (el) el.style.display = isDeities ? '' : 'none'; });
+  // Filtro de família/cultura: opções da própria categoria (não as culturas de deidades).
+  const cs = document.getElementById('f-culture');
+  if (cs) {
+    const vals = isDeities
+      ? ALL_CULTURES
+      : [...new Set((genericStore[currentCategory] || []).filter(x => !x._deleted).map(x => x.c).filter(Boolean))].sort((a,b) => a.localeCompare(b));
+    cs.innerHTML = `<option value="">${isDeities ? 'Todas as culturas' : 'Todas'}</option>` +
+      vals.map(v => `<option value="${esc(v)}">${esc(v)}</option>`).join('');
+    cs.value = '';
+  }
+  const searchEl = document.getElementById('search');
+  if (searchEl) searchEl.placeholder = `Nome da ${c.singular}...`;
   const newBtn = document.getElementById('btn-new-entry');
   if (newBtn) newBtn.textContent = `➕ Nova ${c.singular}`;
 }
