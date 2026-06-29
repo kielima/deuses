@@ -19,3 +19,11 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DEUSES_APP }}
           projectId: deuses-app
           channelId: live
+
+      - name: Deploy Firestore rules
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/sa.json
+          FIREBASE_SERVICE_ACCOUNT_DEUSES_APP: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DEUSES_APP }}
+        run: |
+          printf '%s' "$FIREBASE_SERVICE_ACCOUNT_DEUSES_APP" > "$GOOGLE_APPLICATION_CREDENTIALS"
+          npx --yes firebase-tools@latest deploy --only firestore:rules --project deuses-app --non-interactive
