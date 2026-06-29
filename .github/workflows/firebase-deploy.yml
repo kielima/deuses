@@ -27,10 +27,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Deploy Firestore rules
+      - name: Deploy Firestore rules (REST API)
         env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/sa.json
           FIREBASE_SERVICE_ACCOUNT_DEUSES_APP: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DEUSES_APP }}
         run: |
-          printf '%s' "$FIREBASE_SERVICE_ACCOUNT_DEUSES_APP" > "$GOOGLE_APPLICATION_CREDENTIALS"
-          npx --yes firebase-tools@latest deploy --only firestore:rules --project deuses-app --non-interactive
+          printf '%s' "$FIREBASE_SERVICE_ACCOUNT_DEUSES_APP" > "$RUNNER_TEMP/sa.json"
+          npm install --no-save google-auth-library@9
+          node scripts/deploy-firestore-rules.mjs "$RUNNER_TEMP/sa.json" deuses-app firestore.rules
