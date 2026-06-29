@@ -1131,6 +1131,10 @@ const FieldValue = firebase.firestore.FieldValue;
 // ── GLOBALS ───────────────────────────────────────────────────────────────────
 let currentUser = null;
 let currentUserRole = 'viewer';
+// Dono(s) do projeto: têm sempre papel master (bootstrap por email). Deve
+// coincidir com isOwner() nas firestore.rules. Email = o da conta Google.
+const OWNER_EMAILS = ['kly@sapo.pt'];
+function isOwner(user) { return !!user && OWNER_EMAILS.includes((user.email || '').toLowerCase()); }
 let overrides = {};           // { dataIdx: {field:val, ...firestore fields} }
 window.mergedData = DATA.map((d, i) => ({ ...d, _idx: i }));
 
@@ -1202,13 +1206,21 @@ auth.onAuthStateChanged(async user => {
           displayName: user.displayName,
           email: user.email,
           photoURL: user.photoURL || '',
-          role: 'viewer',
+          role: isOwner(user) ? 'master' : 'viewer',
           joinedAt: FieldValue.serverTimestamp(),
           editCount: 0
         });
-        currentUserRole = 'viewer';
+        currentUserRole = isOwner(user) ? 'master' : 'viewer';
       } else {
         currentUserRole = snap.data().role || 'viewer';
+      }
+      // Dono do projeto é sempre master (bootstrap por email), mesmo que o
+      // documento na base diga outra coisa. Corrige a base em best-effort.
+      if (isOwner(user)) {
+        currentUserRole = 'master';
+        if (snap.exists && snap.data().role !== 'master') {
+          userRef.update({ role: 'master' }).catch(e => console.warn('owner role sync:', e));
+        }
       }
     } catch(e) { console.warn('Firestore user init:', e); }
     renderAuthUI(user);

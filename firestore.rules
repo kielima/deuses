@@ -10,12 +10,17 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     function isSignedIn() { return request.auth != null; }
+    // Dono(s) do projeto: sempre tratados como master (bootstrap por email).
+    // Deve coincidir com OWNER_EMAILS no index.html.
+    function isOwner() {
+      return isSignedIn() && request.auth.token.email in ['kly@sapo.pt'];
+    }
     function role() {
       return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
     }
-    function isMaster()   { return isSignedIn() && role() == 'master'; }
-    function canReview()  { return isSignedIn() && role() in ['master', 'admin']; }
-    function canComment() { return isSignedIn() && role() in ['master', 'admin', 'editor']; }
+    function isMaster()   { return isOwner() || (isSignedIn() && role() == 'master'); }
+    function canReview()  { return isOwner() || (isSignedIn() && role() in ['master', 'admin']); }
+    function canComment() { return isOwner() || (isSignedIn() && role() in ['master', 'admin', 'editor']); }
 
     // Catálogo: a base completa migrada para o Firestore, guardada em "chunks"
     // para caber no limite de 1 MiB por documento. Visível só após login;
