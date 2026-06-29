@@ -20,16 +20,9 @@ jobs:
           projectId: deuses-app
           channelId: live
 
-  # Deploy das regras é um job independente: não pode ser bloqueado por uma
-  # falha (muitas vezes espúria) do passo de Hosting.
-  rules:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Deploy Firestore rules (REST API)
-        env:
-          FIREBASE_SERVICE_ACCOUNT_DEUSES_APP: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DEUSES_APP }}
-        run: |
-          printf '%s' "$FIREBASE_SERVICE_ACCOUNT_DEUSES_APP" > "$RUNNER_TEMP/sa.json"
-          node scripts/deploy-firestore-rules.mjs "$RUNNER_TEMP/sa.json" deuses-app firestore.rules
+  # NOTA: o deploy automático das regras foi removido porque a service account
+  # FIREBASE_SERVICE_ACCOUNT_DEUSES_APP não tem a permissão
+  # firebaserules.rulesets.create (403 IAM_PERMISSION_DENIED).
+  # Para reativar: conceder à SA o papel "Firebase Rules Admin" no IAM e voltar
+  # a adicionar um job que corra scripts/deploy-firestore-rules.mjs.
+  # Em alternativa, publicar firestore.rules manualmente pelo Firebase Console.
