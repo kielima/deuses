@@ -32,5 +32,4 @@ jobs:
           FIREBASE_SERVICE_ACCOUNT_DEUSES_APP: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DEUSES_APP }}
         run: |
           printf '%s' "$FIREBASE_SERVICE_ACCOUNT_DEUSES_APP" > "$RUNNER_TEMP/sa.json"
-          npm install --no-save google-auth-library@9
           node scripts/deploy-firestore-rules.mjs "$RUNNER_TEMP/sa.json" deuses-app firestore.rules
