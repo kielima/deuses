@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  hosting:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,6 +19,13 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DEUSES_APP }}
           projectId: deuses-app
           channelId: live
+
+  # Deploy das regras é um job independente: não pode ser bloqueado por uma
+  # falha (muitas vezes espúria) do passo de Hosting.
+  rules:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
       - name: Deploy Firestore rules
         env:
